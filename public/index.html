@@ -3,14 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <title>Amikom Zero</title>
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>We're sorry but Amikom Zero doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <script>
+    !function(){function e(e){window.__theme=e,t=e,document.body.setAttribute("data-theme",e),window.__onThemeChange(e)}var t;window.__onThemeChange=function(){};try{t=localStorage.getItem("theme")}catch(e){}window.__setPreferredTheme=function(t){e(t);try{localStorage.setItem("theme",t)}catch(e){}};var n=window.matchMedia("(prefers-color-scheme: dark)");n.addListener(function(e){window.__setPreferredTheme(e.matches?"dark":"light")}),e(t||(n.matches?"dark":"light"))}();
+    </script>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>

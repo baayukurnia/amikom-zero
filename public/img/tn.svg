@@ -1,0 +1,14 @@
+<svg id="Ikon_TN" data-name="Ikon TN" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="78" viewBox="0 0 78 78">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0.149"/>
+    </linearGradient>
+  </defs>
+  <rect id="Rectangle_160" data-name="Rectangle 160" width="78" height="78" rx="20" fill="#3c285b"/>
+  <g id="pat" transform="translate(0 0)" opacity="0.05">
+    <path id="Intersection_5" data-name="Intersection 5" d="M2596-98.447a2,2,0,0,1-2-2v-36.918h2a19.945,19.945,0,0,1,14.575,6.3v16.988a1,1,0,0,0,1,1H2616v14.625Z" transform="translate(-2538 137.365)" fill="url(#linear-gradient)"/>
+    <path id="Intersection_6" data-name="Intersection 6" d="M2573.441-34.651a19.06,19.06,0,0,0,2.68-9.768,19.162,19.162,0,0,0-8.049-15.608V-77.559q1.253.421,2.479.939a34.833,34.833,0,0,1,11.108,7.49,34.836,34.836,0,0,1,7.49,11.109,34.722,34.722,0,0,1,2.746,13.6,34.727,34.727,0,0,1-2.746,13.6q-.546,1.292-1.19,2.529A19.945,19.945,0,0,1,2573.441-34.651Z" transform="translate(-2568.072 106.286)" fill="url(#linear-gradient)"/>
+  </g>
+  <path id="Path_23" data-name="Path 23" d="M8.625,0V-16.675h-3.1L.275-11.4,2.3-9.275,5.075-12.1V0ZM14.4-1.225a2.325,2.325,0,0,0-2.25-2.55,2,2,0,0,0-1.95,2,1.7,1.7,0,0,0,1.7,1.8,1.879,1.879,0,0,0,.475-.075A4.245,4.245,0,0,1,10.45,2.3l1.375,1.125A5.829,5.829,0,0,0,14.4-1.225ZM21.4.3c4.75,0,6.9-4.325,6.9-8.625s-2.15-8.6-6.9-8.6c-4.775,0-6.9,4.3-6.9,8.6S16.625.3,21.4.3Zm0-3.15c-2.4,0-3.3-2.4-3.3-5.475s.9-5.45,3.3-5.45c2.375,0,3.275,2.375,3.275,5.45S23.775-2.85,21.4-2.85Z" transform="translate(24 46.635)" fill="#fff"/>
+</svg>
