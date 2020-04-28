@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{'performance-mode' : this.$store.state.performanceMode }">
     <div class="screen">
       <transition :name="transitionName">
         <router-view class="page-screen"/>
@@ -13,7 +13,7 @@ export default {
   name: 'App',
   data () {
     return {
-      transitionName: 'slide-left'
+      transitionName: 'slide-left',
     }
   },
   watch: {
@@ -131,7 +131,6 @@ body {
 
   --shadow-red: rgba(221, 36, 36, .5);
 
-  --blur-amount: 25px;
   --ease: cubic-bezier(.55,0,.1,1);
   --radius: 20px;
 
@@ -249,10 +248,15 @@ body{
 }
 
 #app{
+  --blur-amount: 25px;
   user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   backface-visibility: hidden;
   scroll-behavior: smooth;
+
+  &.performance-mode{
+    --blur-amount: 0;
+  }
 }
 
 @media (min-width: 576px){

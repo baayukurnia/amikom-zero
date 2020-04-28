@@ -16,6 +16,11 @@
                   <Toggle :active.sync="this.$store.state.darkTheme"/>
               </li>
               <li class="list-icon">
+                  <label>Utamakan Performa</label>
+                  <a href="#" @click.prevent="toggleBlur">Disable Blur</a>
+                  <Toggle :active.sync="this.$store.state.performanceMode"/>
+              </li>
+              <li class="list-icon">
                   <a href="https://instagram.com/baayukurnia">Feedback via DM</a>
                   <div class="icon">
                     <CoffeeIcon/>
@@ -59,7 +64,7 @@ export default {
   data(){
     return {
       showModal: false,
-      toggleActive: true,
+      toggleActive: true
     }
   },
   methods: {
@@ -76,10 +81,20 @@ export default {
       window.__setPreferredTheme(
         this.$store.state.darkTheme ? 'dark' : 'light'
       )
+    },
+    toggleBlur() {
+      this.$store.state.performanceMode = !this.$store.state.performanceMode
+      localStorage.performanceMode = this.$store.state.performanceMode
     }
   },
   mounted() {
-    if (window.__theme == 'dark') this.$store.state.darkTheme = true
+    if(window.__theme == 'dark') this.$store.state.darkTheme = true
+    if(localStorage.performanceMode == 'true'){
+      this.$store.state.performanceMode = true
+    }
+    else{
+      this.$store.state.performanceMode = false
+    }
   }
 }
 </script>

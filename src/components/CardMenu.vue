@@ -70,6 +70,18 @@ export default {
         opacity: 1;
       }
     }
+    
+    label{
+      bottom: 3px;
+      line-height: normal;
+      position: absolute;
+      font-size: .6125rem;
+      text-transform: uppercase;
+      letter-spacing: .1rem;
+      opacity: .25;
+      left: 25px;
+      pointer-events: none;
+    }
   }
   .divider {
     width: calc(100% - 30px);
