@@ -104,7 +104,7 @@ export default {
 
 
 // Light default theme
-body {
+body #app{
   --mainbg-color: #2b1d40;
   --mainbg-color-transparent: rgba(23, 0, 56, 0.85);
   --main-color: #866baf;
@@ -133,22 +133,21 @@ body {
 
   --ease: cubic-bezier(.55,0,.1,1);
   --radius: 20px;
+  --blur-amount: 25px;
 
-
-  // font-sizes
-  --h1: 2.5rem;
-  --h2: 2rem;
-  --h3: 1.75rem;
-  --h4: 1.5rem;
-  --h5: 1.125rem;
-  --h6: 1rem;
-  --h7: .875rem;
-  --h8: .8125rem;
-  --h9: .75rem;
+  &.performance-mode{
+    *{
+      backdrop-filter: none !important;
+    }
+    
+    --overlay: rgba(255,255,255,.85);
+    --mainbg-color-transparent: #2b1d40;
+    --blur-amount: 0;
+  }
 }
 
 // Override variables for Dark theme
-body[data-theme="dark"] {
+body[data-theme="dark"] #app{
   --bg-card: #232131;
   --mainbg-color: #41286b;
   --mainbg-color-transparent: rgba(65, 40, 107, .85);
@@ -162,23 +161,40 @@ body[data-theme="dark"] {
   --border-color: rgba(255,255,255,.05);
   --active-bg: rgba(0,0,0,.2);
   --hover-bg: rgba(255,255,255,.02);
-  --overlay: rgba(0,0,0,.2);
+  --overlay: rgba(0,0,0,.3);
   --list-icon-color: #7a62a7;
   --device-color: #eee;
+
+  &.performance-mode{
+    --overlay: rgba(0,0,0,.85);
+    --mainbg-color-transparent: #41286b
+  }
+}
+
+// font-sizes
+body{
+  --h1: 2.5rem;
+  --h2: 2rem;
+  --h3: 1.75rem;
+  --h4: 1.5rem;
+  --h5: 1.125rem;
+  --h6: 1rem;
+  --h7: .875rem;
+  --h8: .8125rem;
+  --h9: .75rem;
 }
 @media (max-width: 350px){
-  body{
-      // font-sizes
-      --h0: 2.5rem;
-      --h1: 2rem;
-      --h2: 1.75rem;
-      --h3: 1.5rem;
-      --h4: 1.125rem;
-      --h5: 1rem;
-      --h6: .875rem;
-      --h7: .8125rem;
-      --h8: .75rem;
-  }
+body{
+  --h0: 2.5rem;
+  --h1: 2rem;
+  --h2: 1.75rem;
+  --h3: 1.5rem;
+  --h4: 1.125rem;
+  --h5: 1rem;
+  --h6: .875rem;
+  --h7: .8125rem;
+  --h8: .75rem;
+}
 }
 
 html {
@@ -248,15 +264,10 @@ body{
 }
 
 #app{
-  --blur-amount: 25px;
   user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   backface-visibility: hidden;
   scroll-behavior: smooth;
-
-  &.performance-mode{
-    --blur-amount: 0;
-  }
 }
 
 @media (min-width: 576px){

@@ -12,7 +12,26 @@
       <strong>We're sorry but Amikom Zero doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <script>
-    !function(){function e(e){window.__theme=e,t=e,document.body.setAttribute("data-theme",e),window.__onThemeChange(e)}var t;window.__onThemeChange=function(){};try{t=localStorage.getItem("theme")}catch(e){}window.__setPreferredTheme=function(t){e(t);try{localStorage.setItem("theme",t)}catch(e){}};var n=window.matchMedia("(prefers-color-scheme: dark)");n.addListener(function(e){window.__setPreferredTheme(e.matches?"dark":"light")}),e(t||(n.matches?"dark":"light"))}();
+      ! function() {
+          function e(e) {
+              window.__theme = e, t = e, document.body.setAttribute("data-theme", e), window.__onThemeChange(e)
+          }
+          var t;
+          window.__onThemeChange = function() {};
+          try {
+              t = localStorage.getItem("theme")
+          } catch (e) {}
+          window.__setPreferredTheme = function(t) {
+              e(t);
+              try {
+                  localStorage.setItem("theme", t)
+              } catch (e) {}
+          };
+          var n = window.matchMedia("(prefers-color-scheme: dark)");
+          n.addListener(function(e) {
+              window.__setPreferredTheme(e.matches ? "dark" : "light")
+          }), e(t || (n.matches ? "dark" : "light"))
+      }();
     </script>
     <div id="app"></div>
     <!-- built files will be auto injected -->
