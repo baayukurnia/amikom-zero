@@ -1,5 +1,5 @@
 <template>
-  <div class="icon" @click="$emit('update:active', !active)">
+  <div class="icon icon-toggle" @click="$emit('update:active', !active)">
     <input type="checkbox" :name="name" :id="id" :checked="active" hidden aria-hidden="true">
     <div class="toggle"></div>
   </div>
@@ -29,7 +29,7 @@
 
 <style scoped>
   .toggle {
-    border: 2px solid var(--mainbg-color);
+    border: 2px solid var(--list-icon-color);
     border-radius: 12px;
     cursor: pointer;
     display: inline-block;
@@ -41,7 +41,7 @@
     pointer-events: none;
   }
   .toggle:after {
-    background-color: var(--icon-bg);
+    background-color: var(--list-icon-color);
     border-radius: 10px;
     content: '';
     display: block;
@@ -53,8 +53,8 @@
     width: 14px;
   }
   input:checked + .toggle {
-    background-color: var(--main-color);
-    border: 2px solid var(--main-color);
+    background-color: var(--list-icon-color);
+    border: 2px solid var(--list-icon-color);
   }
   input:checked + .toggle:after {
     background-color: #fff;

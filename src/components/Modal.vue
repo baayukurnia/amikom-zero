@@ -2,7 +2,6 @@
     <div class="modal">
         <div class="modalbg" @click.prevent="closeModal"></div>
         <div class="content">
-            <div class="card">
             <span class="close" @click.prevent="closeModal">
                 <div class="icon">
                     <span></span>
@@ -10,7 +9,6 @@
                 </div>
             </span>
             <slot></slot>
-            </div>
         </div>
     </div>
 </template>
@@ -29,19 +27,20 @@ export default {
 <style lang="scss" scoped>
 .modalbg{
     position: fixed;
-    top:0;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     cursor: crosshair;
     opacity: 0;
-    transition: opacity .5s;
+    transition: opacity .2s;
     background: var(--overlay);
-    backdrop-filter: blur(25px);
+    z-index: 10;
+    backdrop-filter: blur(0px);
 }
+
 .modal{
     visibility: hidden;
-    transition: .5s;
     position: fixed;
     top:0;
     left: 0;
@@ -50,40 +49,60 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    z-index: 20;
+}
+@media (min-width: 576px) {
+    .modalbg{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    .modal{
+        position: absolute;
+    }
 }
 .content {
-    z-index: 1;
+    z-index: 11;
     display: inline-block;
     margin: 0 auto;
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
 
-    .card{
-        background: var(--bg-card);
-        border-radius: 15px;
-        opacity: 0;
-        transform: translateY(30px);
-        box-shadow: 0 30px 70px 0 rgba(130,136,171,.1);
-        transition: transform .3s cubic-bezier(.55,0,.1,1),
-                    opacity .2s;
-    }
     .close{
-        background: #dc3333;
-        padding: 10px;
+        background: var(--red);
+        padding: 18px;
         position: absolute;
-        right: -10px;
-        top: -10px;
+        left: 50%;
+        bottom: -80px;
         border-radius: 50%;
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translate(-50%,20px);
         transition: .5s cubic-bezier(.55,0,.1,1);
-        box-shadow: 0 5px 10px rgba(160, 33, 33, 0.5);
+        box-shadow: 0 5px 15px var(--shadow-red);
+        transition-delay: .2s;
         cursor: pointer;
         z-index: 1;
 
+        &:hover{
+            box-shadow: 0 10px 40px var(--shadow-red);
+
+            .icon{
+                transition-delay: 0s;
+                transform: rotate(360deg);
+            }
+        }
+
         .icon{
+            transition: .5s cubic-bezier(.55,0,.1,1);
             height: 14px;
             width: 14px;
+            position: relative;
+            transform: rotate(0);
+
             span{
-                width: 12px;
+                width: 100%;
                 border-radius: 5px;
                 height: 2px;
                 background: #fff;
@@ -101,17 +120,21 @@ export default {
         }
     }
 }
-.show{
+.active{
     visibility: visible;
-    .card, .modalbg{
+    .modalbg{
+        transition: opacity .5s;
+        backdrop-filter: blur(var(--blur-amount));
         opacity: 1;
         transform: translateY(0);
-        visibility: visible;
     }
     .close{
+        transition-delay: 0s;
         opacity: 1;
-        transition-delay: .2s;
-        transform: translateY(0);
+        transform: translate(-50%,0px);
+        .icon{
+            transform: rotate(180deg);
+        }
     }
 }
 </style>

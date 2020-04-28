@@ -8,9 +8,7 @@
     :style="{ top: `${isMove ? y : calcY()}px` }"
   >
     <div class="pan-area" ref="pan"><div class="bar" ref="bar"></div></div>
-    <div class="contents">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </div>
 </div>
 </template>
@@ -55,7 +53,11 @@ export default {
     this.mc.get('pan').set({ direction: Hammer.DIRECTION_ALL })
 
     this.mc.on("panup pandown", (evt) => {
-      this.y = evt.center.y - 16
+      if (window.matchMedia("(max-width: 567px)").matches) { // If media query matches
+        this.y = evt.center.y - 16
+      } else {
+        this.y = evt.center.y - 75
+      }
     })
 
     this.mc.on("panstart", (evt) => {
@@ -130,25 +132,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper[data-open="1"] {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
 .wrapper .bg {
-  visibility: hidden;
-  display: block;
   position: fixed;
-  top: 0;
+  top:0;
   left: 0;
   right: 0;
   bottom: 0;
+  visibility: hidden;
   background: var(--overlay);
-  backdrop-filter: blur(25px);
   opacity: 0;
-  transition: .5s !important;
+  transition: .5s;
+  z-index: 10;
 }
+
 .wrapper .bg.open{
   opacity: 1;
   visibility: visible;
@@ -156,28 +152,27 @@ export default {
 
 .slide-right-enter-active .card {
   opacity: 0;
-  transform: translate(100px);
+  transform: translateY(100px);
 }
 
 .card {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: fixed;
-  background: var(--mainbg-color);
+  background: var(--mainbg-color-transparent);
   color: var(--white);
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -5px 6px rgba(31, 31, 31, 0.1);
+  z-index: 10;
+  backdrop-filter: blur(var(--blur-amount));
 }
 
 @media (min-width: 576px){
-  .slide-right-enter-active .card {
-    transform: translate(-50%, 100px);
-  }
   .card{
-    max-width: 720px;
-    overflow: hidden;
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute;
+  }
+  .wrapper .bg{
+    position: absolute;
   }
 }
 

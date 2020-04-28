@@ -1,0 +1,170 @@
+<template>
+    <div :class="['navigation d-grid', mode, {'transparent' : transparentNav}, {'appearance-right' : !navRight}]">
+      <div class="navigation-left" @click="$router.go(-1)">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </div>
+      </div>
+      <h1 class="navigation-title">
+        {{ title }}
+      </h1>
+      <div v-if='navRight' :class="['navigation-right', {'active' : showDropdown}]" @click="toggleDropdown()">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+        </div>
+      </div>
+      <div v-if='navRight' :class="['navigation-dropdown', {'active' : showDropdown}]">
+        <CardMenu class="dropdown text-right">
+          <slot/>
+        </CardMenu>
+      </div>
+    </div>
+</template>
+
+<script>
+import CardMenu from '@/components/CardMenu.vue'
+
+export default {
+    name: 'Navigation',
+    components: {
+      CardMenu
+    },
+    props: {
+      mode: {
+        type: String
+      },
+      title:{
+        type: String
+      },
+      navRight:{
+        type: String,
+        default: null
+      }
+    },
+    data(){
+      return {
+        transparentNav: true,
+        showDropdown: false
+      }
+    },
+    mounted(){
+      this.init()
+    },
+    methods: {
+      toggleDropdown(){
+        this.showDropdown = !this.showDropdown
+      },
+      animateElement () {
+        var el = document.getElementById('scroll-view')
+        var scrollPos = el.scrollTop
+        var offset = el.offsetHeight * 0.4
+        console.log(scrollPos > offset)
+        if(scrollPos > 300){
+          this.transparentNav = false
+        }
+        else{
+          this.transparentNav = true
+        }
+      },
+      scrollHandler () {
+        window.requestAnimationFrame(() => {
+          this.animateElement()
+        })
+      },
+      init(){
+        document.getElementById('scroll-view').addEventListener('scroll', this.scrollHandler, false)
+      }
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+.navigation{
+  position: absolute;
+  grid-template-columns: 50px 1fr 50px;
+  width: 100%;
+  top: 0;
+  padding-top: 40px;
+  z-index: 10;
+  background: var(--bg-color);
+  color: var(--body-color);
+  transition: .5s var(--ease);
+
+  &-left,&-right{
+    padding: 0 13px;
+    display: inherit;
+    cursor: pointer;
+
+    &:hover{
+      opacity: .8;
+    }
+    &.active{
+      .icon{
+        background: var(--active-bg);
+      }
+    }
+  }
+
+  &-title{
+    transition: .5s var(--ease);
+    text-align: center;
+    font-size: var(--h5);
+    font-weight: 400;
+    margin: auto;
+    line-height: 50px;
+    color: var(--body-color);
+  }
+
+  .icon{
+    border-radius: 5px;
+    padding: 5px 0;
+    margin: 7px 0;
+    height: 34px;
+    width: 24px;
+    display: inline-block;
+    transition: .3s;
+    svg{
+      color: var(--body-color);
+      transition: .5s var(--ease);
+    }
+  }
+
+  &-dropdown{
+    display: block;
+    position: absolute;
+    right: 13px;
+    top: 85px;
+  }
+
+  &.transparent{
+    background: transparent;
+    &.light{
+      .icon svg, .navigation-title{
+        color: #fff;
+      }
+    }
+
+    &.dark{
+      .icon svg{
+        color: #1F122E;
+      }
+    }
+  }
+
+  &.appearance-right:after{
+      content: url('/img/suket.svg');
+      position: absolute;
+      right: -15px;
+      bottom: 15px;
+  }
+}
+
+@media (max-width:350px) {
+  .navigation{
+    padding-top: 20px;
+    &-dropdown{
+      top: 65px
+    }
+  }
+}
+</style>

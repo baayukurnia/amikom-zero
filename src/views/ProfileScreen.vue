@@ -1,0 +1,350 @@
+<template>
+  <div class="profile">
+    <Navigation class="light" title="Profil Saya" nav-right='true'>
+      <li>
+          <router-link to="/profil/edit">Edit Profil</router-link>
+      </li>
+    </Navigation>
+    <ScrollView>
+      <ProfileImage/>
+      <ProfileInfo/>
+      <div class="profile-action d-flex justify-content-between">
+        <a href="#" v-scroll-to="{el:'#more', offset: -100}" class="btn more" @click="toggleMore()">
+          Selengkapnya
+          <div class="icon" :class="{ 'show' : showMore}"></div>
+        </a>
+        <div class="btn sign-out">
+          Keluar
+          <div class="icon">
+            <PowerIcon/>
+          </div>
+        </div>
+      </div>
+      <SlideUpDown :active="showMore">
+        <div class="card profile-more" id="more">
+          <h3 class="heading">Biodata</h3>
+          <ul>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <UserIcon/>
+              </div>
+              <div class="data">
+                <label>Nama Lengkap</label>
+                <span>Masha Raymers</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <CreditCardIcon/>
+              </div>
+              <div class="data">
+                <label>Nim</label>
+                <span>19.11.3286</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <MehIcon/>
+              </div>
+              <div class="data">
+                <label>Jenis Kelamin</label>
+                <span>Laki-laki</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <BookOpenIcon/>
+              </div>
+              <div class="data">
+                <label>Program Studi</label>
+                <span>Informatika; Informatic</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <UsersIcon/>
+              </div>
+              <div class="data">
+                <label>Dosen Wali</label>
+                <span>Ike Verawati, M.Kom</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <MoonIcon/>
+              </div>
+              <div class="data">
+                <label>Agama</label>
+                <span>Islam</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <MapPinIcon/>
+              </div>
+              <div class="data">
+                <label>Kewarganegaraan</label>
+                <span>Indonesia</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <HomeIcon/>
+              </div>
+              <div class="data">
+                <label>Tempat Lahir</label>
+                <span>Klaten</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <CalendarIcon/>
+              </div>
+              <div class="data">
+                <label>Tanggal Lahir</label>
+                <span>01-01-2000</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <PhoneIcon/>
+              </div>
+              <div class="data">
+                <label>No Handphone</label>
+                <span>08169696969</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <MailIcon/>
+              </div>
+              <div class="data">
+                <label>Email Alternatif</label>
+                <span>bayukapp@gmail.com</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <BookIcon/>
+              </div>
+              <div class="data">
+                <label>Nama SMA/SMK/Univ Asal</label>
+                <span>SMKN 2 Klaten</span>
+              </div>
+            </li>
+            <li class="list-icon icon-left">
+              <div class="icon">
+                <MapPinIcon/>
+              </div>
+              <div class="data">
+                <label>Kota SMA/SMK/Univ Asal</label>
+                <span>Klaten</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </SlideUpDown>
+    </ScrollView>
+  </div>
+</template>
+
+<script>
+import { PowerIcon, UserIcon, CreditCardIcon , MehIcon, BookOpenIcon, UsersIcon, MoonIcon, HomeIcon, CalendarIcon, MailIcon, PhoneIcon, BookIcon, MapPinIcon } from 'vue-feather-icons'
+import Navigation from '@/components/Navigation.vue'
+import ScrollView from '@/components/ScrollView.vue'
+import ProfileImage from '@/components/ProfileImage.vue'
+import ProfileInfo from '@/components/ProfileInfo.vue'
+import SlideUpDown from '@/components/SlideUpDown.js'
+
+export default {
+  name: 'ProfileScreen',
+  components: {
+    PowerIcon, UserIcon, CreditCardIcon , MehIcon, BookOpenIcon, UsersIcon, MoonIcon, HomeIcon, CalendarIcon, MailIcon, PhoneIcon, BookIcon, MapPinIcon,
+    Navigation,
+    ProfileImage,
+    ProfileInfo,
+    ScrollView,
+    SlideUpDown,
+  },
+  data(){
+    return {
+      showMore: false
+    }
+  },
+  methods: {
+    toggleMore(){
+      this.showMore = !this.showMore
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.profile{
+  padding: 0;
+
+  &-action{
+    margin: 15px;
+
+    .btn{
+      padding: 15px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      color: var(--body-color);
+      font-size: var(--h6);
+
+      &:hover{
+        opacity: .8;
+      }
+
+      &.more{
+        padding: 15px 10px;
+        .icon{
+          position: relative;
+          width: 18px;
+          height: 18px;
+          &:before, &:after{
+            content: '';
+            position: absolute;
+            width: 9px;
+            height: 2px;
+            background: var(--body-color);
+            top: 8px;
+            right: 7px;
+            transform: rotate(45deg);
+            border-radius: 2px;
+            transition: .3s;
+          }
+          &:before{
+            right: 2px;
+            transform: rotate(-45deg);
+          }
+
+          &.show{
+            &:before{
+              transform: rotate(45deg);
+            }
+            &:after{
+              transform: rotate(-45deg);
+            }
+          }
+        }
+      }
+      &.sign-out{
+        background: var(--red);
+        color: var(--white);
+
+        .icon svg{
+          overflow: visible;
+
+          polyline, line{
+            transition: .3s;
+          }
+        }
+      }
+      .icon{
+        margin-left: 7px;
+        display: inline-block;
+        height: 18px;
+        svg{
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  &-more{
+    padding: 30px 0;
+    background: var(--mainbg-color-transparent);
+    color: var(--white);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+}
+
+
+
+.profile-more ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li{
+    position: relative;
+    line-height: 50px;
+    overflow: hidden;
+
+    &.overmask{
+      mask-image: linear-gradient(to right, black 90%, transparent);
+    }
+
+    &.list-icon{
+      padding-left: 60px;
+
+      svg{
+        display: inherit;
+        width: 20px;
+        height: 20px;
+      }
+      .icon{
+        position: absolute;
+        height: 24px;
+        width: 24px;
+        right: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--white);
+      }
+      &.icon-left .icon{
+        left: 25px;
+        right: auto;
+      }
+    }
+    label{
+      top: 2px;
+      line-height: normal;
+      position: absolute;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .1rem;
+      opacity: .3;
+    }
+    span{
+      font-size: var(--h7);
+      &.password{
+        font-size: var(--h5);
+      }
+      &.toggle-pass {
+        color: var(--main-color);
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        line-height: 20px;
+        padding: 10px;
+        margin: 5px 0;
+        cursor: pointer;
+        &:hover{
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 350px){
+  .profile{
+    &-action{
+      .btn{
+        .icon{
+          height: 16px;
+          svg{
+            width: 16px;
+            height: 16px;
+          }
+        } 
+      }
+    }
+  }
+}
+</style>
