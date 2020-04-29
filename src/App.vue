@@ -114,11 +114,11 @@ export default {
 body{
   --bg-color: #FDFCFF;
   --body-color: #1F122E;
+  --bg-card: #fff;
   #app{
     --mainbg-color: #2b1d40;
     --mainbg-color-transparent: rgba(23, 0, 56, 0.85);
     --main-color: #866baf;
-    --bg-card: #fff;
     --secondary-color: #FFB148;
     --opacity-color: #755994;
     --icon-gradientx: #FFCF60;
@@ -159,8 +159,8 @@ body{
 body[data-theme="dark"]{
   --bg-color: #1b1921;
   --body-color: #fff;
+  --bg-card: #232131;
   #app{
-    --bg-card: #232131;
     --mainbg-color: #41286b;
     --mainbg-color-transparent: rgba(65, 40, 107, .85);
     --opacity-color: #7a62a7;
@@ -318,7 +318,7 @@ body{
         content:'';
         width: 10px;
         height: 10px;
-        background: var(--body-color);
+        background: var(--bg-card) !important;
         position: absolute;
       }
       &:before{
