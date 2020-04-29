@@ -259,6 +259,8 @@ body{
 }
 
 #app{
+  background: var(--bg-color);
+  color: var(--body-color);
   user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   backface-visibility: hidden;
@@ -304,8 +306,6 @@ body{
     height: 813px;
     position: relative;
     overflow: hidden;
-    background: var(--bg-color);
-    color: var(--body-color);
     
     .border-radius{
       position: absolute;
@@ -320,6 +320,9 @@ body{
         height: 10px;
         background: var(--bg-card) !important;
         position: absolute;
+        transition: background-color .3s,
+                    color .3s,
+                    fill .3s;
       }
       &:before{
         left:0

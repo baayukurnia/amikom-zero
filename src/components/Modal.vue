@@ -69,6 +69,7 @@ export default {
     bottom: 150px;
     left: 50%;
     transform: translate3d(-50%,0,0);
+    width: calc(100% - 50px);
 
     .close{
         background: var(--red);
