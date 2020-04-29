@@ -1,10 +1,12 @@
 <template>
   <div id="app" :class="{'performance-mode' : this.$store.state.performanceMode }">
     <div class="screen">
+      <div class="border-radius top"></div>
       <StatusBar/>
       <transition :name="transitionName">
         <router-view class="page-screen"/>
       </transition>
+      <div class="border-radius bottom"></div>
     </div>
   </div>
 </template>
@@ -301,10 +303,37 @@ body{
     width: 375px;
     height: 813px;
     position: relative;
-    border-radius: 15px;
     overflow: hidden;
     background: var(--bg-color);
     color: var(--body-color);
+    
+    .border-radius{
+      position: absolute;
+      left:-1px;
+      right: -1px;
+      z-index: 99;
+      pointer-events: none;
+
+      &:before, &:after{
+        content:'';
+        width: 10px;
+        height: 10px;
+        background: var(--body-color);
+        position: absolute;
+      }
+      &:before{
+        left:0
+      }
+      &:after{
+        right:0
+      }
+      &.top{
+        top: 0;
+      }
+      &.bottom{
+        bottom:10px;
+      }
+    }
   }
 }
 
