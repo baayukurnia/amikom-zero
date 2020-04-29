@@ -109,70 +109,74 @@ export default {
 
 
 // Light default theme
-body #app{
-  --mainbg-color: #2b1d40;
-  --mainbg-color-transparent: rgba(23, 0, 56, 0.85);
-  --main-color: #866baf;
+body{
   --bg-color: #FDFCFF;
-  --bg-card: #fff;
   --body-color: #1F122E;
-  --secondary-color: #FFB148;
-  --opacity-color: #755994;
-  --icon-gradientx: #FFCF60;
-  --icon-gradienty: #FF8944;
-  --icon-gradient-white: rgba(255,255,255,1);
-  --icon-bg: #3c285b;
-  --border-color: rgba(0,0,0,.05);
-  --hover-bg: rgba(0,0,0,.03);
-  --active-bg: rgba(255,255,255,.2);
-  --overlay: rgba(255,255,255,.2);
-  --list-icon-color: #2B1D40;
-  --device-color: #111;
-  --shadow: rgba(33, 33, 33, .2);
+  #app{
+    --mainbg-color: #2b1d40;
+    --mainbg-color-transparent: rgba(23, 0, 56, 0.85);
+    --main-color: #866baf;
+    --bg-card: #fff;
+    --secondary-color: #FFB148;
+    --opacity-color: #755994;
+    --icon-gradientx: #FFCF60;
+    --icon-gradienty: #FF8944;
+    --icon-gradient-white: rgba(255,255,255,1);
+    --icon-bg: #3c285b;
+    --border-color: rgba(0,0,0,.05);
+    --hover-bg: rgba(0,0,0,.03);
+    --active-bg: rgba(255,255,255,.2);
+    --overlay: rgba(255,255,255,.2);
+    --list-icon-color: #2B1D40;
+    --device-color: #111;
+    --shadow: rgba(33, 33, 33, .2);
 
-  // colors
-  --white: #fff;
-  --red: #b92121;
+    // colors
+    --white: #fff;
+    --red: #b92121;
 
-  --shadow-red: rgba(221, 36, 36, .5);
+    --shadow-red: rgba(221, 36, 36, .5);
 
-  --ease: cubic-bezier(.55,0,.1,1);
-  --radius: 20px;
-  --blur-amount: 25px;
+    --ease: cubic-bezier(.55,0,.1,1);
+    --radius: 20px;
+    --blur-amount: 25px;
 
-  &.performance-mode{
-    *{
-      backdrop-filter: none !important;
+    &.performance-mode{
+      *{
+        backdrop-filter: none !important;
+      }
+      
+      --overlay: rgba(255,255,255,.85);
+      --mainbg-color-transparent: #2b1d40;
+      --blur-amount: 0;
     }
-    
-    --overlay: rgba(255,255,255,.85);
-    --mainbg-color-transparent: #2b1d40;
-    --blur-amount: 0;
   }
 }
 
 // Override variables for Dark theme
-body[data-theme="dark"] #app{
-  --bg-card: #232131;
-  --mainbg-color: #41286b;
-  --mainbg-color-transparent: rgba(65, 40, 107, .85);
+body[data-theme="dark"]{
   --bg-color: #1b1921;
   --body-color: #fff;
-  --opacity-color: #7a62a7;
-  --icon-gradientx: #FFCF60;
-  --icon-gradienty: #ec722b;
-  --icon-gradient-white: rgba(255,255,255,1);
-  --icon-bg: #4c2d80;
-  --border-color: rgba(255,255,255,.05);
-  --active-bg: rgba(0,0,0,.2);
-  --hover-bg: rgba(255,255,255,.02);
-  --overlay: rgba(0,0,0,.3);
-  --list-icon-color: #7a62a7;
-  --device-color: #eee;
+  #app{
+    --bg-card: #232131;
+    --mainbg-color: #41286b;
+    --mainbg-color-transparent: rgba(65, 40, 107, .85);
+    --opacity-color: #7a62a7;
+    --icon-gradientx: #FFCF60;
+    --icon-gradienty: #ec722b;
+    --icon-gradient-white: rgba(255,255,255,1);
+    --icon-bg: #4c2d80;
+    --border-color: rgba(255,255,255,.05);
+    --active-bg: rgba(0,0,0,.2);
+    --hover-bg: rgba(255,255,255,.02);
+    --overlay: rgba(0,0,0,.3);
+    --list-icon-color: #7a62a7;
+    --device-color: #eee;
 
-  &.performance-mode{
-    --overlay: rgba(0,0,0,.85);
-    --mainbg-color-transparent: #41286b
+    &.performance-mode{
+      --overlay: rgba(0,0,0,.85);
+      --mainbg-color-transparent: #41286b
+    }
   }
 }
 
