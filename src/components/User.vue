@@ -35,13 +35,13 @@ export default {
   .name{
     margin: 0;
     display: block;
-    font-size: 1.125rem;
+    font-size: 20px;
     letter-spacing: -.03rem;
   }
   .nim{
     margin: 0;
     display: block;
-    font-size: 0.75rem;
+    font-size: var(--h7);
     opacity: .5;
   }
 }

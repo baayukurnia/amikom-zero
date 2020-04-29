@@ -1,6 +1,7 @@
 <template>
   <div id="app" :class="{'performance-mode' : this.$store.state.performanceMode }">
     <div class="screen">
+      <StatusBar/>
       <transition :name="transitionName">
         <router-view class="page-screen"/>
       </transition>
@@ -9,8 +10,12 @@
 </template>
 
 <script>
+import StatusBar from '@/components/StatusBar.vue'
 export default {
   name: 'App',
+  components: {
+    StatusBar
+  },
   data () {
     return {
       transitionName: 'slide-left',
@@ -171,32 +176,6 @@ body[data-theme="dark"] #app{
   }
 }
 
-// font-sizes
-body{
-  --h1: 2.5rem;
-  --h2: 2rem;
-  --h3: 1.75rem;
-  --h4: 1.5rem;
-  --h5: 1.125rem;
-  --h6: 1rem;
-  --h7: .875rem;
-  --h8: .8125rem;
-  --h9: .75rem;
-}
-@media (max-width: 350px){
-body{
-  --h0: 2.5rem;
-  --h1: 2rem;
-  --h2: 1.75rem;
-  --h3: 1.5rem;
-  --h4: 1.125rem;
-  --h5: 1rem;
-  --h6: .875rem;
-  --h7: .8125rem;
-  --h8: .75rem;
-}
-}
-
 html {
   text-rendering: optimizeLegibility;
   box-sizing: border-box;
@@ -233,19 +212,7 @@ a{
 img{pointer-events: none; max-width: 100%;}
 
 body{
-  font-family: 'Neuzeit Grotesk',
-  // Safari for OS X and iOS (San Francisco)
-  -apple-system,
-  // Chrome < 56 for OS X (San Francisco)
-  BlinkMacSystemFont,
-  // Windows
-  "Segoe UI",
-  // Android
-  "Roboto",
-  // Basic web fallback
-  "Helvetica Neue", Arial, sans-serif,
-  // Emoji fonts
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Neuzeit Grotesk',-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Helvetica Neue", Arial, sans-serif,"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   letter-spacing: .01rem;
   margin: 0;
   overflow: hidden;
@@ -254,7 +221,29 @@ body{
   transition: background-color .3s,
               color .3s,
               fill .3s;
+  --h1: 2.5rem;
+  --h2: 2rem;
+  --h3: 1.75rem;
+  --h4: 1.5rem;
+  --h5: 1.125rem;
+  --h6: 1rem;
+  --h7: .875rem;
+  --h8: .8125rem;
+  --h9: .75rem;
 }
+// @media (max-width: 350px){
+//   body{
+//     --h0: 2.5rem;
+//     --h1: 2rem;
+//     --h2: 1.75rem;
+//     --h3: 1.5rem;
+//     --h4: 1.125rem;
+//     --h5: 1rem;
+//     --h6: .875rem;
+//     --h7: .8125rem;
+//     --h8: .75rem;
+//   }
+// }
 @media (min-width: 576px){
   body{
     background: var(--bg-card) !important;
@@ -292,10 +281,10 @@ body{
     }
     &:before{
       content: '';
-      width: 175px;
-      transform: translate(-50%);
-      height: 33px;
-      top: -5px;
+      width: 210px;
+      transform: translate3d(-50%,0,0);
+      height: 35px;
+      top: -1px;
       left: 50%;
       background: var(--device-color);
       position: absolute;
@@ -306,9 +295,9 @@ body{
   .screen{
     margin: 0;
     width: 375px;
-    height: 812px;
+    height: 813px;
     position: relative;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
     background: var(--bg-color);
     color: var(--body-color);
@@ -320,7 +309,7 @@ body{
   border-radius: var(--radius);
 }
 .heading{
-  font-size: 	var(--h5);
+  font-size: 	20px;
   margin: 0 25px;
   padding: 10px 0 15px;
   position: relative;
@@ -391,21 +380,19 @@ body{
 .justify-content-between{justify-content: space-between}
 
 .page-screen {
+  background: var(--bg-color);
+  color: var(--body-color);
   overflow: hidden;
   width: 100%;
   height: 100%;
-  padding: 60px 0;
+  padding-top: 25px;
   position: absolute;
   transition: all .5s cubic-bezier(.55,0,.1,1);
 }
 
-@media (max-width: 350px){
-  .page-screen{
-    padding: 30px 0;
-  }
-}
 @media (min-width: 576px){
   .page-screen{
+    padding-top: 44px;
     min-height: 812px;
     width: 375px;
   }
@@ -413,12 +400,12 @@ body{
 
 .slide-left-enter, .slide-right-leave-active {
   opacity: 0;
-  -webkit-transform: translate(30px, 0);
-  transform: translate(30px, 0);
+  transform: translate3d(20px, 0, 0);
+  transition: all .3s;
 }
 .slide-left-leave-active, .slide-right-enter {
   opacity: 0;
-  -webkit-transform: translate(-30px, 0);
-  transform: translate(-30px, 0);
+  transform: translate3d(-20px, 0, 0);
+  transition: all .3s;
 }
 </style>

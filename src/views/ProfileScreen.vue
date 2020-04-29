@@ -175,6 +175,12 @@ export default {
     toggleMore(){
       this.showMore = !this.showMore
     }
+  },
+  mounted(){
+    this.$store.state.statusBarColor = 'white'
+  },
+  beforeDestroy(){
+    this.$store.state.statusBarColor = null
   }
 }
 </script>
@@ -188,7 +194,7 @@ export default {
 
     .btn{
       padding: 15px 20px;
-      border-radius: 20px;
+      border-radius: 10px;
       cursor: pointer;
       display: flex;
       color: var(--body-color);

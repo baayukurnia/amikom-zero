@@ -68,7 +68,7 @@ export default {
     position: absolute;
     bottom: 150px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate3d(-50%,0,0);
 
     .close{
         background: var(--red);
@@ -78,7 +78,7 @@ export default {
         bottom: -80px;
         border-radius: 50%;
         opacity: 0;
-        transform: translate(-50%,20px);
+        transform: translate3d(-50%,20px,0);
         transition: .5s cubic-bezier(.55,0,.1,1);
         box-shadow: 0 5px 15px var(--shadow-red);
         transition-delay: .2s;
@@ -111,10 +111,10 @@ export default {
                 top: calc(50% - 1px);
 
                 &:nth-child(1){
-                    transform: translateX(-50%)rotate(-45deg);
+                    transform: translate3d(-50%,0,0)rotate(-45deg);
                 }
                 &:nth-child(2){
-                    transform: translateX(-50%)rotate(45deg);
+                    transform: translate3d(-50%,0,0)rotate(45deg);
                 }
             }
         }
@@ -126,12 +126,12 @@ export default {
         transition: opacity .5s;
         backdrop-filter: blur(var(--blur-amount));
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0,0,0);
     }
     .close{
         transition-delay: 0s;
         opacity: 1;
-        transform: translate(-50%,0px);
+        transform: translate3d(-50%,0,0);
         .icon{
             transform: rotate(180deg);
         }

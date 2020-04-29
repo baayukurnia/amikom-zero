@@ -59,7 +59,7 @@ export default {
         var scrollPos = el.scrollTop
         var offset = el.offsetHeight * 0.4
         console.log(scrollPos > offset)
-        if(scrollPos > 300){
+        if(scrollPos > 200){
           this.transparentNav = false
         }
         else{
@@ -81,17 +81,16 @@ export default {
 <style lang="scss" scoped>
 .navigation{
   position: absolute;
-  grid-template-columns: 50px 1fr 50px;
+  grid-template-columns: 54px 1fr 54px;
   width: 100%;
   top: 0;
-  padding-top: 40px;
   z-index: 10;
   background: var(--bg-color);
   color: var(--body-color);
   transition: .5s var(--ease);
 
   &-left,&-right{
-    padding: 0 13px;
+    padding: 0 15px;
     display: inherit;
     cursor: pointer;
 
@@ -118,7 +117,7 @@ export default {
   .icon{
     border-radius: 5px;
     padding: 5px 0;
-    margin: 7px 0;
+    margin: 10px 0;
     height: 34px;
     width: 24px;
     display: inline-block;
@@ -133,7 +132,7 @@ export default {
     display: block;
     position: absolute;
     right: 13px;
-    top: 85px;
+    top: 49px;
   }
 
   &.transparent{
@@ -159,11 +158,11 @@ export default {
   }
 }
 
-@media (max-width:350px) {
+@media (min-width: 576px) {
   .navigation{
-    padding-top: 20px;
+    padding-top: 44px;
     &-dropdown{
-      top: 65px
+      top: 94px
     }
   }
 }

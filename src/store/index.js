@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     darkTheme: false,
-    performanceMode: false
+    performanceMode: false,
+    statusBarColor: null
   },
   mutations: {
   },

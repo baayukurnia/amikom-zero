@@ -67,7 +67,7 @@ export default {
         background: var(--secondary-color);
         padding: 5px 15px 4px;
         border-radius: 40px;
-        font-size: var(--h9);
+        font-size: var(--h8);
         font-weight: 700;
       }
 
@@ -110,16 +110,16 @@ export default {
 
       h3{
         margin:15px 0 5px;
-        font-size: var(--h7);
+        font-size: var(--h6);
       }
       h5{
         margin: 0;
-        font-size: var(--h9);
+        font-size: var(--h8);
         font-weight: 400;
         opacity: .25;
       }
       .room{
-        font-size: var(--h9);
+        font-size: var(--h8);
         font-weight: 700;
         color: var(--secondary-color);
       }

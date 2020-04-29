@@ -5,7 +5,7 @@
     ref="card"
     class="card"
     :data-state="isMove ? 'move' : state"
-    :style="{ top: `${isMove ? y : calcY()}px` }"
+    :style="{ transform: 'translate3d(0,'+ `${isMove ? y : calcY()}px` +',0)'}"
   >
     <div class="pan-area" ref="pan"><div class="bar" ref="bar"></div></div>
     <slot></slot>
@@ -150,12 +150,9 @@ export default {
   visibility: visible;
 }
 
-.slide-right-enter-active .card {
-  opacity: 0;
-  transform: translateY(100px);
-}
-
 .card {
+  bottom: 0;
+  transform: translate3d(0, 1000px, 0);
   width: 100%;
   height: 100%;
   position: fixed;
