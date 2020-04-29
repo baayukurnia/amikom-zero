@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     darkTheme: false,
     performanceMode: false,
-    statusBarColor: null
+    statusBarColor: null,
+    statusBarScroll: null,
   },
   mutations: {
   },

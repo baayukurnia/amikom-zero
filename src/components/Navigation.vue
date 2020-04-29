@@ -54,25 +54,19 @@ export default {
       toggleDropdown(){
         this.showDropdown = !this.showDropdown
       },
-      animateElement () {
+      navHandler () {
         var el = document.getElementById('scroll-view')
         var scrollPos = el.scrollTop
         var offset = el.offsetHeight * 0.4
-        console.log(scrollPos > offset)
-        if(scrollPos > 200){
+        if(scrollPos > offset){
           this.transparentNav = false
         }
         else{
           this.transparentNav = true
         }
       },
-      scrollHandler () {
-        window.requestAnimationFrame(() => {
-          this.animateElement()
-        })
-      },
       init(){
-        document.getElementById('scroll-view').addEventListener('scroll', this.scrollHandler, false)
+        document.getElementById('scroll-view').addEventListener('scroll', this.navHandler, false)
       }
     },
 }

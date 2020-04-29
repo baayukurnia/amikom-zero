@@ -171,16 +171,32 @@ export default {
       showMore: false
     }
   },
+  mounted(){
+    this.init()
+    this.$store.state.statusBarColor = 'white'
+  },
   methods: {
     toggleMore(){
       this.showMore = !this.showMore
+    },
+    statusBarHandler () {
+      var el = document.getElementById('scroll-view')
+      var scrollPos = el.scrollTop
+      var offset = el.offsetHeight * 0.4
+      if(scrollPos > offset){
+        this.$store.state.statusBarScroll = true
+      }
+      else{
+        this.$store.state.statusBarScroll = false
+      }
+    },
+    init(){
+      document.getElementById('scroll-view').addEventListener('scroll', this.statusBarHandler, false)
     }
-  },
-  mounted(){
-    this.$store.state.statusBarColor = 'white'
   },
   beforeDestroy(){
     this.$store.state.statusBarColor = null
+    this.$store.state.statusBarScroll = false
   }
 }
 </script>

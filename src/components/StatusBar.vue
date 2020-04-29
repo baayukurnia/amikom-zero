@@ -1,5 +1,5 @@
 <template>
-    <div :class="['status-bar device', this.$store.state.statusBarColor ]">
+    <div :class="['status-bar device', this.$store.state.statusBarColor, { 'scroll' : this.$store.state.statusBarScroll} ]">
         <div class="clock">
             {{ hours }}:{{ minutes }}
         </div>
@@ -33,7 +33,7 @@ export default {
         },
         getZeroPad (n) {
             return (parseInt(n, 10) >= 10 ? '' : '0') + n
-        }
+        },
     },
 }
 </script>
@@ -77,6 +77,12 @@ export default {
         color: white;
         .stats svg{
             fill: white
+        }
+    }
+    &.scroll{
+        color: var(--body-color);
+        .stats svg{
+            fill: var(--body-color)
         }
     }
 }
