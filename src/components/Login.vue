@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 import { ArrowRightIcon, RotateCwIcon } from 'vue-feather-icons'
 import Modal from '@/components/Modal.vue'
 import SlideUpDown from '@/components/SlideUpDown.js'
@@ -64,11 +66,12 @@ export default {
             this.showMore = !this.showMore
         },
         login(){
-            this.isLogin = true
-            this.$http.post('/amikom', {
+            axios.post('https://api.febridk.id/',
+                {
                 nim: this.nim,
                 password: this.password
-            })
+                }
+            )
             .then(request => this.loginSuccessful(request))
             .catch(() => this.loginFailed())
         },
