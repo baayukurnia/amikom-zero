@@ -3,6 +3,8 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import axios from './backend'
+
 import VueScrollTo from 'vue-scrollto'
 
 Vue.use(VueScrollTo, {
@@ -15,5 +17,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  axios,
   render: h => h(App)
 }).$mount('#app')

@@ -1,8 +1,9 @@
 <template>
-    <div class="modal">
-        <div class="modalbg" @click.prevent="closeModal"></div>
-        <div class="content">
-            <span class="close" @click.prevent="closeModal">
+    <div class="modal" :class='{ active : stateOpen }'>
+        <div v-if="disableClose" class="modalbg"></div>
+        <div v-if="!disableClose" class="modalbg" @click="close"></div>
+        <div class="content" :style="{ 'bottom' : bottom+'px' }">
+            <span v-if="!disableClose" class="close" @click="close">
                 <div class="icon">
                     <span></span>
                     <span></span>
@@ -16,9 +17,23 @@
 <script>
 export default {
     name: 'Modal',
+    props: {
+        stateOpen: {
+            type: Boolean,
+            default: false
+        },
+        disableClose: {
+            type: Boolean,
+            default: false
+        },
+        bottom:{
+            type: Number,
+            default: 150
+        }
+    },
     methods: {
-        closeModal(){
-            this.$emit('close')
+        close(){
+            this.$parent.stateOpen = false
         }
     }
 }
@@ -66,10 +81,7 @@ export default {
     display: inline-block;
     margin: 0 auto;
     position: absolute;
-    bottom: 150px;
-    left: 50%;
-    transform: translate3d(-50%,0,0);
-    width: calc(100% - 50px);
+    width: 100%;
 
     .close{
         background: var(--red);

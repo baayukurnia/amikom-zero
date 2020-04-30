@@ -1,7 +1,7 @@
 <template>
     <div :class="['status-bar device', this.$store.state.statusBarColor, { 'scroll' : this.$store.state.statusBarScroll} ]">
         <div class="clock">
-            {{ hours }}:{{ minutes }}
+            <span v-show="hours !== null">{{ hours }}:{{ minutes }}</span>
         </div>
         <div class="space"></div>
         <div class="stats">
@@ -15,8 +15,8 @@ export default {
     name: 'StatusBar',
     data () {
         return {
-            hours: 0,
-            minutes: 0,
+            hours: null,
+            minutes: null,
         }
     },
     mounted () {

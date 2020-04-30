@@ -7,6 +7,10 @@ export default {
       type: Number,
       default: 500,
     },
+    timing:{
+      type: String,
+      default: 'cubic-bezier(.55,0,.1,1)'
+    },
     tag: {
       type: String,
       default: 'div',
@@ -104,6 +108,7 @@ export default {
           overflow: 'hidden',
           'transition-property': 'height',
           'transition-duration': this.duration + 'ms',
+          'transition-timing-function': this.timing
         }
       })
     },

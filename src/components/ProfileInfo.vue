@@ -67,55 +67,12 @@ export default {
 <style scoped lang="scss">
 .profile-info{
   margin: 0 15px;
-  padding: 25px;
   position:relative;
   margin-top: -150px;
   background: var(--mainbg-color-transparent);
   backdrop-filter: blur(var(--blur-amount));
   color: var(--white);
   z-index: 1;
-}
-
-.card-header{
-  padding: 25px 15px;
-  text-align: center;
-  position: relative;
-  background: linear-gradient(30deg, var(--icon-gradientx), var(--icon-gradienty));
-  border-radius: 15px;
-  margin-top: -50px;
-  margin-bottom: 30px;
-  overflow: hidden;
-
-  h2{
-    margin: 0;
-  }
-
-  .nim{
-    font-size: var(--h9);
-    text-transform: uppercase;
-    letter-spacing: .1rem;
-    opacity: .7;
-  }
-}
-
-.appearance{
-  position: absolute;
-
-  &.oval{
-    right: -40px;
-    bottom: -50px;
-    opacity: .15;
-  }
-  &.square{
-    left: -30px;
-    top: -50px;
-    opacity: .25;
-  }
-
-  svg{
-    width: 100px;
-    height: 100px;
-  }
 }
 
 .user-info{
@@ -164,7 +121,7 @@ export default {
       opacity: .3;
     }
     span{
-      font-size: var(--h7);
+      font-size: var(--h6);
       &.password{
         font-size: var(--h5);
       }

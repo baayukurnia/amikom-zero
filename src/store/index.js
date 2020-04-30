@@ -9,6 +9,7 @@ export default new Vuex.Store({
     performanceMode: false,
     statusBarColor: null,
     statusBarScroll: null,
+    auth: false,
   },
   mutations: {
   },

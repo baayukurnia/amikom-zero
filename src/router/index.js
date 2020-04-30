@@ -17,7 +17,8 @@ Vue.use(VueRouter)
   {
     path: '/profil',
     name: 'Profil',
-    meta: { 
+    meta: {
+      requiresAuth: true,
       title: "Profil Saya | Amikom Zero",
       depth: 1
     },
@@ -34,7 +35,8 @@ Vue.use(VueRouter)
   {
     path: '/profil/edit',
     name: 'Edit',
-    meta: { 
+    meta: {
+      requiresAuth: true,
       title: "Edit Profil | Amikom Zero",
       depth: 2
     },
@@ -43,7 +45,8 @@ Vue.use(VueRouter)
   {
     path: '/jadwal',
     name: 'Jadwal',
-    meta: { 
+    meta: {
+      requiresAuth: true,
       title: "Jadwal | Amikom Zero",
       depth: 1
     },
@@ -52,7 +55,8 @@ Vue.use(VueRouter)
   {
     path: '/khs',
     name: 'KHS',
-    meta: { 
+    meta: {
+      requiresAuth: true,
       title: "KHS | Amikom Zero",
       depth: 1
     },
@@ -61,7 +65,8 @@ Vue.use(VueRouter)
   {
     path: '/krs',
     name: 'KRS',
-    meta: { 
+    meta: {
+      requiresAuth: true,
       title: "KRS | Amikom Zero",
       depth: 1
     },
@@ -70,7 +75,8 @@ Vue.use(VueRouter)
   {
     path: '/transkip',
     name: 'Transkip',
-    meta: { 
+    meta: {
+      requiresAuth: true,
       title: "Transkip Nilai | Amikom Zero",
       depth: 1
     },
@@ -84,13 +90,40 @@ Vue.use(VueRouter)
       depth: 1
     },
     component: () => import('../views/AboutScreen.vue')
-  }
+  },
+  {
+    path: '*',
+    name: '404',
+    meta: {
+      title: "404 Not Found | Amikom Zero",
+      depth: 1
+    },
+    component: () => import('../views/NotFoundScreen.vue')
+  },
+  
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (localStorage.getItem('token') == null) {
+      next({
+        path: '/',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // make sure to always call next()!
+  }
 })
 
 export default router

@@ -8,8 +8,8 @@
     <ScrollView>
       <ProfileImage/>
       <ProfileInfo/>
-      <div class="profile-action d-flex justify-content-between">
-        <a href="#" v-scroll-to="{el:'#more', offset: -100}" class="btn more" @click="toggleMore()">
+      <div class="profile-action d-flex justify-content-between" id="more">
+        <a href="#" v-scroll-to="{el:'#more', offset: -60}" class="btn more" @click="toggleMore()">
           Selengkapnya
           <div class="icon" :class="{ 'show' : showMore}"></div>
         </a>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <SlideUpDown :active="showMore">
-        <div class="card profile-more" id="more">
+        <div class="card profile-more">
           <h3 class="heading">Biodata</h3>
           <ul>
             <li class="list-icon icon-left">
@@ -278,10 +278,11 @@ export default {
   }
 
   &-more{
+    margin-right: 30px;
     padding: 30px 0;
     background: var(--mainbg-color-transparent);
     color: var(--white);
-    border-radius: var(--radius) var(--radius) 0 0;
+    border-radius: 0 var(--radius) 0 0;
   }
 }
 
@@ -333,7 +334,7 @@ export default {
       opacity: .3;
     }
     span{
-      font-size: var(--h7);
+      font-size: var(--h6);
       &.password{
         font-size: var(--h5);
       }
