@@ -66,7 +66,8 @@ export default {
             this.showMore = !this.showMore
         },
         login(){
-            axios.post('https://api.febridk.id/',
+            console.log(this.nim,this.password)
+            axios.post('https://api.febridk.id/amikom',
                 {
                 nim: this.nim,
                 password: this.password
@@ -75,13 +76,8 @@ export default {
             .then(request => this.loginSuccessful(request))
             .catch(() => this.loginFailed())
         },
-        loginSuccessful (req) {
-            if (!req.data.access_token) {
-                this.loginFailed()
-                return
-            }
-
-            localStorage.token = req.data.access_token
+        loginSuccessful (request) {
+            localStorage.token = request.data.access_token
             this.$store.state.auth = true
             console.log('berhasil login')
             this.isLogin = false
