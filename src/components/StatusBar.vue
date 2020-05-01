@@ -1,5 +1,5 @@
 <template>
-    <div :class="['status-bar device', this.$store.state.statusBarColor, { 'scroll' : this.$store.state.statusBarScroll} ]">
+    <div :class="['status-bar device', this.$store.state.statusBar.color, { 'scroll' : this.$store.state.statusBar.scroll} ]">
         <div class="clock">
             <span v-show="hours !== null">{{ hours }}:{{ minutes }}</span>
         </div>

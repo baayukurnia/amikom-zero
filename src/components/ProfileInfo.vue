@@ -1,8 +1,8 @@
 <template>
   <div class="card profile-info">
     <div class="card-header">
-      <h2 class="nama">Masha Raymers</h2>
-      <span class="nim">S1 Informatika 19</span>
+      <h2 class="nama overmask">{{ $store.state.profile.data.Mhs.Nama.toLowerCase() }}</h2>
+      <span class="nim">Semester {{ $store.state.profile.data.PeriodeAkademik.Semester }} - {{ $store.state.profile.data.PeriodeAkademik.TahunAkademik }}</span>
       <div class="appearance oval">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="69.895" height="69.895" viewBox="0 0 69.895 69.895"><defs><linearGradient id="a" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0.149"/></linearGradient></defs><path d="M34.947,69.895a34.957,34.957,0,0,1-13.6-67.148,34.956,34.956,0,0,1,27.206,64.4A34.728,34.728,0,0,1,34.947,69.895Zm0-54.122A19.174,19.174,0,1,0,54.121,34.947,19.2,19.2,0,0,0,34.947,15.773Z" fill="url(#a)"/></svg>
       </div>
@@ -17,7 +17,7 @@
         </div>
         <div class="data">
           <label>Nim</label>
-          <span>19.11.3286</span>
+          <span>{{ $store.state.profile.data.Mhs.Npm }}</span>
         </div>
       </li>
       <li class="list-icon icon-left overmask">
@@ -26,7 +26,7 @@
         </div>
         <div class="data">
           <label>Email</label>
-          <span>masha.raymers@students.amikom.ac.id</span>
+          <span>{{ $store.state.profile.data.Mhs.EmailAmikom }}</span>
         </div>
       </li>
       <li class="list-icon icon-left">
@@ -35,10 +35,10 @@
         </div>
         <div class="data">
           <label>Kata Sandi Email</label> 
-          <span class="password">*******</span>
+          <span class="password">{{ password }}</span>
           <span class="toggle-pass" @click="togglePassword()">
-            <span v-if="showPass">Lihat Sandi</span>
-            <span v-if="!showPass">Sembunyikan</span>
+            <span v-if="!showPass">Lihat Sandi</span>
+            <span v-if="showPass">Sembunyikan</span>
           </span>
         </div>
       </li>
@@ -52,12 +52,19 @@ export default {
   name: 'ProfileInfo',
   data(){
     return {
-      showPass: true,
+      showPass: false,
+      password: '******'
     }
   },
   methods: {
     togglePassword(){
       this.showPass = !this.showPass
+      if(this.showPass){
+        this.password = this.$store.state.profile.data.Mhs.PassEmail
+      }
+      else{
+        this.password = '******'
+      }
     }
   }
 }
@@ -67,12 +74,20 @@ export default {
 <style scoped lang="scss">
 .profile-info{
   margin: 0 15px;
-  position:relative;
   margin-top: -150px;
+  position:relative;
   background: var(--mainbg-color-transparent);
   backdrop-filter: blur(var(--blur-amount));
   color: var(--white);
   z-index: 1;
+}
+
+@media (max-width: 350px) {
+  .profile-info{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: -100px;
+  }
 }
 
 .user-info{
@@ -84,10 +99,6 @@ export default {
     position: relative;
     line-height: 50px;
     overflow: hidden;
-
-    &.overmask{
-      mask-image: linear-gradient(to right, black 90%, transparent);
-    }
 
     &.list-icon{
       padding-left: 35px;
@@ -123,7 +134,7 @@ export default {
     span{
       font-size: var(--h6);
       &.password{
-        font-size: var(--h5);
+        letter-spacing: .05rem;
       }
       &.toggle-pass {
         color: var(--main-color);

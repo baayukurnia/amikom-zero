@@ -13,7 +13,7 @@
               </li>
               <li class="list-icon">
                   <a href="#" @click.prevent="toggleTheme">Mode Gelap</a>
-                  <Toggle :active.sync="this.$store.state.darkTheme"/>
+                  <Toggle :active.sync="this.darkTheme"/>
               </li>
               <li class="list-icon">
                   <label>Utamakan Performa</label>
@@ -34,7 +34,7 @@
               </li>
               <span class="divider"></span>
               <li class="list-icon">
-                <a href="#">Keluar</a>
+                <a href="#" @click="logout">Keluar</a>
                 <div class="icon">
                   <PowerIcon/>
                 </div>
@@ -64,28 +64,36 @@ export default {
   data(){
     return {
       toggleActive: true,
-      stateOpen: false
+      stateOpen: false,
+      darkTheme: false
     }
   },
   methods: {
+    logout: function () {
+            this.$store.dispatch('AUTH_LOGOUT')
+            .then(() => {
+              this.$store.state.auth = false
+              this.stateOpen = false
+            })
+    },
     openModal(){
       this.stateOpen = true
     },
     toggleTheme() {
-      this.$store.state.darkTheme = !this.$store.state.darkTheme
+      this.darkTheme = !this.darkTheme
 
       // This is using a script that is added in index.html
       window.__setPreferredTheme(
-        this.$store.state.darkTheme ? 'dark' : 'light'
+        this.darkTheme ? 'dark' : 'light'
       )
-    },
+    }, 
     toggleBlur() {
       this.$store.state.performanceMode = !this.$store.state.performanceMode
       localStorage.performanceMode = this.$store.state.performanceMode
     }
   },
   mounted() {
-    if(window.__theme == 'dark') this.$store.state.darkTheme = true
+    if(window.__theme == 'dark') this.darkTheme = true
     if(localStorage.performanceMode == 'true'){
       this.$store.state.performanceMode = true
     }
@@ -126,6 +134,9 @@ export default {
             width:20px;
             height:20px;
         }
+    }
+    .card-menu{
+      margin: 0 25px;
     }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <swipeable-bottom-sheet ref="swipeableBottomSheet" :half-y=".55">
+  <swipeable-bottom-sheet ref="swipeableBottomSheet" :half-y=".6">
     <h3 class="heading">Jadwal Hari Ini</h3>
     <div class="contents today-schedule">
         <ul>

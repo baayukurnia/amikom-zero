@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <Login/>
-    <HomeProfile/>
+    <Auth ref="Auth"/>
+    <HomeProfile ref="HomeProfile"/>
     <Launcher/>
     <!-- <div class="news">
       <div class="latest-news">
@@ -49,7 +49,7 @@
 
 <script>
 // @ is an alias to /src
-import Login from '@/components/Login.vue'
+import Auth from '@/components/Auth.vue'
 import HomeProfile from '@/components/HomeProfile.vue'
 import Launcher from '@/components/Launcher.vue'
 import TodaySchedule from '@/components/TodaySchedule.vue'
@@ -58,12 +58,12 @@ import PresenceCode from '@/components/PresenceCode.vue'
 export default {
   name: 'HomeScreen',
   components: {
-    Login,
+    Auth,
     HomeProfile,
     Launcher,
     TodaySchedule,
     PresenceCode
-  },
+  }
 }
 </script>
 

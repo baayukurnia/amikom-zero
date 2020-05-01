@@ -13,7 +13,7 @@
           Selengkapnya
           <div class="icon" :class="{ 'show' : showMore}"></div>
         </a>
-        <div class="btn sign-out">
+        <div class="btn sign-out" @click="logout">
           Keluar
           <div class="icon">
             <PowerIcon/>
@@ -173,9 +173,16 @@ export default {
   },
   mounted(){
     this.init()
-    this.$store.state.statusBarColor = 'white'
+    this.$store.state.statusBar.color = 'white'
   },
   methods: {
+    logout: function () {
+            this.$store.dispatch('AUTH_LOGOUT')
+            .then(() => {
+              this.$store.state.auth = false
+              this.$router.push('/')
+            })
+    },
     toggleMore(){
       this.showMore = !this.showMore
     },
@@ -184,10 +191,10 @@ export default {
       var scrollPos = el.scrollTop
       var offset = el.offsetHeight * 0.4
       if(scrollPos > offset){
-        this.$store.state.statusBarScroll = true
+        this.$store.state.statusBar.scroll = true
       }
       else{
-        this.$store.state.statusBarScroll = false
+        this.$store.state.statusBar.scroll = false
       }
     },
     init(){
@@ -195,8 +202,8 @@ export default {
     }
   },
   beforeDestroy(){
-    this.$store.state.statusBarColor = null
-    this.$store.state.statusBarScroll = false
+    this.$store.state.statusBar.color = null
+    this.$store.state.statusBar.scroll = false
   }
 }
 </script>
@@ -213,6 +220,7 @@ export default {
       border-radius: 10px;
       cursor: pointer;
       display: flex;
+      background: none;
       color: var(--body-color);
       font-size: var(--h6);
 

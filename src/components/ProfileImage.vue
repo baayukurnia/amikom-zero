@@ -1,6 +1,6 @@
 <template>
   <Parallax class="profile-image" :speed-factor="0.6" :sectionHeight="80">
-    <img src="/img/womanfull.jpg">
+    <img :src="$store.state.profile.data.Mhs.NpmImg">
   </Parallax>
 </template>
 
@@ -18,6 +18,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .profile-image{
+  min-height: 450px;
   z-index: 1;
   mask-image: linear-gradient(to bottom, black 70%, transparent);
   img{

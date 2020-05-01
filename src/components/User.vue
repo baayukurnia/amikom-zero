@@ -1,22 +1,25 @@
 <template>
-    <div class="user d-flex">
+    <div class="user d-flex overmask">
         <div class="profile-image">
-            <img src="img/womanc.jpg">
+            <img :src="$store.state.profile.data.Mhs.NpmImg">
         </div>
         <div class="profile-user">
-            <h1 class="name">Masha Raymers</h1>
-            <h2 class="nim">19.11.3286</h2>
+          <h1 class="name">{{ $store.state.profile.data.Mhs.Nama.toLowerCase() }}</h1>
+          <h2 class="nim">{{ $store.state.profile.data.Mhs.Npm }}</h2>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'User'
+    name: 'User',
 }
 </script>
 
 <style lang="scss" scoped>
+.user{
+  padding-right: 10%;
+}
 .profile-image{
   display: inline-block;
   border-radius: 50%;
@@ -29,6 +32,7 @@ export default {
   }
 }
 .profile-user{
+  max-width: 140px;
   display: inline-block;
   margin-left: 10px;
   padding: 9px 0;
@@ -37,6 +41,8 @@ export default {
     display: block;
     font-size: 20px;
     letter-spacing: -.03rem;
+    text-transform: capitalize;
+    white-space: nowrap;
   }
   .nim{
     margin: 0;

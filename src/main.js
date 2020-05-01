@@ -13,6 +13,11 @@ Vue.use(VueScrollTo, {
 })
 Vue.config.productionTip = false
 
+store.subscribe((mutation, state) => {
+  // Store the state object as a JSON string
+  localStorage.setItem('store', JSON.stringify(state));
+});
+
 new Vue({
   router,
   store,

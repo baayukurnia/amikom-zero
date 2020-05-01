@@ -1,7 +1,7 @@
 <template>
-    <Modal :state-open="stateOpen" :disable-close="true" :bottom="0" class="login">
+    <Modal :state-open="!this.$store.state.auth" :disable-close="true" :bottom="0" class="login">
         <transition name="fade">
-        <div v-show="!showMore" :class="['card login-card', { 'hidden' : showMore}]">
+        <div v-show="!presence" :class="['card login-card', { 'hidden' : presence}]">
             <div class="card-header">
                 <h2 class="nama">Login Yuk!</h2>
                 <div class="appearance oval">
@@ -26,25 +26,23 @@
         </div> 
         </transition>
         <transition name="fade" mode="out-in">
-            <p v-if="!showMore" key="presence" class="out">Apa mau <a href="#" @click.prevent="toggleNoAuthPresence">presensi aja?</a></p>
-            <p v-else key="login" class="out">Presensi lebih cepat, <a href="#" @click.prevent="toggleNoAuthPresence">login dulu.</a></p>
+            <p v-if="!presence" key="presence" class="out">Apa mau <a href="#" @click.prevent="togglePresence">presensi aja?</a></p>
+            <p v-else key="login" class="out">Presensi lebih cepat, <a href="#" @click.prevent="togglePresence">login dulu.</a></p>
         </transition>
-        <SlideUpDown :active="showMore" class="no-auth-presence">
+        <SlideUpDown :active="presence" class="no-auth-presence">
             <NoAuthPresence/>
         </SlideUpDown>
     </Modal>
 </template>
 
 <script>
-import axios from 'axios'
-
 import { ArrowRightIcon, RotateCwIcon } from 'vue-feather-icons'
 import Modal from '@/components/Modal.vue'
 import SlideUpDown from '@/components/SlideUpDown.js'
 import NoAuthPresence from '@/components/NoAuthPresence.vue'
 
 export default {
-    name: 'Login',
+    name: 'Auth',
     components: {
         ArrowRightIcon, RotateCwIcon,
         SlideUpDown,
@@ -54,38 +52,54 @@ export default {
     data(){
         return{
             isLogin: false,
-            stateOpen: true,
             nim: null,
             password: null,
             response: null,
-            showMore: false,
+            presence: false,
         }
     },
     methods:{
-        toggleNoAuthPresence(){
-            this.showMore = !this.showMore
+        logout: function () {
+            this.$store.dispatch('AUTH_LOGOUT')
+            .then(() => {
+                // this.$store.state.auth = false
+            })
         },
-        login(){
-            console.log(this.nim,this.password)
-            axios.post('https://api.febridk.id/amikom',
-                {
-                nim: this.nim,
-                password: this.password
-                }
-            )
-            .then(request => this.loginSuccessful(request))
-            .catch(() => this.loginFailed())
+        togglePresence(){
+            this.presence = !this.presence
         },
-        loginSuccessful (request) {
-            localStorage.token = request.data.access_token
+         login: function () {
+            const { nim, password } = this
+            this.$store.dispatch('AUTH_REQUEST', { nim, password }).then(() => {
+                // this.$store.state.auth = true
+            })
+        },
+        // login(){
+        //     const auth = {
+        //         method: 'POST',
+        //         headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        //         data: qs.stringify({
+        //             nim: this.nim,
+        //             password: this.password
+        //         }),
+        //         url: 'https://api.febridk.id/amikom'
+        //     }
+        //     axios(auth)
+        //     .then((response) =>{
+        //         localStorage.token = response.data.access_token
+        //         this.$store.state.auth = true
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //         delete localStorage.token
+        //         this.$store.state.auth = false
+        //     })
+        // }
+    },
+    mounted(){
+        const token = localStorage.getItem('user-token')
+        if (token) {
             this.$store.state.auth = true
-            console.log('berhasil login')
-            this.isLogin = false
-        },
-        loginFailed () {
-            console.log('gagal')
-            delete localStorage.token
-            this.isLogin = false
         }
     }
 }

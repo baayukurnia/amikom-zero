@@ -70,11 +70,11 @@ export default {
 
       switch (this.state) {
         case "half":
-          if (this.startY - evt.center.y > 120) {
+          if (this.startY - evt.center.y > 70) {
             this.state = "open"
           }
 
-          else if (this.startY - evt.center.y < -150) {
+          else if (this.startY - evt.center.y < -120) {
             this.state = "minimize"
           }
           break;
@@ -143,6 +143,7 @@ export default {
   opacity: 0;
   transition: .5s;
   z-index: 10;
+  backdrop-filter: blur(var(--blur-amount));
 }
 
 .wrapper .bg.open{
@@ -152,6 +153,7 @@ export default {
 
 .card {
   bottom: 0;
+  padding: 0;
   transform: translate3d(0, 1000px, 0);
   width: 100%;
   height: 100%;
@@ -161,7 +163,7 @@ export default {
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -5px 6px rgba(31, 31, 31, 0.1);
   z-index: 10;
-  backdrop-filter: blur(var(--blur-amount));
+  backdrop-filter: blur(5px);
 }
 
 @media (min-width: 576px){

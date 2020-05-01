@@ -12,7 +12,9 @@
 </template>
 
 <script>
+// import axios from 'axios'
 import StatusBar from '@/components/StatusBar.vue'
+
 export default {
   name: 'App',
   components: {
@@ -21,6 +23,16 @@ export default {
   data () {
     return {
       transitionName: 'slide-left',
+    }
+  },
+	beforeCreate() {
+		this.$store.commit('initialiseStore');
+	},
+  mounted(){
+    const token = localStorage.getItem('user-token')
+    if (token) {
+      this.$store.dispatch('USER_REQUEST', token)
+      this.$store.dispatch('USER_SCHEDULE')
     }
   },
   watch: {
@@ -136,6 +148,7 @@ body{
     --list-icon-color: #2B1D40;
     --device-color: #111;
     --shadow: rgba(33, 33, 33, .2);
+    --card-shadow: 0 30px 70px 0 rgba(130, 136, 171, 0.3);
 
     // colors
     --white: #fff;
@@ -181,6 +194,7 @@ body[data-theme="dark"]{
     --overlay: rgba(0,0,0,.3);
     --list-icon-color: #7a62a7;
     --device-color: #eee;
+    --card-shadow: none;
 
     &.performance-mode{
       --overlay: rgba(0,0,0,.85);
@@ -369,7 +383,7 @@ body{
   position: relative;
 
     &-header{
-    padding: 25px 15px;
+    padding: 25px 35px;
     text-align: center;
     position: relative;
     background: linear-gradient(30deg, var(--icon-gradientx), var(--icon-gradienty));
@@ -380,6 +394,8 @@ body{
 
     h2{
       margin: 0;
+      text-transform: capitalize;
+      white-space: nowrap;
     }
 
     .nim{
@@ -475,6 +491,11 @@ body{
 .message{
   margin: 30px 25px;
 }
+@media (max-width: 350px){
+  .message{
+    margin: 0 10px;
+  }
+}
 .text-center{
   text-align: center;
 }
@@ -511,6 +532,10 @@ body{
     background: linear-gradient(30deg, var(--icon-gradientx), var(--icon-gradienty));
     color: var(--white);
 }
+
+.overmask{
+      mask-image: linear-gradient(to right, black 90%, transparent);
+    }
 
 // transitions
 .fade-enter-active, .fade-leave-active {

@@ -7,14 +7,17 @@
     </Navigation>
     
     <ScrollView>
-    <div class="flex-container">
-      <div class="card message">
-        <h1>Amikom Zero.</h1>
-        <p><code>Amikom Zero</code> adalah aplikasi alternatif bagi pengguna iOS yang tidak bisa menggunakan Amikom One.</p>
-        <p>Karena berbasis web jadi kalian bisa <strong>buka</strong> dan <strong>install</strong> <code>Amikom Zero</code> di iOS, PC, Mac, Android, di mana saja.</p>
-        <p><code>Amikom Zero</code> tidak resmi dari pihak Amikom tapi kalian bisa membantu aplikasi ini menjadi lebih baik dengan cara langsung terjun ke source code maupun sekedar memberi ide dan saran kalian.</p>
-        <p>Jangan di install dulu.</p>
-      </div>
+      <div class="message">
+        <div class="card">
+          <h1 class="heading">Amikom Zero.</h1>
+          <p><strong>Amikom Zero</strong> adalah aplikasi alternatif bagi pengguna iOS yang tidak bisa menggunakan Amikom One.</p>
+          <p>Karena berbasis web jadi kalian bisa <b>buka</b> dan <b>install</b> <strong>Amikom Zero</strong> di iOS, PC, Mac, Android, di mana saja.</p>
+          <p><strong>Amikom Zero</strong> tidak resmi dari pihak Amikom tapi kalian bisa membantu aplikasi ini menjadi lebih baik dengan cara langsung terjun ke source code(Vue.js) maupun sekedar memberi ide dan saran kalian.</p>
+          <p>Silahkan install dan informasikan ke teman-teman di Amikom, tunggu update versi selanjutnya.</p>
+          <p>Big thanks ---- <a href="https://www.instagram.com/febridwi_k/">Febri Dwi</a> API backend nya.</p>
+
+          <p class="credit">------ <a href="https://instagram.com/baayukurnia">Bayu Kurnia</a></p>
+        </div>
       </div>
     </ScrollView>
 </div>
@@ -22,45 +25,67 @@
 
 <script>
 import Navigation from '@/components/Navigation.vue'
+import ScrollView from '@/components/ScrollView.vue'
 
 export default {
   name: 'AboutScreen',
   components: {
-    Navigation
+    Navigation,
+    ScrollView
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,900');
-
+.about{
+  padding-top: 54px;
+}
 .message{
-  font-family: -apple-system,
-  // Chrome < 56 for OS X (San Francisco)
-  BlinkMacSystemFont,
-  // Windows
-  "Segoe UI",
-  // Android
-  "Roboto",
-  // Basic web fallback
-  "Helvetica Neue", Arial, sans-serif,
-  // Emoji fonts
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";;
-  margin: 50px 15px;
-  padding: 25px;
-  letter-spacing: 0;
-  line-height: 1.2;
-  background: var(--mainbg-color-transparent);
-  color: var(--white);
+  margin-top: 80px;
+  margin-bottom: 130px;
+  .card{
+    font-weight: 100;
+    letter-spacing: 0;
+    background: var(--mainbg-color-transparent);
+    color: var(--white);
+    z-index: 99;
+    line-height: 1.2;
+    box-shadow: var(--card-shadow);
+    z-index: 2;
+    &:after{
+      content: url('/img/moredots.svg');
+      position: absolute;
+      bottom: -100px;
+      left: -15px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    a{
+      color: var(--link-color);
+      font-weight: 400;
+    }
+  }
 }
 p{
   text-align: justify;
+  &.credit{
+    margin-top: 40px;
+    text-align: right;
+  }
 }
-h1, code{
-  font-family: "Playfair Display";
+h1.heading{
+  margin: 0;
   font-weight: 900;
-  background: linear-gradient(-45deg, #FFCF60, rgb(255, 117, 37));
-  background-size: 150% 150%;
+  font-size: var(--h2);
+  letter-spacing: -.15rem;
+}
+strong{
+letter-spacing: -.05rem;
+}
+h1, strong{
+  font-weight: 900;
+  background: linear-gradient(-45deg, rgb(255, 207, 48), rgb(255, 99, 37));
+  background-size: 200% 200%;
   -webkit-animation: gradient 10s ease infinite alternate;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
