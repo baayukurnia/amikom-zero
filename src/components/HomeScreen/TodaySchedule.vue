@@ -1,29 +1,15 @@
 <template>
-  <swipeable-bottom-sheet ref="swipeableBottomSheet" :half-y=".6">
+  <swipeable-bottom-sheet ref="swipeableBottomSheet" :half-y=".6" class="today-schedule">
     <h3 class="heading">Jadwal Hari Ini</h3>
-    <div class="contents today-schedule">
-        <ul>
-            <li>
-              <span class="status done"></span>
-              <span class="time">07.00 - 08.40</span>
-              <h3>Aljabar Linier dan Matriks</h3>
-              <h5>Asro Nasiri, Drs, M.Kom</h5>
-              <span class="room">R 5.4.6</span>
-            </li>
-            <li>
-              <span class="status miss"></span>
-              <span class="time">08.50 - 10.30</span>
-              <h3>Kalkulus</h3>
-              <h5>Kumara Ari Yuana, S.T, M.T</h5>
-              <span class="room">R 7.2.1</span>
-            </li>
-            <li>
-              <span class="status"></span>
-              <span class="time">10.40 - 12.20</span>
-              <h3>Algoritma dan Pemrograman</h3>
-              <h5>Wiwi Widayani, M.Kom</h5>
-              <span class="room">L 2.4.5</span>
-            </li>
+    <div class="contents">
+        <ul class="schedules">
+          <li v-for="schedule in todaySchedules" :key="schedule.IdKuliah">
+            <span :class="['status', { 'miss' : schedule.Keterangan == '' }]"></span>
+            <span class="time">{{ schedule.Waktu }}</span>
+            <h3>{{ schedule.MataKuliah.toLowerCase() }}</h3>
+            <h5>{{ schedule.NamaDosen }}</h5>
+            <span class="room">{{ schedule.JenisKuliah }} <span v-if="schedule.JenisKuliah == 'Teori'">R</span> {{ schedule.Ruang }}</span>
+          </li>
         </ul>
     </div>
   </swipeable-bottom-sheet>
@@ -36,14 +22,25 @@ export default {
     name: 'TodaySchedule',
     components: {
         SwipeableBottomSheet
+    },
+    data(){
+      return{
+        todaySchedules: this.$store.getters.todaySchedules
+      }
     }
 }
 </script>
 
 <style lang="scss" scoped>
 .today-schedule{
+    .heading{
+      margin-top: -10px;
+      pointer-events: none;
+    }
+    .contents{
     margin: 0 25px;
-    ul{
+    }
+    .schedules{
       padding: 0 15px 0 40px;
       list-style: none;
 
@@ -111,6 +108,7 @@ export default {
       h3{
         margin:15px 0 5px;
         font-size: var(--h6);
+        text-transform: capitalize;
       }
       h5{
         margin: 0;

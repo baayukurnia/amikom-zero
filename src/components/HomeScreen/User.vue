@@ -1,11 +1,11 @@
 <template>
     <div class="user d-grid">
         <div class="profile-image">
-            <img :src="$store.state.profile.data.Mhs.NpmImg">
+            <img :src="$store.state.profile.Mhs.NpmImg">
         </div>
         <div class="profile-user overmask">
-          <h1 class="name">{{ $store.state.profile.data.Mhs.Nama.toLowerCase() }}</h1>
-          <h2 class="nim">{{ $store.state.profile.data.Mhs.Npm }}</h2>
+          <h1 class="name">{{ $store.state.profile.Mhs.Nama.toLowerCase() }}</h1>
+          <h2 class="nim">{{ $store.state.profile.Mhs.Npm }}</h2>
         </div>
     </div>
 </template>

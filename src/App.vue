@@ -53,6 +53,7 @@ export default {
 @import 'scss/transitions.scss';
 @import 'scss/base.scss';
 @import 'scss/utils.scss';
+@import 'scss/misc.scss';
 
 #app{
   background: var(--bg-color);
@@ -136,29 +137,6 @@ export default {
   }
 }
 
-.heading{
-  font-size: 	20px;
-  margin: 0 25px;
-  padding: 10px 0 15px;
-  position: relative;
-  
-  &:after{
-      content: url('/img/suket.svg');
-      position: absolute;
-      right: -40px;
-  }
-}
-
-.message{
-  margin: 30px 25px;
-}
-
-@media (max-width: 350px){
-  .message{
-    margin: 0 10px;
-  }
-}
-
 .page-screen {
   background: var(--bg-color);
   color: var(--body-color);
@@ -176,16 +154,5 @@ export default {
     min-height: 812px;
     width: 375px;
   }
-}
-
-.btn{
-    border: 0;
-    padding: 15px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    color: var(--body-color);
-    font-size: var(--h6);
-    background: linear-gradient(30deg, var(--icon-gradientx), var(--icon-gradienty));
-    color: var(--white);
 }
 </style>

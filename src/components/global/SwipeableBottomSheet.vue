@@ -107,7 +107,7 @@ export default {
     calcY () {
       switch (this.state) {
         case "minimize":
-          return this.rect.height - 30
+          return this.rect.height - 40
         case "open":
           return this.rect.height * this.openY
         case "half":
@@ -191,10 +191,7 @@ export default {
 }
 
 .pan-area {
-  padding: 12px 0;
-  width: 200px;
-  max-width: 50%;
-  margin: 0 auto;
+  padding: 15px 0 30px;
   cursor: pointer;
 
   &:hover, &:active{

@@ -1,6 +1,6 @@
 <template>
   <Parallax class="profile-image" :speed-factor="0.6" :sectionHeight="80">
-    <img :src="$store.state.profile.data.Mhs.NpmImg">
+    <img :src="$store.state.profile.Mhs.NpmImg">
   </Parallax>
 </template>
 

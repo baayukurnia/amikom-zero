@@ -42,7 +42,7 @@
         </ul>
       </div>
     </div> -->
-    <TodaySchedule />
+    <TodaySchedule/>
     <PresenceCode/>
   </div>
 </template>
