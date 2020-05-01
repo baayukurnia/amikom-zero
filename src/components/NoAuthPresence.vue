@@ -1,10 +1,10 @@
 <template>
-    <div class="card no-auth-presence">
+    <Card class="unauth-presence">
         <h3 class="heading">Absen Kode</h3>
         <div class="card-body">
             <p>Masukkan 5 digit kode yang tertera pada layar proyektor</p>
-            <div class="login-form">
-                <input v-model="nim" class="nim" type="number" name="nim" placeholder="NIM">
+            <div class="unauth-presence-form">
+                <input v-model="nim" class="nim" type="text" name="nim" placeholder="NIM" ref="nim" maxlength="10" v-on:keyup.enter="login" required>
                 <div class="presence-code" ref="PresenceCode">
                     <input v-model="a" placeholder="4" maxlength=1>
                     <input v-model="b" placeholder="N" maxlength=1>
@@ -12,15 +12,23 @@
                     <input v-model="d" placeholder="A" maxlength=1>
                     <input v-model="e" placeholder="Y" maxlength=1>
                 </div>
-                <div class="btn">Absen</div>
+                <div class="btn">Presensi</div>
             </div>
         </div>
-    </div>
+    </Card>
 </template>
 
 <script>
+import Card from '@/components/global/Card.vue'
+
+import validate from '@/components/mixins/validate.js'
+
 export default {
     name: 'NoAuthPresence',
+    mixins: [validate],
+    components: {
+        Card
+    },
     data(){
         return {
             nim: null,
@@ -60,6 +68,10 @@ export default {
         }
     },
     mounted(){
+        const inputNim = this.$refs.nim
+        inputNim.addEventListener('keydown',this.enforceFormat)
+        inputNim.addEventListener('keyup',this.formatNim)
+
         this.$refs.PresenceCode.addEventListener('keyup', event => {
             if (event.key == 'Backspace' || event.key == 'ArrowLeft') {
                 if(event.target.previousElementSibling){
@@ -81,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.no-auth-presence{
+.unauth-presence{
     padding-bottom: 40px;
     border-radius: 20px 20px 0 0;
     text-align: center;
@@ -94,6 +106,19 @@ export default {
     input{
         width: 100%;
         margin-bottom: 10px;
+        font-size: var(--h5);
+
+        &.nim{
+            font-weight: 700;
+            letter-spacing: .1rem;
+            
+            &::placeholder{
+                letter-spacing: 0;
+                color: var(--placeholder-color);
+                font-weight: 400;
+                font-size: var(--h6);
+            }
+        }
     }
 }
 .presence-code{

@@ -141,6 +141,26 @@ export default new Vuex.Store({
           reject(err)
         })
       })
+    },
+    ['PRESENCE_POST']: ({commit, state}) =>{
+      return new Promise((resolve, reject) =>{
+        axios({
+          method: 'POST',
+          headers: { 'content-type': 'application/x-www-form-urlencoded'},
+          data: qs.stringify({nim: state.profile.data.Mhs.Npm, token: localStorage.getItem('user-token')}),
+          url: API_URL+'/presensi'
+        })
+        .then(resp => {
+          const data = resp.data
+          commit('USER_SCHEDULE', data)
+          resolve(resp)
+          console.log(data)
+        })
+        .catch(err => {
+          console.log(err)
+          reject(err)
+        })
+      })
     }
   },
   modules: {

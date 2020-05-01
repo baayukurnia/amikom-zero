@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Modal from '@/components/Modal.vue'
+import Modal from '@/components/global/Modal.vue'
 
 export default {
     name: 'PresenceCode',

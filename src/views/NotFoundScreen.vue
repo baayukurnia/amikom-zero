@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import ScrollView from '@/components/ScrollView.vue'
-import Navigation from '@/components/Navigation.vue'
+import ScrollView from '@/components/global/ScrollView.vue'
+import Navigation from '@/components/global/Navigation.vue'
 
 export default {
   name: 'NotFoundScreen',

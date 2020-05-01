@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Parallax from '@/components/Parallax.vue'
+import Parallax from '@/components/global/Parallax.vue'
 
 export default {
   name: 'ProfileImage',

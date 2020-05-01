@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import CardMenu from '@/components/CardMenu.vue'
+import CardMenu from '@/components/global/CardMenu.vue'
 
 export default {
     name: 'Navigation',

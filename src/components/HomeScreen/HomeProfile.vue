@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import User from '@/components/User.vue'
-import Setting from '@/components/Setting.vue'
+import Setting from '@/components/global/Setting.vue'
+import User from '@/components/HomeScreen/User.vue'
 
 export default {
   name: 'HomeProfile',

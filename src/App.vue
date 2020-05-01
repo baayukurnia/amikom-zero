@@ -13,7 +13,7 @@
 
 <script>
 // import axios from 'axios'
-import StatusBar from '@/components/StatusBar.vue'
+import StatusBar from '@/components/global/StatusBar.vue'
 
 export default {
   name: 'App',
@@ -48,250 +48,11 @@ export default {
 </script>
 
 <style lang="scss">
-@font-face {
-    font-family: 'Neuzeit Grotesk';
-    src: url('/font/NeuzeitGroExt-Bla.eot');
-    src: local('Neuzeit Grotesk Extra-condensed Black'), local('NeuzeitGroExt-Bla'),
-        url('/font/NeuzeitGroExt-Bla.eot?#iefix') format('embedded-opentype'),
-        url('/font/NeuzeitGroExt-Bla.woff2') format('woff2'),
-        url('/font/NeuzeitGroExt-Bla.woff') format('woff'),
-        url('/font/NeuzeitGroExt-Bla.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Neuzeit Grotesk';
-    src: url('/font/NeuzeitGro-Bla.eot');
-    src: local('Neuzeit Grotesk Black'), local('NeuzeitGro-Bla'),
-        url('/font/NeuzeitGro-Bla.eot?#iefix') format('embedded-opentype'),
-        url('/font/NeuzeitGro-Bla.woff2') format('woff2'),
-        url('/font/NeuzeitGro-Bla.woff') format('woff'),
-        url('/font/NeuzeitGro-Bla.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Neuzeit Grotesk';
-    src: url('/font/NeuzeitGro-Reg.eot');
-    src: local('Neuzeit Grotesk Regular'), local('NeuzeitGro-Reg'),
-        url('/font/NeuzeitGro-Reg.eot?#iefix') format('embedded-opentype'),
-        url('/font/NeuzeitGro-Reg.woff2') format('woff2'),
-        url('/font/NeuzeitGro-Reg.woff') format('woff'),
-        url('/font/NeuzeitGro-Reg.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Neuzeit Grotesk';
-    src: url('/font/NeuzeitGro-Lig.eot');
-    src: local('Neuzeit Grotesk Light'), local('NeuzeitGro-Lig'),
-        url('/font/NeuzeitGro-Lig.eot?#iefix') format('embedded-opentype'),
-        url('/font/NeuzeitGro-Lig.woff2') format('woff2'),
-        url('/font/NeuzeitGro-Lig.woff') format('woff'),
-        url('/font/NeuzeitGro-Lig.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Neuzeit Grotesk';
-    src: url('/font/NeuzeitGro-Bol.eot');
-    src: local('Neuzeit Grotesk Bold'), local('NeuzeitGro-Bol'),
-        url('/font/NeuzeitGro-Bol.eot?#iefix') format('embedded-opentype'),
-        url('/font/NeuzeitGro-Bol.woff2') format('woff2'),
-        url('/font/NeuzeitGro-Bol.woff') format('woff'),
-        url('/font/NeuzeitGro-Bol.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Neuzeit Grotesk';
-    src: url('/font/NeuzeitGroCon-Bla.eot');
-    src: local('Neuzeit Grotesk Condensed Black'), local('NeuzeitGroCon-Bla'),
-        url('/font/NeuzeitGroCon-Bla.eot?#iefix') format('embedded-opentype'),
-        url('/font/NeuzeitGroCon-Bla.woff2') format('woff2'),
-        url('/font/NeuzeitGroCon-Bla.woff') format('woff'),
-        url('/font/NeuzeitGroCon-Bla.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-
-
-// Light default theme
-body{
-  --bg-color: #FDFCFF;
-  --body-color: #1F122E;
-  --bg-card: #fff;
-  #app{
-    --placeholder-color: rgba(0,0,0,.2);
-    --mainbg-color: #2b1d40;
-    --mainbg-color-transparent: rgba(23, 0, 56, 0.85);
-    --main-color: #866baf;
-    --input-bg: #fff;
-    --input-bg-focus: #fff;
-    --secondary-color: #FFB148;
-    --opacity-color: #755994;
-    --link-color: #FF8944;
-    --icon-gradientx: #FFCF60;
-    --icon-gradienty: #FF8944;
-    --icon-gradient-white: rgba(255,255,255,1);
-    --icon-bg: #3c285b;
-    --border-color: rgba(0,0,0,.05);
-    --hover-bg: rgba(0,0,0,.03);
-    --active-bg: rgba(255,255,255,.2);
-    --overlay: rgba(255,255,255,.2);
-    --list-icon-color: #2B1D40;
-    --device-color: #111;
-    --shadow: rgba(33, 33, 33, .2);
-    --card-shadow: 0 30px 70px 0 rgba(130, 136, 171, 0.3);
-
-    // colors
-    --white: #fff;
-    --red: #b92121;
-
-    --shadow-red: rgba(221, 36, 36, .5);
-
-    --ease: cubic-bezier(.55,0,.1,1);
-    --radius: 20px;
-    --blur-amount: 25px;
-
-    &.performance-mode{
-      *{
-        backdrop-filter: none !important;
-      }
-      
-      --overlay: rgba(255,255,255,.85);
-      --mainbg-color-transparent: #2b1d40;
-      --blur-amount: 0;
-    }
-  }
-}
-
-// Override variables for Dark theme
-body[data-theme="dark"]{
-  --bg-color: #1b1921;
-  --body-color: #fff;
-  --bg-card: #232131;
-  #app{
-    --placeholder-color: rgba(255,255,255,.2);
-    --mainbg-color: #41286b;
-    --mainbg-color-transparent: rgba(65, 40, 107, .85);
-    --input-bg: #2b1d40;
-    --input-bg-focus: #2b1d40;
-    --opacity-color: #7a62a7;
-    --icon-gradientx: #FFCF60;
-    --icon-gradienty: #ec722b;
-    --icon-gradient-white: rgba(255,255,255,1);
-    --icon-bg: #4c2d80;
-    --border-color: rgba(255,255,255,.05);
-    --active-bg: rgba(0,0,0,.2);
-    --hover-bg: rgba(255,255,255,.02);
-    --overlay: rgba(0,0,0,.3);
-    --list-icon-color: #7a62a7;
-    --device-color: #eee;
-    --card-shadow: none;
-
-    &.performance-mode{
-      --overlay: rgba(0,0,0,.85);
-      --mainbg-color-transparent: #41286b
-    }
-  }
-}
-
-html {
-  text-rendering: optimizeLegibility;
-  box-sizing: border-box;
-  font-size: 1rem;
-}
-
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
- 
-::-webkit-scrollbar-track {
-  box-shadow: none
-}
- 
-::-webkit-scrollbar-thumb {
-  background-color: slategrey;
-  outline: 1px solid slategrey;
-  border-radius: 10px;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-a{
-  text-decoration: none;
-  color: var(--body-color);
-  &:hover{
-    opacity: .8;
-  }
-}
-
-input{
-    border:0;
-    padding: 12px 18px;
-    border-radius: 10px;
-    background: var(--input-bg);
-    outline: none;
-    color: var(--body-color);
-
-    &:hover{
-      background: var(--input-bg-focus);
-    }
-}
-
-img{pointer-events: none; max-width: 100%;}
-
-body{
-  font-family: 'Neuzeit Grotesk',-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Helvetica Neue", Arial, sans-serif,"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  letter-spacing: .01rem;
-  margin: 0;
-  overflow: hidden;
-  background: var(--bg-color);
-  color: var(--body-color);
-  transition: background-color .3s,
-              color .3s,
-              fill .3s;
-  --h1: 2.5rem;
-  --h2: 2rem;
-  --h3: 1.75rem;
-  --h4: 1.5rem;
-  --h5: 1.125rem;
-  --h6: 1rem;
-  --h7: .875rem;
-  --h8: .8125rem;
-  --h9: .75rem;
-}
-// @media (max-width: 350px){
-//   body{
-//     --h0: 2.5rem;
-//     --h1: 2rem;
-//     --h2: 1.75rem;
-//     --h3: 1.5rem;
-//     --h4: 1.125rem;
-//     --h5: 1rem;
-//     --h6: .875rem;
-//     --h7: .8125rem;
-//     --h8: .75rem;
-//   }
-// }
-@media (min-width: 576px){
-  body{
-    background: var(--bg-card) !important;
-    color: var(--body-color);
-    overflow-y: auto;
-  }
-}
+@import 'scss/variables.scss';
+@import 'scss/fonts.scss';
+@import 'scss/transitions.scss';
+@import 'scss/base.scss';
+@import 'scss/utils.scss';
 
 #app{
   background: var(--bg-color);
@@ -375,57 +136,6 @@ body{
   }
 }
 
-.card{
-  background: var(--bg-card);
-  color: var(--white);
-  border-radius: var(--radius);
-  padding: 25px;
-  position: relative;
-
-    &-header{
-    padding: 25px 35px;
-    text-align: center;
-    position: relative;
-    background: linear-gradient(30deg, var(--icon-gradientx), var(--icon-gradienty));
-    border-radius: 15px;
-    margin-top: -50px;
-    margin-bottom: 30px;
-    overflow: hidden;
-
-    h2{
-      margin: 0;
-      text-transform: capitalize;
-      white-space: nowrap;
-    }
-
-    .nim{
-      font-size: var(--h9);
-      text-transform: uppercase;
-      letter-spacing: .1rem;
-      opacity: .7;
-    }
-  }
-
-  .appearance{
-    position: absolute;
-
-    &.oval{
-      right: -40px;
-      bottom: -50px;
-      opacity: .15;
-    }
-    &.square{
-      left: -30px;
-      top: -50px;
-      opacity: .25;
-    }
-
-    svg{
-      width: 100px;
-      height: 100px;
-    }
-  }
-}
 .heading{
   font-size: 	20px;
   margin: 0 25px;
@@ -439,69 +149,15 @@ body{
   }
 }
 
-.container {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-@media (min-width: 576px) {
-    .container {
-        max-width: 540px;
-    }
-}
-
-@media (min-width: 768px) {
-    .container {
-        max-width: 720px;
-    }
-}
-
-.container-fluid {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.flex-container {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-.row {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-}
 .message{
   margin: 30px 25px;
 }
+
 @media (max-width: 350px){
   .message{
     margin: 0 10px;
   }
 }
-.text-center{
-  text-align: center;
-}
-.d-flex{display: flex}
-.d-grid{display: grid}
-.justify-content-between{justify-content: space-between}
 
 .page-screen {
   background: var(--bg-color);
@@ -531,28 +187,5 @@ body{
     font-size: var(--h6);
     background: linear-gradient(30deg, var(--icon-gradientx), var(--icon-gradienty));
     color: var(--white);
-}
-
-.overmask{
-      mask-image: linear-gradient(to right, black 90%, transparent);
-    }
-
-// transitions
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s cubic-bezier(.55,0,.1,1);
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-
-.slide-left-enter, .slide-right-leave-active {
-  opacity: 0;
-  transform: translate3d(20px, 0, 0);
-  transition: all .3s;
-}
-.slide-left-leave-active, .slide-right-enter {
-  opacity: 0;
-  transform: translate3d(-20px, 0, 0);
-  transition: all .3s;
 }
 </style>

@@ -36,6 +36,6 @@ export default {
             if(input.length >= 4){target.value = `${thn}.${prodi}.${id}`}
             else if(input.length >= 2){target.value = `${thn}.${prodi}`}
             else if(input.length > 0){target.value = `${thn}`}
-        },
+        }
     }
   }

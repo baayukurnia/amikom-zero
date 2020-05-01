@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import SwipeableBottomSheet from "./SwipeableBottomSheet.vue";
+import SwipeableBottomSheet from "@/components/global/SwipeableBottomSheet.vue";
 
 export default {
     name: 'TodaySchedule',

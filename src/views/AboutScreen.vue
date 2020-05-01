@@ -7,31 +7,31 @@
     </Navigation>
     
     <ScrollView>
-      <div class="message">
-        <div class="card">
-          <h1 class="heading">Amikom Zero.</h1>
-          <p><strong>Amikom Zero</strong> adalah aplikasi alternatif bagi pengguna iOS yang tidak bisa menggunakan Amikom One.</p>
-          <p>Karena berbasis web jadi kalian bisa <b>buka</b> dan <b>install</b> <strong>Amikom Zero</strong> di iOS, PC, Mac, Android, di mana saja.</p>
-          <p><strong>Amikom Zero</strong> tidak resmi dari pihak Amikom tapi kalian bisa membantu aplikasi ini menjadi lebih baik dengan cara langsung terjun ke source code(Vue.js) maupun sekedar memberi ide dan saran kalian.</p>
-          <p>Silahkan install dan informasikan ke teman-teman di Amikom, tunggu update versi selanjutnya.</p>
-          <p>Big thanks ---- <a href="https://www.instagram.com/febridwi_k/">Febri Dwi</a> API backend nya.</p>
+      <Card class="message">
+        <h1 class="heading">Amikom Zero.</h1>
+        <p><strong>Amikom Zero</strong> adalah aplikasi alternatif bagi pengguna iOS yang tidak bisa menggunakan Amikom One.</p>
+        <p>Karena berbasis web jadi kalian bisa <b>buka</b> dan <b>install</b> <strong>Amikom Zero</strong> di iOS, PC, Mac, Android, di mana saja.</p>
+        <p><strong>Amikom Zero</strong> tidak resmi dari pihak Amikom tapi kalian bisa membantu aplikasi ini menjadi lebih baik dengan cara langsung terjun ke source code(Vue.js) maupun sekedar memberi ide dan saran kalian.</p>
+        <p>Silahkan install dan informasikan ke teman-teman di Amikom, tunggu update versi selanjutnya.</p>
+        <p>Big thanks ---- <a href="https://www.instagram.com/febridwi_k/">Febri Dwi</a> API backend nya.</p>
 
-          <p class="credit">------ <a href="https://instagram.com/baayukurnia">Bayu Kurnia</a></p>
-        </div>
-      </div>
+        <p class="credit">------ <a href="https://instagram.com/baayukurnia">Bayu Kurnia</a></p>
+      </Card>
     </ScrollView>
 </div>
 </template>
 
 <script>
-import Navigation from '@/components/Navigation.vue'
-import ScrollView from '@/components/ScrollView.vue'
+import Card from '@/components/global/Card.vue'
+import Navigation from '@/components/global/Navigation.vue'
+import ScrollView from '@/components/global/ScrollView.vue'
 
 export default {
   name: 'AboutScreen',
   components: {
     Navigation,
-    ScrollView
+    ScrollView,
+    Card
   }
 }
 </script>
@@ -48,21 +48,19 @@ export default {
   }
 }
 .message{
-  margin-top: 80px;
+  margin-top: 50px;
   margin-bottom: 130px;
-  .card{
-    font-weight: 100;
-    letter-spacing: 0;
-    background: var(--mainbg-color-transparent);
-    color: var(--white);
-    z-index: 99;
-    line-height: 1.2;
-    box-shadow: var(--card-shadow);
-    z-index: 2;
-    a{
-      color: var(--link-color);
-      font-weight: 400;
-    }
+  font-weight: 100;
+  letter-spacing: 0;
+  background: var(--mainbg-color-transparent);
+  color: var(--white);
+  z-index: 99;
+  line-height: 1.2;
+  box-shadow: var(--card-shadow);
+  z-index: 2;
+  a{
+    color: var(--link-color);
+    font-weight: 400;
   }
 }
 p{

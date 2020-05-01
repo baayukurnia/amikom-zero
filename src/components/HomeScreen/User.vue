@@ -1,9 +1,9 @@
 <template>
-    <div class="user d-flex overmask">
+    <div class="user d-grid">
         <div class="profile-image">
             <img :src="$store.state.profile.data.Mhs.NpmImg">
         </div>
-        <div class="profile-user">
+        <div class="profile-user overmask">
           <h1 class="name">{{ $store.state.profile.data.Mhs.Nama.toLowerCase() }}</h1>
           <h2 class="nim">{{ $store.state.profile.data.Mhs.Npm }}</h2>
         </div>
@@ -18,7 +18,7 @@ export default {
 
 <style lang="scss" scoped>
 .user{
-  padding-right: 10%;
+  grid-template-columns: 54px 1fr;
 }
 .profile-image{
   display: inline-block;
@@ -32,10 +32,13 @@ export default {
   }
 }
 .profile-user{
-  max-width: 140px;
+  max-width: 210px;
+  padding-right: 10%;
   display: inline-block;
   margin-left: 10px;
-  padding: 9px 0;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  
   .name{
     margin: 0;
     display: block;
@@ -49,12 +52,23 @@ export default {
     display: block;
     font-size: var(--h7);
     opacity: .5;
+    letter-spacing: .03rem;
   }
 }
 
+@media (max-width: 576px) {
+  .profile-user{
+    max-width: 50vw;
+  }
+}
 @media (max-width:350px) {
-  .profile .name{
-    font-size: 1rem;
+  .profile-user{
+    .name{
+      font-size: var(--h5);
+    }
+    .nim{
+      font-size: var(--h8);
+    }
   }
 }
 </style>

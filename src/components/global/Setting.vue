@@ -46,9 +46,9 @@
 
 <script>
 import { UserIcon, CoffeeIcon, InfoIcon, PowerIcon } from 'vue-feather-icons'
-import Modal from '@/components/Modal.vue'
-import Toggle from '@/components/Toggle.vue'
-import CardMenu from '@/components/CardMenu.vue'
+import Modal from '@/components/global/Modal.vue'
+import Toggle from '@/components/global/Toggle.vue'
+import CardMenu from '@/components/global/CardMenu.vue'
 
 export default {
   name: 'Setting',

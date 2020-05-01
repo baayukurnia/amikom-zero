@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Auth/>
+    <Auth v-if="!this.$store.state.authStatus"/>
     <HomeProfile/>
     <Launcher/>
     <!-- <div class="news">
@@ -50,10 +50,10 @@
 <script>
 // @ is an alias to /src
 import Auth from '@/components/Auth.vue'
-import HomeProfile from '@/components/HomeProfile.vue'
-import Launcher from '@/components/Launcher.vue'
-import TodaySchedule from '@/components/TodaySchedule.vue'
-import PresenceCode from '@/components/PresenceCode.vue'
+import HomeProfile from '@/components/HomeScreen/HomeProfile.vue'
+import Launcher from '@/components/HomeScreen/Launcher.vue'
+import TodaySchedule from '@/components/HomeScreen/TodaySchedule.vue'
+import PresenceCode from '@/components/HomeScreen/PresenceCode.vue'
 
 export default {
   name: 'HomeScreen',

@@ -21,7 +21,7 @@
         </div>
       </div>
       <SlideUpDown :active="showMore">
-        <div class="card profile-more">
+        <Card class="profile-more">
           <h3 class="heading">Biodata</h3>
           <ul>
             <li class="list-icon icon-left">
@@ -142,7 +142,7 @@
               </div>
             </li>
           </ul>
-        </div>
+        </Card>
       </SlideUpDown>
     </ScrollView>
   </div>
@@ -150,11 +150,12 @@
 
 <script>
 import { PowerIcon, UserIcon, CreditCardIcon , MehIcon, BookOpenIcon, UsersIcon, MoonIcon, HomeIcon, CalendarIcon, MailIcon, PhoneIcon, BookIcon, MapPinIcon } from 'vue-feather-icons'
-import Navigation from '@/components/Navigation.vue'
-import ScrollView from '@/components/ScrollView.vue'
-import ProfileImage from '@/components/ProfileImage.vue'
-import ProfileInfo from '@/components/ProfileInfo.vue'
-import SlideUpDown from '@/components/SlideUpDown.js'
+import Navigation from '@/components/global/Navigation.vue'
+import ScrollView from '@/components/global/ScrollView.vue'
+import Card from '@/components/global/Card.vue'
+import SlideUpDown from '@/components/global/SlideUpDown.js'
+import ProfileImage from '@/components/ProfileScreen/ProfileImage.vue'
+import ProfileInfo from '@/components/ProfileScreen/ProfileInfo.vue'
 
 export default {
   name: 'ProfileScreen',
@@ -164,6 +165,7 @@ export default {
     ProfileImage,
     ProfileInfo,
     ScrollView,
+    Card,
     SlideUpDown,
   },
   data(){
