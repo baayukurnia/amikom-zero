@@ -39,6 +39,13 @@ export default {
 <style lang="scss" scoped>
 .about{
   padding-top: 54px;
+  &:after{
+    content: url('/img/moredots.svg');
+    position: absolute;
+    bottom: 50px;
+    left: 15px;
+    pointer-events: none;
+  }
 }
 .message{
   margin-top: 80px;
@@ -52,14 +59,6 @@ export default {
     line-height: 1.2;
     box-shadow: var(--card-shadow);
     z-index: 2;
-    &:after{
-      content: url('/img/moredots.svg');
-      position: absolute;
-      bottom: -100px;
-      left: -15px;
-      pointer-events: none;
-      z-index: -1;
-    }
     a{
       color: var(--link-color);
       font-weight: 400;

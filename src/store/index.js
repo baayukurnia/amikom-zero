@@ -6,10 +6,12 @@ const qs = require('querystring')
 
 Vue.use(Vuex)
 
+const API_URL = 'https://api.febridk.id'
+
 const defaultProfile = {
   data: {
     Mhs:{
-      Npm: null,
+      Npm: "",
       Nama:"",
       Angkatan:"2019",
       EmailAmikom:"masha.raymers@students.amikom.ac.id",
@@ -25,7 +27,7 @@ const defaultProfile = {
 
 export default new Vuex.Store({
   state: {
-    auth: false,
+    authStatus: false,
     performanceMode :false,
     statusBar: {
       color: null,
@@ -44,28 +46,29 @@ export default new Vuex.Store({
     },
     ['AUTH_ERROR']: (state) => {
       state.status = 'error'
-      state.auth = false
+      state.authStatus = false
     },
     ['AUTH_LOGOUT']: (state) => {
-      state.auth = false
+      state.status = 'unauthorized'
+      state.authStatus = false
       state.profile = defaultProfile
     },
     ['USER_REQUEST']: (state, data) => {
       state.profile = data
-      state.status = 'success'
-      state.auth = true
+      state.authStatus = true
     },
     ['USER_SCHEDULE']: (state, data) => {
       state.schedule = data
     },
 		initialiseStore(state) {
-			// Check if the ID exists
+      // Check if the ID exists
 			if(localStorage.getItem('store')) {
 				// Replace the state object with the stored item
 				this.replaceState(
 					Object.assign(state, JSON.parse(localStorage.getItem('store')))
 				);
 			}
+      state.status = null
 		}
   },
   actions: {
@@ -75,7 +78,7 @@ export default new Vuex.Store({
         axios({ method: 'POST',
                 headers: { 'content-type': 'application/x-www-form-urlencoded' },
                 data: qs.stringify(user),
-                url: 'https://api.febridk.id/amikom'})
+                url: API_URL+'/amikom'})
           .then(resp => {
             const token = resp.data.access_token
             localStorage.setItem('user-token', token) // store the token in localstorage
@@ -106,7 +109,7 @@ export default new Vuex.Store({
           method: 'POST',
           headers: { 'content-type': 'application/x-www-form-urlencoded' },
           data: qs.stringify({token: localStorage.getItem('user-token')}),
-          url: 'https://api.febridk.id/profile'
+          url: API_URL+'/profile'
         })
         .then(resp => {
           const data = resp.data
@@ -125,7 +128,7 @@ export default new Vuex.Store({
           method: 'POST',
           headers: { 'content-type': 'application/x-www-form-urlencoded'},
           data: qs.stringify({nim: state.profile.data.Mhs.Npm, token: localStorage.getItem('user-token')}),
-          url: 'https://api.febridk.id/jadwal'
+          url: API_URL+'/jadwal'
         })
         .then(resp => {
           const data = resp.data
@@ -144,6 +147,5 @@ export default new Vuex.Store({
     token: localStorage.getItem('user-token') || '',
     status: '',
     isAuthenticated: state => !!state.token,
-    authStatus: state => state.status,
   }
 })

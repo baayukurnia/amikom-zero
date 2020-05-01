@@ -1,9 +1,9 @@
 <template>
-    <Modal :state-open="!this.$store.state.auth" :disable-close="true" :bottom="0" class="login">
+    <Modal :state-open="!this.$store.state.authStatus" :disable-close="true" :bottom="0" class="login">
         <transition name="fade">
         <div v-show="!presence" :class="['card login-card', { 'hidden' : presence}]">
             <div class="card-header">
-                <h2 class="nama">Login Yuk!</h2>
+                <h2 class="nama">Masuk</h2>
                 <div class="appearance oval">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="69.895" height="69.895" viewBox="0 0 69.895 69.895"><defs><linearGradient id="a" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0.149"/></linearGradient></defs><path d="M34.947,69.895a34.957,34.957,0,0,1-13.6-67.148,34.956,34.956,0,0,1,27.206,64.4A34.728,34.728,0,0,1,34.947,69.895Zm0-54.122A19.174,19.174,0,1,0,54.121,34.947,19.2,19.2,0,0,0,34.947,15.773Z" fill="url(#a)"/></svg>
                 </div>
@@ -13,21 +13,24 @@
             </div>
             <div class="card-body">
                 <p>Gunakan semua fitur Amikom Zero.</p>
-                <div class="login-form">
-                    <form action="">
-                        <input v-model="nim" class="nim" type="text" name="nim" placeholder="NIM">
-                        <div class="input-group">
-                            <input v-model="password" class="password" type="password" name="password" placeholder="Kata Sandi">
-                            <div :class="['btn', { 'rotating' : isLogin }]" @click="login"><ArrowRightIcon v-if="!isLogin"/><RotateCwIcon v-if="isLogin"/></div>
-                        </div>
-                    </form>
+                <div :class="['login-form', $store.state.status]">
+                    <p class="error-message" v-if="$store.state.status == 'error'">{{ errorMsg }}</p>
+                    <input v-model="nim" class="nim" type="text" name="nim" placeholder="NIM" ref="nim" maxlength="10" v-on:keyup.enter="login" required>
+                    <div class="input-group">
+                        <input v-model="password" class="password" type="password" name="password" placeholder="Kata Sandi" maxlength="24" v-on:keyup.enter="login" required>
+                        <button :class="['btn', { 'disabled' : !this.nim }, { 'disabled' : !this.password }]" @click="login">
+                            <RotateCwIcon v-if="$store.state.status == 'loading'"/>
+                            <CheckIcon v-else-if="$store.state.status == 'success'"/>
+                            <ArrowRightIcon v-else/>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div> 
+        </div>
         </transition>
         <transition name="fade" mode="out-in">
             <p v-if="!presence" key="presence" class="out">Apa mau <a href="#" @click.prevent="togglePresence">presensi aja?</a></p>
-            <p v-else key="login" class="out">Presensi lebih cepat, <a href="#" @click.prevent="togglePresence">login dulu.</a></p>
+            <p v-else key="login" class="out">Presensi lebih cepat, <a href="#" @click.prevent="togglePresence">masuk dulu.</a></p>
         </transition>
         <SlideUpDown :active="presence" class="no-auth-presence">
             <NoAuthPresence/>
@@ -36,27 +39,40 @@
 </template>
 
 <script>
-import { ArrowRightIcon, RotateCwIcon } from 'vue-feather-icons'
+import validate from '@/components/validate.js'
+
+import { ArrowRightIcon, RotateCwIcon, CheckIcon } from 'vue-feather-icons'
 import Modal from '@/components/Modal.vue'
 import SlideUpDown from '@/components/SlideUpDown.js'
 import NoAuthPresence from '@/components/NoAuthPresence.vue'
 
 export default {
     name: 'Auth',
+    mixins: [validate],
     components: {
-        ArrowRightIcon, RotateCwIcon,
+        ArrowRightIcon, RotateCwIcon, CheckIcon,
         SlideUpDown,
         NoAuthPresence,
         Modal
     },
     data(){
         return{
-            isLogin: false,
+            status: this.$store,
             nim: null,
             password: null,
             response: null,
             presence: false,
+            errorMsg: "Nim atau password salah."
         }
+    },
+    mounted() {
+        if (localStorage.getItem('user-token')) {
+            this.$store.state.authStatus = true
+        }
+
+        const inputNim = this.$refs.nim
+        inputNim.addEventListener('keydown',this.enforceFormat);
+        inputNim.addEventListener('keyup',this.formatNim);
     },
     methods:{
         logout: function () {
@@ -70,9 +86,19 @@ export default {
         },
          login: function () {
             const { nim, password } = this
-            this.$store.dispatch('AUTH_REQUEST', { nim, password }).then(() => {
-                // this.$store.state.auth = true
-            })
+             if(nim && password){
+                 if(password.length < 5){
+                     this.$store.state.status = 'loading'
+                     setTimeout(() => {
+                     this.$store.state.status = 'error'
+                     }, 1500);
+                 }
+                 else{
+                     this.$store.dispatch('AUTH_REQUEST', { nim, password }).then(() => {
+                        // this.$store.state.auth = true
+                    })
+                 }
+             }
         },
         // login(){
         //     const auth = {
@@ -95,12 +121,6 @@ export default {
         //         this.$store.state.auth = false
         //     })
         // }
-    },
-    mounted(){
-        const token = localStorage.getItem('user-token')
-        if (token) {
-            this.$store.state.auth = true
-        }
     }
 }
 </script>
@@ -136,6 +156,14 @@ export default {
                 svg{
                     display: inherit;
                 }
+
+                &:focus{
+                    outline: none;
+                }
+                &.disabled{
+                    opacity: .5;
+                    cursor: default;
+                }
             }
         }
         input{
@@ -158,11 +186,26 @@ export default {
                 letter-spacing: .2rem;
             }
         }
+
+        .error-message{
+            color: var(--red)
+        }
+        &.error{
+            input{
+                box-shadow: 0 0 0 2px var(--red);
+            }
+        }
+        &.loading, &.success{
+            input{
+                opacity: .4;
+                color: var(--placeholder)
+            }
+        }
     }
 }
 .full{
     width: 100%
 }
-.rotating svg{-webkit-animation:rotation .5s linear infinite;animation:rotation .5s linear infinite}
+.loading svg{-webkit-animation:rotation .5s linear infinite;animation:rotation .5s linear infinite}
 @keyframes rotation{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}
 </style>

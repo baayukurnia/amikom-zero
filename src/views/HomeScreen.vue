@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <Auth ref="Auth"/>
-    <HomeProfile ref="HomeProfile"/>
+    <Auth/>
+    <HomeProfile/>
     <Launcher/>
     <!-- <div class="news">
       <div class="latest-news">
@@ -43,7 +43,7 @@
       </div>
     </div> -->
     <TodaySchedule />
-    <PresenceCode ref="PresenceCode"/>
+    <PresenceCode/>
   </div>
 </template>
 
