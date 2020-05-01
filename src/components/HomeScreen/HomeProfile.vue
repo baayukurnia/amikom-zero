@@ -2,7 +2,9 @@
   <div class="home-profile">
     <div class="d-flex justify-content-between">
       <router-link to="/profil">
-      <User/>
+      <keep-alive>
+        <User/>
+      </keep-alive>
       </router-link>
       <Setting/>
     </div>

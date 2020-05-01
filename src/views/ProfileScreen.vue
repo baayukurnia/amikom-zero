@@ -6,8 +6,10 @@
       </li>
     </Navigation>
     <ScrollView>
-      <ProfileImage/>
-      <ProfileInfo/>
+      <keep-alive>
+        <ProfileImage/>
+      </keep-alive>
+        <ProfileInfo/>
       <div class="profile-action d-flex justify-content-between" id="more">
         <a href="#" v-scroll-to="{el:'#more', offset: -60}" class="btn more" @click="toggleMore()">
           Selengkapnya

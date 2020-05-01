@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-const axios = require('axios')
+const axios = require('../backend')
 const qs = require('querystring')
 
 Vue.use(Vuex)
-
-const API_URL = 'https://api.febridk.id'
 
 const defaultProfile = {
   Mhs:{
@@ -23,20 +21,60 @@ const defaultProfile = {
   }
 }
 
+const defaultschedules = [
+  {
+     "IdKuliah":41847,
+     "Keterangan":"",
+     "Hari":"SENIN",
+     "Ruang":"L 7.4.1",
+     "Waktu":"13.20 - 15.00",
+     "Kode":"ST021",
+     "MataKuliah":"PEMROGRAMAN",
+     "JenisKuliah":"Praktikum",
+     "Kelas":"19-S1IF-11",
+     "Nik":"190302484",
+     "NamaDosen":"Bayu Nadya Kusuma, S.T., M.Eng",
+     "Jenjang":"S1"
+  },
+  {
+     "IdKuliah":42694,
+     "Keterangan":"",
+     "Hari":"SENIN",
+     "Ruang":"05.02.01",
+     "Waktu":"13.20 - 15.00",
+     "Kode":"ST015",
+     "MataKuliah":"STRUKTUR DATA",
+     "JenisKuliah":"Teori",
+     "Kelas":"19-S1IF-11",
+     "Nik":"190302037",
+     "NamaDosen":"Ema Utami, Prof. Dr., S.Si., M.Kom.",
+     "Jenjang":"S1"
+  },
+  {
+     "IdKuliah":42696,
+     "Keterangan":"",
+     "Hari":"SENIN",
+     "Ruang":"04.04.01",
+     "Waktu":"07.00 - 08.40",
+     "Kode":"ST014",
+     "MataKuliah":"KOMUNIKASI DATA",
+     "JenisKuliah":"Teori",
+     "Kelas":"19-S1IF-11",
+     "Nik":"190302484",
+     "NamaDosen":"Bayu Nadya Kusuma, S.T., M.Eng",
+     "Jenjang":"S1"
+  },
+]
+
 export default new Vuex.Store({
   state: {
-    schedules: [{"IdKuliah":42696,"Keterangan":"","Hari":"SENIN","Ruang":"04.04.01","Waktu":"07.00 - 08.40","Kode":"ST014","MataKuliah":"KOMUNIKASI DATA","JenisKuliah":"Teori","Kelas":"19-S1IF-11","Nik":"190302484","NamaDosen":"Bayu Nadya Kusuma, S.T., M.Eng","Jenjang":"S1"},{"IdKuliah":41886,"Keterangan":"","Hari":"SENIN","Ruang":"05.04.03","Waktu":"08.50 - 10.30","Kode":"ST123","MataKuliah":"HARDWARE/ SOFTWARE I","JenisKuliah":"Teori","Kelas":"19-S1IF-11","Nik":"190302248","NamaDosen":"Mulia Sulistiyono, M.Kom","Jenjang":"S1"},{"IdKuliah":42695,"Keterangan":"","Hari":"SENIN","Ruang":"L 7.4.3","Waktu":"13.20 - 15.00","Kode":"ST014","MataKuliah":"KOMUNIKASI DATA","JenisKuliah":"Praktikum","Kelas":"19-S1IF-11","Nik":"190302484","NamaDosen":"Bayu Nadya Kusuma, S.T., M.Eng","Jenjang":"S1"},{"IdKuliah":41755,"Keterangan":"","Hari":"SELASA","Ruang":"05.02.08","Waktu":"07.00 - 08.40","Kode":"ST016","MataKuliah":"BAHASA INGGRIS II","JenisKuliah":"Teori","Kelas":"19-S1IF-11","Nik":"190302266","NamaDosen":"Rosyidah Jayanti Vijaya, SE, M.Hum","Jenjang":"S1"},{"IdKuliah":41887,"Keterangan":"","Hari":"SELASA","Ruang":"L 7.4.3","Waktu":"08.50 - 10.30","Kode":"ST123","MataKuliah":"HARDWARE/ SOFTWARE I","JenisKuliah":"Praktikum","Kelas":"19-S1IF-11","Nik":"190302248","NamaDosen":"Mulia Sulistiyono, M.Kom","Jenjang":"S1"},{"IdKuliah":41847,"Keterangan":"","Hari":"SELASA","Ruang":"L 7.4.1","Waktu":"13.20 - 15.00","Kode":"ST021","MataKuliah":"PEMROGRAMAN","JenisKuliah":"Praktikum","Kelas":"19-S1IF-11","Nik":"190302484","NamaDosen":"Bayu Nadya Kusuma, S.T., M.Eng","Jenjang":"S1"},{"IdKuliah":41871,"Keterangan":"","Hari":"RABU","Ruang":"05.04.02","Waktu":"08.50 - 10.30","Kode":"ST094","MataKuliah":"ORGANISASI & ARSITEKTUR KOMPUTER","JenisKuliah":"Teori","Kelas":"19-S1IF-11","Nik":"190302039","NamaDosen":"Yudi Sutanto, M. Kom","Jenjang":"S1"},{"IdKuliah":42694,"Keterangan":"","Hari":"RABU","Ruang":"05.02.01","Waktu":"13.20 - 15.00","Kode":"ST015","MataKuliah":"STRUKTUR DATA","JenisKuliah":"Teori","Kelas":"19-S1IF-11","Nik":"190302037","NamaDosen":"Ema Utami, Prof. Dr., S.Si., M.Kom.","Jenjang":"S1"},{"IdKuliah":41776,"Keterangan":"","Hari":"KAMIS","Ruang":"05.04.05","Waktu":"08.50 - 10.30","Kode":"ST019","MataKuliah":"SISTEM OPERASI","JenisKuliah":"Teori","Kelas":"19-S1IF-11","Nik":"190302276","NamaDosen":"Ferian Fauzi Abdulloh, M.Kom","Jenjang":"S1"},{"IdKuliah":41734,"Keterangan":"","Hari":"KAMIS","Ruang":"L 2.4.2","Waktu":"10.40 - 12.20","Kode":"ST015","MataKuliah":"STRUKTUR DATA","JenisKuliah":"Praktikum","Kelas":"19-S1IF-11","Nik":"190302037","NamaDosen":"Ema Utami, Prof. Dr., S.Si., M.Kom.","Jenjang":"S1"},{"IdKuliah":41777,"Keterangan":"","Hari":"JUMAT","Ruang":"L 7.4.2","Waktu":"08.50 - 10.30","Kode":"ST019","MataKuliah":"SISTEM OPERASI","JenisKuliah":"Praktikum","Kelas":"19-S1IF-11","Nik":"190302276","NamaDosen":"Ferian Fauzi Abdulloh, M.Kom","Jenjang":"S1"}]
-    ,
-    todos: [
-      { id: 1, text: '...', done: true },
-      { id: 2, text: '...', done: false }
-    ],
     authStatus: false,
     performanceMode :false,
     statusBar: {
       color: null,
       scroll: null
     },
+    schedules: defaultschedules,
     profile: defaultProfile,
   },
   mutations: {
@@ -55,6 +93,7 @@ export default new Vuex.Store({
       state.status = 'unauthorized'
       state.authStatus = false
       state.profile = defaultProfile
+      state.schedules = defaultschedules
     },
     ['USER_REQUEST']: (state, data) => {
       state.profile = data
@@ -73,15 +112,12 @@ export default new Vuex.Store({
 			}
       state.status = null
 		}
-  },
+  }, 
   actions: {
     ['AUTH_REQUEST']: ({commit, dispatch}, user) => {
       return new Promise((resolve, reject) => { // The Promise used for router redirect in login
         commit('AUTH_REQUEST')
-        axios({ method: 'POST',
-                headers: { 'content-type': 'application/x-www-form-urlencoded' },
-                data: qs.stringify(user),
-                url: API_URL+'/amikom'})
+        axios.post('/amikom', qs.stringify(user))
           .then(resp => {
             const token = resp.data.access_token
             localStorage.setItem('user-token', token) // store the token in localstorage
@@ -108,12 +144,8 @@ export default new Vuex.Store({
     ['USER_REQUEST']: ({commit}) => {
       return new Promise((resolve, reject) => { // The Promise used for router redirect in login
         // commit('AUTH_REQUEST')
-        axios({
-          method: 'POST',
-          headers: { 'content-type': 'application/x-www-form-urlencoded' },
-          data: qs.stringify({token: localStorage.getItem('user-token')}),
-          url: API_URL+'/profile'
-        })
+        const token = localStorage.getItem('user-token')
+        axios.post('/profile', qs.stringify({token}))
         .then(resp => {
           const data = resp.data.data
           commit('USER_REQUEST', data)
@@ -127,12 +159,9 @@ export default new Vuex.Store({
     },
     ['USER_SCHEDULE']: ({commit, state}) =>{
       return new Promise((resolve, reject) =>{
-        axios({
-          method: 'POST',
-          headers: { 'content-type': 'application/x-www-form-urlencoded'},
-          data: qs.stringify({nim: state.profile.Mhs.Npm, token: localStorage.getItem('user-token')}),
-          url: API_URL+'/jadwal'
-        })
+        const token = localStorage.getItem('user-token')
+        const nim = state.profile.Mhs.Npm
+        axios.post('/jadwal', qs.stringify({nim, token }))
         .then(resp => {
           const data = resp.data.data
           commit('USER_SCHEDULE', data)
@@ -147,12 +176,9 @@ export default new Vuex.Store({
     },
     ['PRESENCE_POST']: ({commit, state}) =>{
       return new Promise((resolve, reject) =>{
-        axios({
-          method: 'POST',
-          headers: { 'content-type': 'application/x-www-form-urlencoded'},
-          data: qs.stringify({nim: state.profile.data.Mhs.Npm, token: localStorage.getItem('user-token')}),
-          url: API_URL+'/presensi'
-        })
+        const token = localStorage.getItem('user-token')
+        const nim = state.profile.Mhs.Npm
+        axios.post('/presensi', qs.stringify({nim, token }))
         .then(resp => {
           const data = resp.data
           commit('USER_SCHEDULE', data)
@@ -173,7 +199,30 @@ export default new Vuex.Store({
   },
   getters: {
     todaySchedules: state => {
-      return state.schedules.filter(schedule => schedule.Hari === 'SENIN')
+      var day
+      switch (new Date().getDay()) {
+        case 0:
+          day = "MINGGU";
+          break;
+        case 1:
+          day = "SENIN";
+          break;
+        case 2:
+           day = "SELASA";
+          break;
+        case 3:
+          day = "RABU";
+          break;
+        case 4:
+          day = "KAMIS";
+          break;
+        case 5:
+          day = "JUMAT";
+          break;
+        case 6:
+          day = "SELASA";
+      }
+      return state.schedules.filter(schedule => schedule.Hari === day)
     }
   }
 })

@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import SwipeableBottomSheet from "@/components/global/SwipeableBottomSheet.vue";
 
 export default {
@@ -23,10 +24,8 @@ export default {
     components: {
         SwipeableBottomSheet
     },
-    data(){
-      return{
-        todaySchedules: this.$store.getters.todaySchedules
-      }
+    computed: {
+    ...mapGetters(['todaySchedules'])
     }
 }
 </script>

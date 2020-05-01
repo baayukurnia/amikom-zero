@@ -1,6 +1,10 @@
-import Vue from 'vue'
-import VueAxios from 'vue-axios'
+var axios = require('axios');
 
-import axios from './axios'
+var axiosInstance = axios.create({
+  baseURL: process.env.VUE_APP_API_URL,
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  }
+});
 
-Vue.use(VueAxios, axios)
+module.exports = axiosInstance;

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeScreen from '../views/HomeScreen.vue'
+import ProfileScreen from '../views/ProfileScreen.vue'
 
 Vue.use(VueRouter)
 
@@ -25,12 +26,8 @@ Vue.use(VueRouter)
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ProfileScreen.vue'),
-    // children: [{
-      // path: 'edit',
-      // name: 'Edit Profile',
-      // component: () => import('../views/EditProfileScreen.vue'),
-    // }]
+    // component: () => import(/* webpackChunkName: "about" */ '../views/ProfileScreen.vue')
+    component: ProfileScreen
   },
   {
     path: '/profil/edit',
@@ -50,7 +47,7 @@ Vue.use(VueRouter)
       title: "Jadwal | Amikom Zero",
       depth: 1
     },
-    component: () => import('../views/DuhScreen.vue'),
+    component: () => import('../views/ScheduleScreen.vue'),
   },
   {
     path: '/khs',
