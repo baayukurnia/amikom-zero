@@ -1,5 +1,5 @@
 <template>
-    <Modal :state-open="!this.$store.state.authStatus" :disable-close="true" :bottom="0" class="login">
+    <Modal :state-open="!isAuthenticated" :disable-close="true" :bottom="0" class="login">
         <transition name="fade">
         <Card v-show="!presence" :class="['login-card', { 'hidden' : presence}]">
             <CardHeader>
@@ -7,14 +7,16 @@
             </CardHeader>
             <div class="card-body">
                 <p>Gunakan semua fitur Amikom Zero.</p>
-                <div :class="['login-form', $store.state.status]">
-                    <p class="error-message" v-if="$store.state.status == 'error'">{{ errorMsg }}</p>
+                <div :class="['login-form', statusAuth]">
+                    <p class="error-message" v-if="statusAuth == 'error'">{{ errorMsg }}</p>
+                    <label for="nim" class="hidden">NIM</label>
                     <input v-model="nim" class="nim" type="text" name="nim" placeholder="NIM" ref="nim" maxlength="10" v-on:keyup.enter="login" required>
                     <div class="input-group">
+                        <label for="password" class="hidden">Password</label>
                         <input v-model="password" class="password" type="password" name="password" placeholder="Kata Sandi" maxlength="24" v-on:keyup.enter="login" required>
-                        <button :class="['btn', { 'disabled' : this.nim && !this.password }]" @click="login">
-                            <RotateCwIcon v-if="$store.state.status == 'loading'"/>
-                            <CheckIcon v-else-if="$store.state.status == 'success'"/>
+                        <button :class="['btn', { 'disabled' : this.nim && !this.password }]" @click="login" aria-label="Login">
+                            <RotateCwIcon v-if="statusAuth == 'loading'"/>
+                            <CheckIcon v-else-if="statusAuth == 'success'"/>
                             <ArrowRightIcon v-else/>
                         </button>
                     </div>
@@ -23,8 +25,8 @@
         </Card>
         </transition>
         <transition name="fade" mode="out-in">
-            <p v-if="!presence" key="presence" class="out">Apa mau <a href="#" @click.prevent="togglePresence">presensi aja?</a></p>
-            <p v-else key="login" class="out">Presensi lebih cepat, <a href="#" @click.prevent="togglePresence">masuk dulu.</a></p>
+            <p v-if="!presence" key="presence" class="out">Apa mau <a @click.prevent="togglePresence">presensi aja?</a></p>
+            <p v-else key="login" class="out">Presensi lebih cepat, <a @click.prevent="togglePresence">masuk dulu.</a></p>
         </transition>
         <SlideUpDown :active="presence" class="no-auth-presence">
             <NoAuthPresence/>
@@ -33,6 +35,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import { ArrowRightIcon, RotateCwIcon, CheckIcon } from 'vue-feather-icons'
 import Card from '@/components/global/Card.vue'
 import CardHeader from '@/components/global/CardHeader.vue'
@@ -52,9 +56,11 @@ export default {
         NoAuthPresence,
         Modal
     },
+    computed: {
+        ...mapState(['statusAuth', 'isAuthenticated'])
+    },
     data(){
         return{
-            status: this.$store,
             nim: null,
             password: null,
             response: null,
@@ -63,10 +69,6 @@ export default {
         }
     },
     mounted() {
-        if (localStorage.getItem('user-token')) {
-            this.$store.state.authStatus = true
-        }
-
         const inputNim = this.$refs.nim
         inputNim.addEventListener('keydown',this.enforceFormat);
         inputNim.addEventListener('keyup',this.formatNim);
@@ -85,14 +87,16 @@ export default {
             const { nim, password } = this
              if(nim && password){
                  if(password.length < 5){
-                     this.$store.state.status = 'loading'
+                     this.$store.commit('AUTH_REQUEST')
                      setTimeout(() => {
-                     this.$store.state.status = 'error'
+                     this.$store.commit('AUTH_ERROR')
                      }, 1500);
                  }
                  else{
                      this.$store.dispatch('AUTH_REQUEST', { nim, password }).then(() => {
-                        // this.$store.state.auth = true
+                        
+                    }).catch(err => {
+                        this.errorMsg = err
                     })
                  }
              }
@@ -171,11 +175,15 @@ export default {
                 box-shadow: 0 0 0 2px var(--red);
             }
         }
-        &.loading, &.success{
+        &.loading{
             input{
                 opacity: .4;
                 pointer-events: none;
             }
+        }
+        &.success button{
+            background: var(--green);
+            pointer-events: none;
         }
     }
 }

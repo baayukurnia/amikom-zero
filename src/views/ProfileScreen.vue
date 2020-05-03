@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-    <Navigation class="light" title="Profil Saya" nav-right='true'>
+    <Navigation mode="light" title="Profil Saya" nav-right="true" :transparentNav="true">
       <li>
           <router-link to="/profil/edit">Edit Profil</router-link>
       </li>
@@ -32,7 +32,7 @@
               </div>
               <div class="data">
                 <label>Nama Lengkap</label>
-                <span>Masha Raymers</span>
+                <span class="capitalize"> {{ $store.state.profile.Mhs.Nama.toLowerCase() }}</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -41,7 +41,7 @@
               </div>
               <div class="data">
                 <label>Nim</label>
-                <span>19.11.3286</span>
+                <span>{{ $store.state.profile.Mhs.Npm }}</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -50,7 +50,7 @@
               </div>
               <div class="data">
                 <label>Jenis Kelamin</label>
-                <span>Laki-laki</span>
+                <span>-</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -59,7 +59,7 @@
               </div>
               <div class="data">
                 <label>Program Studi</label>
-                <span>Informatika; Informatic</span>
+                <span>- --- Semester {{ $store.state.profile.PeriodeAkademik.Semester }} --- {{ $store.state.profile.PeriodeAkademik.TahunAkademik }}</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -68,7 +68,7 @@
               </div>
               <div class="data">
                 <label>Dosen Wali</label>
-                <span>Ike Verawati, M.Kom</span>
+                <span>-</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -77,7 +77,7 @@
               </div>
               <div class="data">
                 <label>Agama</label>
-                <span>Islam</span>
+                <span>-</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -86,7 +86,7 @@
               </div>
               <div class="data">
                 <label>Kewarganegaraan</label>
-                <span>Indonesia</span>
+                <span>-</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -95,7 +95,7 @@
               </div>
               <div class="data">
                 <label>Tempat Lahir</label>
-                <span>Klaten</span>
+                <span>-</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -104,7 +104,7 @@
               </div>
               <div class="data">
                 <label>Tanggal Lahir</label>
-                <span>01-01-2000</span>
+                <span>-</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -113,7 +113,7 @@
               </div>
               <div class="data">
                 <label>No Handphone</label>
-                <span>08169696969</span>
+                <span>-</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -122,7 +122,7 @@
               </div>
               <div class="data">
                 <label>Email Alternatif</label>
-                <span>bayukapp@gmail.com</span>
+                <span>-</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -131,7 +131,7 @@
               </div>
               <div class="data">
                 <label>Nama SMA/SMK/Univ Asal</label>
-                <span>SMKN 2 Klaten</span>
+                <span>-</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -140,7 +140,7 @@
               </div>
               <div class="data">
                 <label>Kota SMA/SMK/Univ Asal</label>
-                <span>Klaten</span>
+                <span>-</span>
               </div>
             </li>
           </ul>
@@ -298,7 +298,9 @@ export default {
   }
 }
 
-
+.capitalize{
+  text-transform: capitalize;
+}
 
 .profile-more ul{
   list-style: none;

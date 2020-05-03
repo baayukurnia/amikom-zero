@@ -1,8 +1,8 @@
 <template>
     <div class="tab-slider">
-        <ul>
-            <slot/>
-        </ul>
+        <div class="spacer"></div>
+        <slot/>
+        <div class="spacer"></div>
     </div>
 </template>
 
@@ -14,6 +14,12 @@ export default {
 
 <style lang="scss" scoped>
 .tab-slider{
+    overflow-y: hidden;
     overflow-x: auto;
+    display: flex;
+    .spacer{
+        padding: 0 10px;
+        height: auto;
+    }
 }
 </style>

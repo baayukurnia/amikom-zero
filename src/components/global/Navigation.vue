@@ -1,5 +1,5 @@
 <template>
-    <div :class="['navigation d-grid', mode, {'transparent' : transparentNav}, {'appearance-right' : !navRight}]">
+    <div :class="['navigation d-grid', mode, {'transparent' : state}, {'appearance-right' : !navRight}]">
       <div class="navigation-left" @click="$router.go(-1)">
         <div class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -39,12 +39,16 @@ export default {
       navRight:{
         type: String,
         default: null
+      },
+      transparentNav:{
+        type: Boolean,
+        default: false
       }
     },
     data(){
       return {
-        transparentNav: true,
-        showDropdown: false
+        showDropdown: false,
+        state: this.transparentNav
       }
     },
     mounted(){
@@ -59,15 +63,20 @@ export default {
         var scrollPos = el.scrollTop
         var offset = el.offsetHeight * 0.4
         if(scrollPos > offset){
-          this.transparentNav = false
+          this.state = false
         }
         else{
-          this.transparentNav = true
+          this.state = true
         }
       },
       init(){
-        document.getElementById('scroll-view').addEventListener('scroll', this.navHandler, false)
+        if(this.transparentNav){
+          document.getElementById('scroll-view').addEventListener('scroll', this.navHandler, false)
+        }
       }
+    },
+    beforeDestroy () {
+      window.removeEventListener('scroll', this.scrollHandler, false)
     },
 }
 </script>

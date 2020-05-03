@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeScreen from '../views/HomeScreen.vue'
-import ProfileScreen from '../views/ProfileScreen.vue'
+// import ProfileScreen from '../views/ProfileScreen.vue'
 
 Vue.use(VueRouter)
 
@@ -26,8 +26,8 @@ Vue.use(VueRouter)
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    // component: () => import(/* webpackChunkName: "about" */ '../views/ProfileScreen.vue')
-    component: ProfileScreen
+    component: () => import(/* webpackChunkName: "about" */ '../views/ProfileScreen.vue')
+    // component: ProfileScreen
   },
   {
     path: '/profil/edit',
@@ -36,6 +36,16 @@ Vue.use(VueRouter)
       requiresAuth: true,
       title: "Edit Profil | Amikom Zero",
       depth: 2
+    },
+    component: () => import('../views/DuhScreen.vue'),
+  },
+  {
+    path: '/qr',
+    name: 'KHS',
+    meta: {
+      requiresAuth: true,
+      title: "Absen QR | Amikom Zero",
+      depth: 1
     },
     component: () => import('../views/DuhScreen.vue'),
   },

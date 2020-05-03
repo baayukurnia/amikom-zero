@@ -1,5 +1,6 @@
 <template>
     <div class="launcher d-grid">
+        <router-link to="/qr">
         <div class="item">
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="78" viewBox="0 0 78 78"><defs><linearGradient id="s" y1="1" x2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="var(--icon-gradientx)"/><stop offset="1" stop-color="var(--icon-gradienty)"/></linearGradient><linearGradient id="sx" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="var(--icon-gradient-white)"/><stop offset="1" stop-color="var(--icon-gradient-white)" stop-opacity="0.149"/></linearGradient></defs><rect width="78" height="78" rx="20" fill="url(#s)"/><g transform="translate(0 0)" opacity="0.15"><path d="M2577-59.366V-77.873a2,2,0,0,1,2-2h37v.507a19.973,19.973,0,0,1-8.09,16.069h-13.334a1,1,0,0,0-1,1v2.931Z" transform="translate(-2538 137.365)" fill="url(#sx)"/><path d="M2568.072-67.807V-83.872a19.135,19.135,0,0,0,4.875.628,19.2,19.2,0,0,0,19.174-19.174,19.183,19.183,0,0,0-.392-3.868h15.955a35.506,35.506,0,0,1,.21,3.868,34.722,34.722,0,0,1-2.746,13.6,34.84,34.84,0,0,1-7.49,11.109,34.838,34.838,0,0,1-11.109,7.49,34.721,34.721,0,0,1-13.6,2.746A35.358,35.358,0,0,1,2568.072-67.807Z" transform="translate(-2568.072 106.286)" fill="url(#sx)"/></g><g transform="translate(29.346 29.346)"><path d="M8.556,3H5.222A2.222,2.222,0,0,0,3,5.222V8.556m20,0V5.222A2.222,2.222,0,0,0,20.778,3H17.444m0,20h3.333A2.222,2.222,0,0,0,23,20.778V17.444m-20,0v3.333A2.222,2.222,0,0,0,5.222,23H8.556" transform="translate(-3 -3)" fill="none" stroke="#fff" stroke-width="2.5"/></g></svg>
@@ -8,6 +9,8 @@
             Scan QR
           </span> 
         </div>
+        </router-link>
+        <a @click="presenceCode">
         <div class="item">
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="78" viewBox="0 0 78 78"><defs><linearGradient id="m" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="var(--icon-gradient-white)"/><stop offset="1" stop-color="var(--icon-gradient-white)" stop-opacity="0.149"/></linearGradient></defs><rect width="78" height="78" rx="20" fill="var(--icon-bg)"/><g transform="translate(0 0)" opacity="0.05"><path d="M2595-95.448a2,2,0,0,1-2-2v-39.918h3a19.927,19.927,0,0,1,13.575,5.313v20.979a1,1,0,0,0,1,1H2616v14.625Z" transform="translate(-2538 137.365)" fill="url(#m)"/><path d="M2593.672-28.286a19.16,19.16,0,0,0,.448-4.132,19.2,19.2,0,0,0-19.174-19.175,19.077,19.077,0,0,0-6.875,1.274V-66.692a35.1,35.1,0,0,1,6.875-.674,34.728,34.728,0,0,1,13.6,2.747,34.816,34.816,0,0,1,11.108,7.489,34.836,34.836,0,0,1,7.49,11.109,34.723,34.723,0,0,1,2.746,13.6,35.494,35.494,0,0,1-.24,4.132Z" transform="translate(-2568.072 106.286)" fill="url(#m)"/></g><path d="M17.2,0,10.775-16.675H6.325L-.125,0h4.05l1.05-2.825h7.15L13.15,0ZM11.15-5.95H5.95l2.6-7.175ZM28.6,0V-7.8c0-3.475-2.525-4.575-5.275-4.575a7.921,7.921,0,0,0-5.275,1.9l1.2,2.125a5.081,5.081,0,0,1,3.525-1.425c1.6,0,2.65.8,2.65,2.025v1.625A4.967,4.967,0,0,0,21.6-7.6c-1.925,0-4.2,1.075-4.2,3.9a4.023,4.023,0,0,0,4.2,4,5,5,0,0,0,3.825-1.55V0ZM22.875-1.85c-1.25,0-2.275-.65-2.275-1.775,0-1.175,1.025-1.825,2.275-1.825a3.176,3.176,0,0,1,2.55,1.05v1.5A3.176,3.176,0,0,1,22.875-1.85Z" transform="translate(25 46.635)" fill="#fff"/></svg>
@@ -16,6 +19,7 @@
             Absen Kode
           </span>
         </div>
+        </a>
         <router-link to="/jadwal">
         <div class="item">
           <div class="icon notif">
@@ -60,7 +64,15 @@
 
 <script>
 export default {
-    name: 'Launcher'
+    name: 'Launcher',
+    methods: {
+      presenceQR(){
+
+      },
+      presenceCode(){
+        this.$parent.$refs.PresenceCode.open()
+      }
+    }
 }
 </script>
 

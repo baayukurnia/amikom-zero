@@ -13,7 +13,7 @@ const defaultProfile = {
     Angkatan:"2019",
     EmailAmikom:"masha.raymers@students.amikom.ac.id",
     PassEmail:"******",
-    NpmImg:""
+    NpmImg:"img/egg.jpg"
   },
   PeriodeAkademik:{
     TahunAkademik:"2019/2020",
@@ -21,86 +21,70 @@ const defaultProfile = {
   }
 }
 
-const defaultschedules = [
-  {
-     "IdKuliah":41847,
-     "Keterangan":"",
-     "Hari":"SENIN",
-     "Ruang":"L 7.4.1",
-     "Waktu":"13.20 - 15.00",
-     "Kode":"ST021",
-     "MataKuliah":"PEMROGRAMAN",
-     "JenisKuliah":"Praktikum",
-     "Kelas":"19-S1IF-11",
-     "Nik":"190302484",
-     "NamaDosen":"Bayu Nadya Kusuma, S.T., M.Eng",
-     "Jenjang":"S1"
-  },
-  {
-     "IdKuliah":42694,
-     "Keterangan":"",
-     "Hari":"SENIN",
-     "Ruang":"05.02.01",
-     "Waktu":"13.20 - 15.00",
-     "Kode":"ST015",
-     "MataKuliah":"STRUKTUR DATA",
-     "JenisKuliah":"Teori",
-     "Kelas":"19-S1IF-11",
-     "Nik":"190302037",
-     "NamaDosen":"Ema Utami, Prof. Dr., S.Si., M.Kom.",
-     "Jenjang":"S1"
-  },
-  {
-     "IdKuliah":42696,
-     "Keterangan":"",
-     "Hari":"SENIN",
-     "Ruang":"04.04.01",
-     "Waktu":"07.00 - 08.40",
-     "Kode":"ST014",
-     "MataKuliah":"KOMUNIKASI DATA",
-     "JenisKuliah":"Teori",
-     "Kelas":"19-S1IF-11",
-     "Nik":"190302484",
-     "NamaDosen":"Bayu Nadya Kusuma, S.T., M.Eng",
-     "Jenjang":"S1"
-  },
-]
-
 export default new Vuex.Store({
   state: {
-    authStatus: false,
-    performanceMode :false,
+    statusAuth: null,
+    statusSchedule: null,
+    statusProfile: null,
+    statusPresence: null,
+    isAuthenticated: false,
+    performanceMode: false,
     statusBar: {
       color: null,
       scroll: null
     },
-    schedules: defaultschedules,
+    schedules: null,
     profile: defaultProfile,
+  },
+  modules: {
+    token: localStorage.getItem('user-token') || '',
   },
   mutations: {
     ['AUTH_REQUEST']: (state) => {
-      state.status = 'loading'
+      state.statusAuth = 'loading'
     },
     ['AUTH_SUCCESS']: (state, token) => {
-      state.status = 'success'
+      state.statusAuth = 'success'
       state.token = token
     },
     ['AUTH_ERROR']: (state) => {
-      state.status = 'error'
-      state.authStatus = false
+      state.statusAuth = 'error'
+      state.isAuthenticated = false
     },
     ['AUTH_LOGOUT']: (state) => {
-      state.status = 'unauthorized'
-      state.authStatus = false
+      state.statusAuth = 'unauthorized'
+      state.statusSchedule = null
+      state.statusProfile = null
+      state.isAuthenticated = false
       state.profile = defaultProfile
-      state.schedules = defaultschedules
+      state.schedules = null
     },
-    ['USER_REQUEST']: (state, data) => {
+    ['PROFILE_REQUEST']: (state) => {
+      state.statusProfile = 'loading'
+    },
+    'PROFILE_SUCCESS': (state, data) => {
       state.profile = data
-      state.authStatus = true
+      state.isAuthenticated = true
+      state.statusProfile = 'success'
     },
-    ['USER_SCHEDULE']: (state, data) => {
+    'SCHEDULE_REQUEST': (state) => {
+      state.statusSchedule = 'loading'
+    },
+    'SCHEDULE_SUCCESS': (state, data) => {
       state.schedules = data
+      state.statusSchedule = 'success'
+    },
+    'PRESENCE_REQUEST': (state) => {
+      state.statusPresence = 'loading'
+    },
+    'PRESENCE_SUCCESS': (state) => {
+      state.statusPresence = 'success'
+    },
+    'PRESENCE_RESET': (state) => {
+      state.statusPresence = null
+    },
+    'PRESENCE_ERROR': (state) => {
+      state.statusPresence = 'error'
     },
 		initialiseStore(state) {
       // Check if the ID exists
@@ -110,7 +94,6 @@ export default new Vuex.Store({
 					Object.assign(state, JSON.parse(localStorage.getItem('store')))
 				);
 			}
-      state.status = null
 		}
   }, 
   actions: {
@@ -123,8 +106,7 @@ export default new Vuex.Store({
             localStorage.setItem('user-token', token) // store the token in localstorage
             commit('AUTH_SUCCESS', token)
             // you have your token, now log in your user :)
-            dispatch('USER_REQUEST')
-            dispatch('USER_SCHEDULE')
+            dispatch('PROFILE_REQUEST')
             resolve(resp) 
           })
         .catch(err => {
@@ -141,14 +123,15 @@ export default new Vuex.Store({
         resolve()
       })
     },
-    ['USER_REQUEST']: ({commit}) => {
+    ['PROFILE_REQUEST']: ({commit, dispatch}) => {
       return new Promise((resolve, reject) => { // The Promise used for router redirect in login
-        // commit('AUTH_REQUEST')
+        commit('PROFILE_REQUEST')
         const token = localStorage.getItem('user-token')
         axios.post('/profile', qs.stringify({token}))
         .then(resp => {
           const data = resp.data.data
-          commit('USER_REQUEST', data)
+          commit('PROFILE_SUCCESS', data)
+          dispatch('SCHEDULE_REQUEST')
           resolve(resp)
         })
         .catch(err => {
@@ -156,17 +139,17 @@ export default new Vuex.Store({
           reject(err)
         })
       })
-    },
-    ['USER_SCHEDULE']: ({commit, state}) =>{
+    }, 
+    ['SCHEDULE_REQUEST']: ({commit, state}) =>{
       return new Promise((resolve, reject) =>{
+        commit('SCHEDULE_REQUEST')
         const token = localStorage.getItem('user-token')
         const nim = state.profile.Mhs.Npm
         axios.post('/jadwal', qs.stringify({nim, token }))
         .then(resp => {
           const data = resp.data.data
-          commit('USER_SCHEDULE', data)
+          commit('SCHEDULE_SUCCESS', data)
           resolve(resp)
-          console.log(data)
         })
         .catch(err => {
           console.log(err)
@@ -174,55 +157,71 @@ export default new Vuex.Store({
         })
       })
     },
-    ['PRESENCE_POST']: ({commit, state}) =>{
+    ['PRESENCE_REQUEST']: ({commit, dispatch, state}) =>{
       return new Promise((resolve, reject) =>{
+        commit('PRESENCE_REQUEST')
         const token = localStorage.getItem('user-token')
         const nim = state.profile.Mhs.Npm
         axios.post('/presensi', qs.stringify({nim, token }))
         .then(resp => {
           const data = resp.data
-          commit('USER_SCHEDULE', data)
+          const status = data.status
+          if(status == true){
+            commit('PRESENCE_SUCCESS')
+            dispatch('SCHEDULE_REQUEST')
+          }
+          else if(status == false){
+            commit('PRESENCE_ERROR')
+          }
           resolve(resp)
-          console.log(data)
+          console.log(data.status)
         })
         .catch(err => {
           console.log(err)
           reject(err)
         })
       })
-    }
-  },
-  modules: {
-    token: localStorage.getItem('user-token') || '',
-    status: '',
-    isAuthenticated: state => !!state.token,
+    },
   },
   getters: {
-    todaySchedules: state => {
-      var day
-      switch (new Date().getDay()) {
-        case 0:
-          day = "MINGGU";
-          break;
-        case 1:
-          day = "SENIN";
-          break;
-        case 2:
-           day = "SELASA";
-          break;
-        case 3:
-          day = "RABU";
-          break;
-        case 4:
-          day = "KAMIS";
-          break;
-        case 5:
-          day = "JUMAT";
-          break;
-        case 6:
-          day = "SELASA";
+    scheduleDays: (state) => {
+      if(state.schedules != null){
+        const days = state.schedules.map(schedule => schedule.Hari)
+        return new Set(days)
       }
-      return state.schedules.filter(schedule => schedule.Hari === day)
+    },
+    getScheduleByDay: (state) => (day) => {
+      if(state.schedules != null){
+        switch (day) {
+          case 0:
+            day = "MINGGU";
+            break;
+          case 1:
+            day = "SENIN";
+            break;
+          case 2:
+             day = "SELASA";
+            break;
+          case 3:
+            day = "RABU";
+            break;
+          case 4:
+            day = "KAMIS";
+            break;
+          case 5:
+            day = "JUMAT";
+            break;
+          case 6:
+            day = "SABTU";
+        }
+        const todaySchedules = state.schedules.filter(schedule => schedule.Hari === day)
+        if (todaySchedules.length > 0){
+          return todaySchedules
+        }
+        else{
+          return "Tidak ada jadwal di hari " + day.toLowerCase() + ". Chill. Sans."
+        }
+      }
     }
   }
 })

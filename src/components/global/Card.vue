@@ -12,7 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 .card{
-    background: var(--bg-card);
+    background: var(--mainbg-color-transparent);
     color: var(--white);
     border-radius: var(--radius);
     padding: 25px;

@@ -1,7 +1,7 @@
 <template>
     <div class="user d-grid">
         <div class="profile-image">
-            <img :src="$store.state.profile.Mhs.NpmImg">
+            <img :src="$store.state.profile.Mhs.NpmImg" :alt="$store.state.profile.Mhs.Npm">
         </div>
         <div class="profile-user overmask">
           <h1 class="name">{{ $store.state.profile.Mhs.Nama.toLowerCase() }}</h1>

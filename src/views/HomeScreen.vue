@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Auth v-if="!this.$store.state.authStatus"/>
+    <Auth v-if="!isAuthenticated"/>
     <HomeProfile/>
     <Launcher/>
     <!-- <div class="news">
@@ -42,12 +42,14 @@
         </ul>
       </div>
     </div> -->
-    <TodaySchedule/>
-    <PresenceCode/>
+    <TodaySchedule v-if="isAuthenticated && statusSchedule=='success'"/>
+    <PresenceCode ref="PresenceCode"/>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 // @ is an alias to /src
 import Auth from '@/components/Auth.vue'
 import HomeProfile from '@/components/HomeScreen/HomeProfile.vue'
@@ -63,6 +65,9 @@ export default {
     Launcher,
     TodaySchedule,
     PresenceCode
+  },
+  computed: {
+      ...mapState(['statusAuth', 'isAuthenticated', 'statusSchedule'])
   }
 }
 </script>

@@ -2,6 +2,7 @@
   <div class="home-profile">
     <div class="d-flex justify-content-between">
       <router-link to="/profil">
+      <span class="hidden">Profil Saya</span>
       <keep-alive>
         <User/>
       </keep-alive>

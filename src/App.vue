@@ -12,7 +12,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from './backend'
 import StatusBar from '@/components/global/StatusBar.vue'
 
 export default {
@@ -27,13 +27,14 @@ export default {
   },
 	beforeCreate() {
 		this.$store.commit('initialiseStore');
-	},
-  mounted(){
-    const token = localStorage.getItem('user-token')
-    if (token) {
-      this.$store.dispatch('USER_REQUEST', token)
-      this.$store.dispatch('USER_SCHEDULE')
-    }
+  },
+  created: function(){
+    axios.interceptors.response.use(undefined, function (err) {
+        // if you ever get an unauthorized, logout the user
+            this.$store.dispatch('AUTH_LOGOUT')
+        // you can also redirect to /login if needed !
+        throw err;
+    });
   },
   watch: {
     $route(to, from) {
