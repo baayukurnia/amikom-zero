@@ -10,10 +10,10 @@
                 <div :class="['login-form', statusAuth]">
                     <p class="error-message" v-if="statusAuth == 'error'">{{ errorMsg }}</p>
                     <label for="nim" class="hidden">NIM</label>
-                    <input v-model="nim" class="nim" type="text" name="nim" placeholder="NIM" ref="nim" maxlength="10" v-on:keyup.enter="login" required>
+                    <input id="nim" v-model="nim" class="nim" type="text" name="nim" placeholder="NIM" ref="nim" maxlength="10" v-on:keyup.enter="login" required>
                     <div class="input-group">
                         <label for="password" class="hidden">Password</label>
-                        <input v-model="password" class="password" type="password" name="password" placeholder="Kata Sandi" maxlength="24" v-on:keyup.enter="login" required>
+                        <input id="password" v-model="password" class="password" type="password" name="password" placeholder="Kata Sandi" maxlength="24" v-on:keyup.enter="login" required>
                         <button :class="['btn', { 'disabled' : this.nim && !this.password }]" @click="login" aria-label="Login">
                             <RotateCwIcon v-if="statusAuth == 'loading'"/>
                             <CheckIcon v-else-if="statusAuth == 'success'"/>
@@ -25,8 +25,8 @@
         </Card>
         </transition>
         <transition name="fade" mode="out-in">
-            <p v-if="!presence" key="presence" class="out">Apa mau <a @click.prevent="togglePresence">presensi aja?</a></p>
-            <p v-else key="login" class="out">Presensi lebih cepat, <a @click.prevent="togglePresence">masuk dulu.</a></p>
+            <p v-if="!presence" key="presence" class="out">Apa mau <span @click.prevent="togglePresence">presensi aja?</span></p>
+            <p v-else key="login" class="out">Presensi lebih cepat, <span @click.prevent="togglePresence">masuk dulu.</span></p>
         </transition>
         <SlideUpDown :active="presence" class="no-auth-presence">
             <NoAuthPresence/>
@@ -110,8 +110,9 @@ export default {
     text-align: center;
     margin: 70px 0;
     color: var(--body-color);
-    a{
+    span{
         color: var(--link-color);
+        cursor: pointer;
     }
 }
 .login{

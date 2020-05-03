@@ -50,7 +50,6 @@ export default {
 
 <style lang="scss">
 @import 'scss/variables.scss';
-@import 'scss/fonts.scss';
 @import 'scss/transitions.scss';
 @import 'scss/base.scss';
 @import 'scss/utils.scss';

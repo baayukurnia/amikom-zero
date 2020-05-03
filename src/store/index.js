@@ -13,7 +13,7 @@ const defaultProfile = {
     Angkatan:"2019",
     EmailAmikom:"masha.raymers@students.amikom.ac.id",
     PassEmail:"******",
-    NpmImg:"img/egg.jpg"
+    NpmImg:""
   },
   PeriodeAkademik:{
     TahunAkademik:"2019/2020",
