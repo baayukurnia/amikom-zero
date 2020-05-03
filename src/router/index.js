@@ -41,7 +41,7 @@ Vue.use(VueRouter)
   },
   {
     path: '/qr',
-    name: 'KHS',
+    name: 'Absen QR',
     meta: {
       requiresAuth: true,
       title: "Absen QR | Amikom Zero",
