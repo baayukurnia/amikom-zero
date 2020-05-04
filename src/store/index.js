@@ -37,6 +37,7 @@ export default new Vuex.Store({
     Schedules: null,
     Profile: defaultProfile,
     PresenceList: null,
+    PresenceDetail: []
     // PresenceList: [
     //   {"KrsId":2681448,"Kode":"ST013","NamaMk":"LINGKUNGAN BISNIS","NamaMkEn":"BUSINESS ENVIRONMENT","JmlSks":2,"JmlPresensiKuliah":0,"IsHadirMID":0,"IsHadirUAS":0,"DetailPresensi":[]},
     //   {"KrsId":2681449,"Kode":"ST014","NamaMk":"KOMUNIKASI DATA","NamaMkEn":"DATA COMMUNICATION","JmlSks":4,"JmlPresensiKuliah":5,"IsHadirMID":0,"IsHadirUAS":0,"DetailPresensi":[{"Tanggal":"30 Mar 2020","Jam":"07:57:02","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"24 Mar 2020","Jam":"15:10:32","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"15 Apr 2020","Jam":"11:23:13","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"09 Mar 2020","Jam":"13:34:22","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"02 Mar 2020","Jam":"14:04:25","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"}]},
@@ -112,7 +113,8 @@ export default new Vuex.Store({
     ['PRESENCE_DETAILS_REQUEST']: state => {
       state.statusPresenceDetails = 'loading'
     },
-    ['PRESENCE_DETAILS_SUCCESS']: state => {
+    ['PRESENCE_DETAILS_SUCCESS']: (state, {index, data}) => {
+      state.PresenceList[index].PresenceDetail = data
       state.statusPresenceDetails = 'success'
     },
 		initialiseStore(state) {
@@ -122,7 +124,8 @@ export default new Vuex.Store({
 				this.replaceState(
 					Object.assign(state, JSON.parse(localStorage.getItem('store')))
 				);
-			}
+      }
+      state.statusAuth=null
 		}
   }, 
   actions: {
@@ -224,10 +227,12 @@ export default new Vuex.Store({
           const data = resp.data.data
           const status = resp.data.status
           if(status == true){
-            data.forEach((d) => {
+            commit('PRESENCE_LIST_SUCCESS', data)
+            data.forEach((d, index) => {
               dispatch('PRESENCE_DETAILS_REQUEST', d.KrsId).then(resp => {
-                d.DetailPresensi = resp.data.data
-                commit('PRESENCE_LIST_SUCCESS', data)
+                const data = resp.data.data
+                console.log(index, data)
+                commit('PRESENCE_DETAILS_SUCCESS', {index, data})
               })
             })
           }
@@ -249,7 +254,6 @@ export default new Vuex.Store({
         axios.post('/detail_presensi', qs.stringify({token, krsId}))
         .then(resp => {
           resolve(resp)
-          commit('PRESENCE_DETAILS_SUCCESS')
           return resp.data
         })
         .catch(err => {
@@ -303,8 +307,14 @@ export default new Vuex.Store({
       const krsid = state.PresenceList.filter(mk => mk.NamaMk === matkul)
       return krsid[0].KrsId
     },
-    getPresenceStatus: (state) => (krsId, JenisKuliah, date) => {
-      if(state.statusPreslist == 'success' && state.statusPresenceDetails == 'success' && state.statusSchedules == 'success' && state.PresenceList != null ){
+    isPresenceDetailLoaded: (state) => {
+      if(state.PresenceList.every((p) => p.PresenceDetail != null)){
+        return true
+      }
+      else{return false}
+    },
+    getPresenceStatus: (getters, state) => (krsId, JenisKuliah, date) => {
+      if(state.statusPreslist == 'success' && state.statusPresenceDetails == 'success' && state.statusSchedules == 'success' && state.PresenceList != null && getters.isPresenceDetailLoaded() ){
           const presenceName = state.PresenceList.filter(p => p.KrsId === krsId)[0] // filter Matkul dg KrsId
           if(presenceName.DetailPresensi.filter(d => d.Tanggal === date && d.JenisKuliah == JenisKuliah).length == 1){
             return true

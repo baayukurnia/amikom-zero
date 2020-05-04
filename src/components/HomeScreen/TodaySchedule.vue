@@ -4,7 +4,7 @@
     <div class="contents">
         <Timeline v-if="Array.isArray(getScheduleByDay(day))">
           <li v-for="sch in getScheduleByDay(day)" :key="sch.IdKuliah">
-            <span :class="['status', { 'done' : getPresenceStatus(getKrsId(sch.MataKuliah), sch.JenisKuliah, date) == 1 }]"></span>
+            <!-- <span :class="['status', { 'done' : getPresenceStatus(getKrsId(sch.MataKuliah), sch.JenisKuliah, date) == 1 }]"></span> -->
             <span class="time">{{ sch.Waktu }}</span>
             <h3>{{ sch.MataKuliah.toLowerCase() }}</h3>
             <h5>{{ sch.NamaDosen }}</h5>
