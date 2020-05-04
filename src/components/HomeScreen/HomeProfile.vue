@@ -7,8 +7,10 @@
         <User/>
       </keep-alive>
       </router-link>
-      <Notification/>
-      <Setting/>
+      <div class="d-flex">
+        <Notification/>
+        <Setting/>
+      </div>
     </div>
   </div>
 </template>

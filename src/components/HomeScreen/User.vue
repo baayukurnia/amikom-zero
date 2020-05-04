@@ -58,7 +58,7 @@ export default {
 
 @media (max-width: 575px) {
   .profile-user{
-    max-width: 50vw;
+    max-width: 40vw;
   }
 }
 @media (max-width:350px) {
