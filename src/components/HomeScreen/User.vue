@@ -32,7 +32,7 @@ export default {
   }
 }
 .profile-user{
-  max-width: 210px;
+  max-width: 170px;
   padding-right: 10%;
   display: inline-block;
   margin-left: 10px;
