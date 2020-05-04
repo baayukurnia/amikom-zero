@@ -265,13 +265,13 @@ export default new Vuex.Store({
   },
   getters: {
     scheduleDays: (state) => {
-      if(state.Schedules != null){
+      if(state.statusSchedule == "success"){
         const days = state.Schedules.map(schedule => schedule.Hari)
         return new Set(days)
       }
     },
     getScheduleByDay: (state) => (day) => {
-      if(state.Schedules != null){
+      if(state.statusSchedule == "success"){
         switch (day) {
           case 0:
             day = "MINGGU";
@@ -304,8 +304,10 @@ export default new Vuex.Store({
       }
     },
     getKrsId: (state) => (matkul) => {
-      const krsid = state.PresenceList.filter(mk => mk.NamaMk === matkul)
-      return krsid[0].KrsId
+      if(state.statusPreslist == "success"){
+        const krsid = state.PresenceList.filter(mk => mk.NamaMk === matkul)
+        return krsid[0].KrsId
+      }
     },
     isPresenceDetailLoaded: (state) => {
       if(state.PresenceList.every((p) => p.PresenceDetail != null)){
