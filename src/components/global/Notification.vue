@@ -57,19 +57,18 @@ export default {
     display: block;
     height:40px;
     margin: 7px 0;
-    position: relative;
 
-    &:after{
-        content: '';
-        width: 14px;
-        height: 14px;
-        background: var(--secondary-color);
-        position: absolute;
-        top: 2px;
-        right: 8px;
-        border-radius: 50%;
-        border: 3px solid var(--bg-color)
-    }
+    // &:after{
+    //     content: '';
+    //     width: 14px;
+    //     height: 14px;
+    //     background: var(--secondary-color);
+    //     position: absolute;
+    //     top: 2px;
+    //     right: 8px;
+    //     border-radius: 50%;
+    //     border: 3px solid var(--bg-color)
+    // }
     button{
         cursor: pointer;
         color: var(--opacity-color);
