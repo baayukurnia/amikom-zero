@@ -1,6 +1,6 @@
 <template>
-  <Parallax class="profile-image" :speed-factor="0.6" :sectionHeight="80">
-    <img v-if="$store.state.profile.Mhs.Npm" :src="'https://images.weserv.nl/?url='+$store.state.profile.Mhs.NpmImg" :alt="$store.state.profile.Mhs.Npm">
+  <Parallax class="profile-image" :speed-factor="0.6" :sectionHeight="60">
+    <img v-if="$store.state.Profile.Mhs.Npm" :src="'https://images.weserv.nl/?url='+$store.state.Profile.Mhs.NpmImg" :alt="$store.state.Profile.Mhs.Npm">
   </Parallax>
 </template>
 

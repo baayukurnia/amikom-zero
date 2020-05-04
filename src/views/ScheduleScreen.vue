@@ -65,7 +65,7 @@ export default {
     },
     data(){
         return{
-            schedules: this.$store.state.schedules,
+            schedules: this.$store.state.Schedules,
             activeIndex: 0,
         }
     },
@@ -84,7 +84,7 @@ export default {
         tabChange(i){
             this.activeIndex= i+1
         }
-    }
+    },
 }
 </script>
 

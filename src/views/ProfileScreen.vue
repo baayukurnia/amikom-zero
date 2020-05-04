@@ -2,7 +2,7 @@
   <div class="profile">
     <Navigation mode="light" title="Profil Saya" nav-right="true" :transparentNav="true">
       <li>
-          <router-link to="/profil/edit">Edit Profil</router-link>
+          <router-link to="/profil/edit">Foto saya jelek sekali</router-link>
       </li>
     </Navigation>
     <ScrollView>
@@ -32,7 +32,7 @@
               </div>
               <div class="data">
                 <label>Nama Lengkap</label>
-                <span class="capitalize"> {{ $store.state.profile.Mhs.Nama.toLowerCase() }}</span>
+                <span class="capitalize"> {{ $store.state.Profile.Mhs.Nama.toLowerCase() }}</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -41,7 +41,7 @@
               </div>
               <div class="data">
                 <label>Nim</label>
-                <span>{{ $store.state.profile.Mhs.Npm }}</span>
+                <span>{{ $store.state.Profile.Mhs.Npm }}</span>
               </div>
             </li>
             <li class="list-icon icon-left">
@@ -59,7 +59,7 @@
               </div>
               <div class="data">
                 <label>Program Studi</label>
-                <span>- --- Semester {{ $store.state.profile.PeriodeAkademik.Semester }} --- {{ $store.state.profile.PeriodeAkademik.TahunAkademik }}</span>
+                <span>- --- Semester {{ $store.state.Profile.PeriodeAkademik.Semester }} --- {{ $store.state.Profile.PeriodeAkademik.TahunAkademik }}</span>
               </div>
             </li>
             <li class="list-icon icon-left">

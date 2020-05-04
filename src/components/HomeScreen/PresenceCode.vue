@@ -69,7 +69,7 @@ export default {
         },
         open(){
             this.resetPresence()
-            this.$store.commit('PRESENCE_RESET')
+            this.$store.commit('ACTIVITY_PRESENCE_RESET')
             this.stateOpen = true
             setTimeout(() => {
                 this.$refs.code.focus()
@@ -81,22 +81,22 @@ export default {
         presencePost: function () {
             if(this.a && this.b && this.c && this.d && this.e){
                 const kode = this.a.concat(this.b).concat(this.c).concat(this.d).concat(this.e)
-                const nim = this.$store.state.profile.Mhs.Npm
+                const nim = this.$store.state.Profile.Mhs.Npm
                 if(kode.length != 5){
-                        this.$store.commit('PRESENCE_REQUEST')
+                        this.$store.commit('ACTIVITY_PRESENCE_REQUEST')
                     setTimeout(() => {
-                        this.$store.commit('PRESENCE_ERROR')
+                        this.$store.commit('ACTIVITY_PRESENCE_ERROR')
                     }, 1500);
                 }
                 else{
-                    this.$store.dispatch('PRESENCE_REQUEST', { nim, kode })
+                    this.$store.dispatch('ACTIVITY_PRESENCE_REQUEST', { nim, kode })
                     .then((resp) => {
                         const data = resp.data
                         if(data.status == false){
                             this.resetPresence()
                         }
                         else if(data.status == true){
-                            this.$store.commit('PRESENCE_SUCCESS')
+                            this.$store.commit('ACTIVITY_PRESENCE_SUCCESS')
                             setTimeout(() => {
                                 this.stateOpen = false
                             }, 1000);

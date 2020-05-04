@@ -1,8 +1,8 @@
 <template>
   <Card class="profile-info">
     <CardHeader>
-      <h2 class="title overmask">{{ $store.state.profile.Mhs.Nama.toLowerCase() }}</h2>
-      <span class="subtitle">Semester {{ $store.state.profile.PeriodeAkademik.Semester }} - {{ $store.state.profile.PeriodeAkademik.TahunAkademik }}</span>
+      <h2 class="title overmask">{{ $store.state.Profile.Mhs.Nama.toLowerCase() }}</h2>
+      <span class="subtitle">Semester {{ $store.state.Profile.PeriodeAkademik.Semester }} - {{ $store.state.Profile.PeriodeAkademik.TahunAkademik }}</span>
     </CardHeader>
     <ul class="user-info">
       <li class="list-icon icon-left">
@@ -11,7 +11,7 @@
         </div>
         <div class="data">
           <label>Nim</label>
-          <span>{{ $store.state.profile.Mhs.Npm }}</span>
+          <span>{{ $store.state.Profile.Mhs.Npm }}</span>
         </div>
       </li>
       <li class="list-icon icon-left overmask">
@@ -20,7 +20,7 @@
         </div>
         <div class="data">
           <label>Email</label>
-          <span>{{ $store.state.profile.Mhs.EmailAmikom }}</span>
+          <span>{{ $store.state.Profile.Mhs.EmailAmikom }}</span>
         </div>
       </li>
       <li class="list-icon icon-left">
@@ -61,7 +61,7 @@ export default {
     togglePassword(){
       this.showPass = !this.showPass
       if(this.showPass){
-        this.password = this.$store.state.profile.Mhs.PassEmail
+        this.password = this.$store.state.Profile.Mhs.PassEmail
       }
       else{
         this.password = '******'
@@ -75,7 +75,7 @@ export default {
 <style scoped lang="scss">
 .profile-info{
   margin: 0 15px;
-  margin-top: -150px;
+  margin-top: -25px;
   position:relative;
   background: var(--mainbg-color-transparent);
   backdrop-filter: blur(var(--blur-amount));

@@ -3,12 +3,12 @@
     <h3 class="heading">Jadwal Hari Ini</h3>
     <div class="contents">
         <Timeline v-if="Array.isArray(getScheduleByDay(day))">
-          <li v-for="schedule in getScheduleByDay(day)" :key="schedule.IdKuliah">
-            <span :class="['status', { 'miss' : schedule.Keterangan == '' }]"></span>
-            <span class="time">{{ schedule.Waktu }}</span>
-            <h3>{{ schedule.MataKuliah.toLowerCase() }}</h3>
-            <h5>{{ schedule.NamaDosen }}</h5>
-            <span class="room">{{ schedule.JenisKuliah }} <span v-if="schedule.JenisKuliah == 'Teori'">R</span> {{ schedule.Ruang }}</span>
+          <li v-for="sch in getScheduleByDay(day)" :key="sch.IdKuliah">
+            <span :class="['status', { 'done' : getPresenceStatus(getKrsId(sch.MataKuliah), sch.JenisKuliah, date) == 1 }]"></span>
+            <span class="time">{{ sch.Waktu }}</span>
+            <h3>{{ sch.MataKuliah.toLowerCase() }}</h3>
+            <h5>{{ sch.NamaDosen }}</h5>
+            <span class="room">{{ sch.JenisKuliah }} <span v-if="sch.JenisKuliah == 'Teori'">R</span> {{ sch.Ruang }}</span>
           </li>
         </Timeline>
         <Timeline v-else-if="getScheduleByDay(day)">
@@ -33,11 +33,22 @@ export default {
         Timeline
     },
     computed: {
-    ...mapGetters(['getScheduleByDay'])
+    ...mapGetters(['getScheduleByDay', 'getPresenceStatus', 'getKrsId']),
     },
     data(){
       return{
-        day: new Date().getDay()
+        day: new Date().getDay(),
+        date: this.getFormattedToday()
+      }
+    },
+    methods: {
+      getFormattedToday(){
+        const d = new Date() //yr,mnth,dy
+        const year = d.getFullYear()
+        const date = ("0" + d.getDate()).slice(-2)
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+        const monthName = months[d.getMonth()]
+        return `${date} ${monthName} ${year}`
       }
     }
 }

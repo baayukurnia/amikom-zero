@@ -71,7 +71,9 @@ export default {
       },
       init(){
         if(this.transparentNav){
-          document.getElementById('scroll-view').addEventListener('scroll', this.navHandler, false)
+          setTimeout(() => {
+            document.getElementById('scroll-view').addEventListener('scroll', this.navHandler, false)
+          }, 100);
         }
       }
     },

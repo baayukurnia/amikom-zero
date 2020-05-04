@@ -10,7 +10,7 @@
       <Card class="message">
         <h1 class="heading">Amikom Zero.</h1>
         <p><strong>Amikom Zero</strong> adalah aplikasi alternatif bagi pengguna iOS yang tidak bisa menggunakan Amikom One.</p>
-        <p>Karena berbasis web jadi kalian bisa <b>buka</b> dan <b>install</b> <strong>Amikom Zero</strong> di iOS, PC, Mac, Android, di mana saja.</p>
+        <p>Karena berbasis web jadi kalian bisa <b>buka</b> dan <b>install</b> <strong>Amikom Zero</strong> di iOS, PC, Mac, Android, di mana saja. <strong>Amikom Zero</strong> jalan walau di kondisi offline.</p>
         <p><strong>Amikom Zero</strong> tidak resmi dari pihak Amikom tapi kalian bisa membantu aplikasi ini menjadi lebih baik dengan cara langsung terjun ke source code maupun sekedar memberi ide dan saran kalian.</p>
         <p>Silahkan install dan informasikan ke teman-teman di Amikom, tunggu update versi selanjutnya.</p>
         <p>Big thanks ---- <a href="https://www.instagram.com/febridwi_k/">Febri Dwi</a> API backend nya.</p>

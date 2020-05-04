@@ -1,11 +1,11 @@
 <template>
     <div class="user d-grid">
         <div class="profile-image">
-            <img v-if="$store.state.profile.Mhs.Npm" :src="'https://images.weserv.nl/?url='+$store.state.profile.Mhs.NpmImg" :alt="$store.state.profile.Mhs.Npm">
+            <img v-if="$store.state.Profile.Mhs.Npm" :src="'https://images.weserv.nl/?url='+$store.state.Profile.Mhs.NpmImg" :alt="$store.state.Profile.Mhs.Npm">
         </div>
         <div class="profile-user overmask">
-          <h1 class="name">{{ $store.state.profile.Mhs.Nama.toLowerCase() }}</h1>
-          <h2 class="nim">{{ $store.state.profile.Mhs.Npm }}</h2>
+          <h1 class="name">{{ $store.state.Profile.Mhs.Nama.toLowerCase() }}</h1>
+          <h2 class="nim">{{ $store.state.Profile.Mhs.Npm }}</h2>
         </div>
     </div>
 </template>
@@ -56,7 +56,7 @@ export default {
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
   .profile-user{
     max-width: 50vw;
   }

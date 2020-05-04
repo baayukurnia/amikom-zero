@@ -37,7 +37,7 @@ Vue.use(VueRouter)
       title: "Edit Profil | Amikom Zero",
       depth: 2
     },
-    component: () => import('../views/DuhScreen.vue'),
+    component: () => import('../views/EmangScreen.vue'),
   },
   {
     path: '/qr',
