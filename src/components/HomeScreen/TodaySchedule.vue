@@ -4,7 +4,7 @@
     <div class="contents">
         <Timeline v-if="Array.isArray(getScheduleByDay(day))">
           <li v-for="sch in getScheduleByDay(day)" :key="sch.IdKuliah">
-            <span :class="['status', { 'done' : getPresenceStatus(getKrsId(sch.MataKuliah), sch.JenisKuliah, date) == 1 }]"></span>
+            <span :class="['status', { 'done' : getPresenceStatus(getKrsId(sch.MataKuliah), sch.JenisKuliah, date) }]"></span>
             <span class="time">{{ sch.Waktu }}</span>
             <h3>{{ sch.MataKuliah.toLowerCase() }}</h3>
             <h5>{{ sch.NamaDosen }}</h5>
@@ -43,7 +43,7 @@ export default {
     },
     methods: {
       getFormattedToday(){
-        const d = new Date() //yr,mnth,dy
+        const d = new Date //yr,mnth,dy
         const year = d.getFullYear()
         const date = ("0" + d.getDate()).slice(-2)
         const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']

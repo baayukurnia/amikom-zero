@@ -309,16 +309,10 @@ export default new Vuex.Store({
         return krsid[0].KrsId
       }
     },
-    isPresenceDetailLoaded: (state) => {
-      if(state.PresenceList.every((p) => p.PresenceDetail != null)){
-        return true
-      }
-      else{return false}
-    },
-    getPresenceStatus: (getters, state) => (krsId, JenisKuliah, date) => {
-      if(state.statusPreslist == 'success' && state.statusPresenceDetails == 'success' && state.statusSchedules == 'success' && state.PresenceList != null && getters.isPresenceDetailLoaded() ){
+    getPresenceStatus: (state) => (krsId, JenisKuliah, date) => {
+      if(state.statusPresenceDetails == 'success' && state.PresenceList.every((p) => p.PresenceDetail != null)){
           const presenceName = state.PresenceList.filter(p => p.KrsId === krsId)[0] // filter Matkul dg KrsId
-          if(presenceName.DetailPresensi.filter(d => d.Tanggal === date && d.JenisKuliah == JenisKuliah).length == 1){
+          if(presenceName.PresenceDetail.filter(d => d.Tanggal === date && d.JenisKuliah == JenisKuliah).length == 1){
             return true
           }
           else{
