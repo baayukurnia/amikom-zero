@@ -231,7 +231,6 @@ export default new Vuex.Store({
             data.forEach((d, index) => {
               dispatch('PRESENCE_DETAILS_REQUEST', d.KrsId).then(resp => {
                 const data = resp.data.data
-                console.log(index, data)
                 commit('PRESENCE_DETAILS_SUCCESS', {index, data})
               })
             })
