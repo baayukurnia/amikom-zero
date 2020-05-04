@@ -7,12 +7,14 @@
         <User/>
       </keep-alive>
       </router-link>
+      <Notification/>
       <Setting/>
     </div>
   </div>
 </template>
 
 <script>
+import Notification from '@/components/global/Notification.vue'
 import Setting from '@/components/global/Setting.vue'
 import User from '@/components/HomeScreen/User.vue'
 
@@ -20,7 +22,8 @@ export default {
   name: 'HomeProfile',
   components: {
     User,
-    Setting
+    Setting,
+    Notification
   }
 }
 </script>

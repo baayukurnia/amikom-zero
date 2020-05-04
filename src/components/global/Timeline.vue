@@ -82,6 +82,11 @@
     font-size: var(--h5);
     text-transform: capitalize;
     }
+    h4{
+    margin:5px 0;
+    font-size: var(--h6);
+    text-transform: capitalize;
+    }
     h5{
     margin: 0;
     font-size: var(--h8);
