@@ -11,34 +11,34 @@ Silahkan install [Amikom Zero](https://az.bayukurnia.xyz) dan informasikan ke te
 
 ## Fitur & Screenshot
 ### Login
-![Login Amikom Zero](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/login.jpg?raw=true)
+![Login](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/login.jpg?raw=true)
 
 ### Beranda
-![Login Amikom Zero](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/home.jpg?raw=true)
+![Beranda](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/home.jpg?raw=true)
 
 ### Jadwal Hari Ini
-![Login Amikom Zero](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/jadwal-hari-ini.jpg?raw=true)
+![Jadwal Harin Ini](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/jadwal-hari-ini.jpg?raw=true)
 
 ### Presensi Kode
-![Login Amikom Zero](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/presensi-kode.jpg?raw=true)
+![Presensi Kode](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/presensi-kode.jpg?raw=true)
 
 ### Profil Saya
-![Login Amikom Zero](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/profil.jpg?raw=true)
+![Profil Saya](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/profil.jpg?raw=true)
 
 ### Jadwal
-![Login Amikom Zero](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/jadwal.jpg?raw=true)
+![Jadwal](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/jadwal.jpg?raw=true)
 
 ### Daftar Presensi
-![Login Amikom Zero](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/presensi.jpg?raw=true)
+![Daftar Presensi](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/presensi.jpg?raw=true)
 
 ### Detail Presensi
-![Login Amikom Zero](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/detail-presensi.jpg?raw=true)
+![Detail Presensi](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/detail-presensi.jpg?raw=true)
 
 ### Setting
-![Login Amikom Zero](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/setting.jpg?raw=true)
+![Setting](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/setting.jpg?raw=true)
 
 ### Notifikasi
-![Login Amikom Zero](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/Notifikasi.jpg?raw=true)
+![Notifikasi](https://github.com/baayukurnia/amikom-zero/blob/master/screenshots/notifikasi.jpg?raw=true)
 
 
 ## To-do
