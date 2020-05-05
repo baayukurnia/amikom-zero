@@ -9,6 +9,7 @@ module.exports = {
       appleMobileWebAppStatusBarStyle: 'black',
       start_url: "/",
       workboxOptions: {
+        navigateFallback: 'index.html',
         skipWaiting: true
       }
     }
