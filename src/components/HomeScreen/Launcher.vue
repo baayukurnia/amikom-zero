@@ -16,13 +16,23 @@
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="78" viewBox="0 0 78 78"><defs><linearGradient id="a" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="var(--icon-gradient-white)"/><stop offset="1" stop-color="var(--icon-gradient-white)" stop-opacity="0.149"/></linearGradient></defs><rect width="78" height="78" rx="20" fill="var(--icon-bg)"/><g transform="translate(0 0)" opacity="0.05"><path d="M2595-95.448a2,2,0,0,1-2-2v-39.918h3a19.927,19.927,0,0,1,13.575,5.313v20.979a1,1,0,0,0,1,1H2616v14.625Z" transform="translate(-2538 137.365)" fill="url(#a)"/><path d="M2593.672-28.286a19.16,19.16,0,0,0,.448-4.132,19.2,19.2,0,0,0-19.174-19.175,19.077,19.077,0,0,0-6.875,1.274V-66.692a35.1,35.1,0,0,1,6.875-.674,34.728,34.728,0,0,1,13.6,2.747,34.816,34.816,0,0,1,11.108,7.489,34.836,34.836,0,0,1,7.49,11.109,34.723,34.723,0,0,1,2.746,13.6,35.494,35.494,0,0,1-.24,4.132Z" transform="translate(-2568.072 106.286)" fill="url(#a)"/></g><path d="M17.2,0,10.775-16.675H6.325L-.125,0h4.05l1.05-2.825h7.15L13.15,0ZM11.15-5.95H5.95l2.6-7.175ZM28.6,0V-7.8c0-3.475-2.525-4.575-5.275-4.575a7.921,7.921,0,0,0-5.275,1.9l1.2,2.125a5.081,5.081,0,0,1,3.525-1.425c1.6,0,2.65.8,2.65,2.025v1.625A4.967,4.967,0,0,0,21.6-7.6c-1.925,0-4.2,1.075-4.2,3.9a4.023,4.023,0,0,0,4.2,4,5,5,0,0,0,3.825-1.55V0ZM22.875-1.85c-1.25,0-2.275-.65-2.275-1.775,0-1.175,1.025-1.825,2.275-1.825a3.176,3.176,0,0,1,2.55,1.05v1.5A3.176,3.176,0,0,1,22.875-1.85Z" transform="translate(25 46.635)" fill="#fff"/></svg>
           </div>
           <span>
-            Absen Kode
+            Scan Kode
           </span>
         </div>
         </a>
-        <router-link to="/jadwal">
+        <router-link to="/presensi">
         <div class="item">
           <div class="icon notif">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="78" viewBox="0 0 78 78"><defs><linearGradient id="d" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="var(--icon-gradient-white)"/><stop offset="1" stop-color="var(--icon-gradient-white)" stop-opacity="0.149"/></linearGradient></defs><rect width="78" height="78" rx="20" fill="var(--icon-bg)"/><g transform="translate(0 0)" opacity="0.05"><path d="M2558-59.366a19.906,19.906,0,0,1-11.2-3.428V-80.3a1,1,0,0,0-1-1H2538V-97.872h21.426a2,2,0,0,1,2,2v36.507Z" transform="translate(-2538 137.365)" fill="url(#d)"/><path d="M2618.344-77.217a34.834,34.834,0,0,1-11.109-7.49,34.825,34.825,0,0,1-7.489-11.108,34.623,34.623,0,0,1-2.609-10.471h15.892a19.2,19.2,0,0,0,18.919,16.042,19.085,19.085,0,0,0,12.274-4.455,19.921,19.921,0,0,1,1.851,8.413v8.843q-.26.115-.522.226a34.726,34.726,0,0,1-13.6,2.746A34.724,34.724,0,0,1,2618.344-77.217Z" transform="translate(-2568.072 106.286)" fill="url(#d)"/></g><g transform="translate(26 27)"><path d="M9,11.368l3.158,3.158L22.684,4" transform="translate(0.316 0.053)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M21.947,12.474v7.368a2.105,2.105,0,0,1-2.105,2.105H5.105A2.105,2.105,0,0,1,3,19.842V5.105A2.105,2.105,0,0,1,5.105,3H16.684" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></g></svg>
+          </div>
+          <span>
+            Presensi
+          </span>
+        </div>
+        </router-link>
+        <router-link to="/jadwal">
+        <div class="item">
+          <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="78" viewBox="0 0 78 78"><defs><linearGradient id="b" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="var(--icon-gradient-white)"/><stop offset="1" stop-color="var(--icon-gradient-white)" stop-opacity="0.149"/></linearGradient></defs><rect width="78" height="78" rx="20" fill="var(--icon-bg)"/><g transform="translate(0 0)" opacity="0.05"><path d="M2538-103.448v-13.918q0-.355.012-.707h5.787a1,1,0,0,0,1-1v-13.318a19.924,19.924,0,0,1,13.2-4.975h1.425v31.918a2,2,0,0,1-2,2Z" transform="translate(-2538 137.365)" fill="url(#b)"/><path d="M2633.235-32.707a34.814,34.814,0,0,1-7.489-11.109,34.723,34.723,0,0,1-2.747-13.6,34.727,34.727,0,0,1,2.747-13.6,34.814,34.814,0,0,1,7.489-11.109,34.834,34.834,0,0,1,11.109-7.489q.673-.284,1.353-.54a20.094,20.094,0,0,1,.375,3.872v13.824a19.15,19.15,0,0,0-7.3,15.045,19.135,19.135,0,0,0,6.584,14.45,20.052,20.052,0,0,1-9.867,12.33Q2634.323-31.619,2633.235-32.707Z" transform="translate(-2568.072 106.286)" fill="url(#b)"/></g><g transform="translate(29.03 27.117)"><rect width="20" height="19.88" rx="2" transform="translate(0 2.342)" stroke-width="2" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line y2="4.684" transform="translate(14.444)" stroke-width="2" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line y2="4.684" transform="translate(5.556)" stroke-width="2" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x2="20" transform="translate(0 8.889)" stroke-width="2" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g></svg>
           </div>
           <span>
@@ -37,16 +47,6 @@
           </div>
           <span>
             KHS
-          </span>
-        </div>
-        </router-link>
-        <router-link to="/krs">
-        <div class="item">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="78" height="78" viewBox="0 0 78 78"><defs><linearGradient id="d" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="var(--icon-gradient-white)"/><stop offset="1" stop-color="var(--icon-gradient-white)" stop-opacity="0.149"/></linearGradient></defs><rect width="78" height="78" rx="20" fill="var(--icon-bg)"/><g transform="translate(0 0)" opacity="0.05"><path d="M2558-59.366a19.906,19.906,0,0,1-11.2-3.428V-80.3a1,1,0,0,0-1-1H2538V-97.872h21.426a2,2,0,0,1,2,2v36.507Z" transform="translate(-2538 137.365)" fill="url(#d)"/><path d="M2618.344-77.217a34.834,34.834,0,0,1-11.109-7.49,34.825,34.825,0,0,1-7.489-11.108,34.623,34.623,0,0,1-2.609-10.471h15.892a19.2,19.2,0,0,0,18.919,16.042,19.085,19.085,0,0,0,12.274-4.455,19.921,19.921,0,0,1,1.851,8.413v8.843q-.26.115-.522.226a34.726,34.726,0,0,1-13.6,2.746A34.724,34.724,0,0,1,2618.344-77.217Z" transform="translate(-2568.072 106.286)" fill="url(#d)"/></g><g transform="translate(29 29.373)"><path d="M10.939,4H3.987A1.987,1.987,0,0,0,2,5.987V19.892a1.987,1.987,0,0,0,1.987,1.987H17.892a1.987,1.987,0,0,0,1.987-1.987V12.939" transform="translate(-2 -1.879)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M18.5,2.5a2.121,2.121,0,0,1,3,3L12,15,8,16l1-4Z" transform="translate(-2.121 -1.879)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></g></svg>
-          </div>
-          <span>
-            KRS
           </span>
         </div>
         </router-link>

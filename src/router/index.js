@@ -70,14 +70,24 @@ Vue.use(VueRouter)
     component: () => import('../views/DuhScreen.vue'),
   },
   {
-    path: '/krs',
-    name: 'KRS',
+    path: '/presensi',
+    name: 'Presensi',
     meta: {
       requiresAuth: true,
-      title: "KRS | Amikom Zero",
+      title: "Presensi | Amikom Zero",
       depth: 1
     },
-    component: () => import('../views/DuhScreen.vue'),
+    component: () => import('../views/PresenceScreen.vue'),
+  },
+  {
+    path: '/presensi/:krsid',
+    name: 'DetailPresensi', 
+    meta: {
+      requiresAuth: true,
+      title: "Detail Presensi | Amikom Zero",
+      depth: 2
+    },
+    component: () => import('../views/PresenceDetailScreen.vue')
   },
   {
     path: '/transkip',

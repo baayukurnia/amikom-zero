@@ -29,7 +29,7 @@
     background: var(--secondary-color);
     padding: 5px 15px 4px;
     border-radius: 40px;
-    font-size: var(--h8);
+    font-size: var(--h7);
     font-weight: 700;
     }
 

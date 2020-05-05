@@ -1,10 +1,6 @@
 <template>
   <div class="profile">
-    <Navigation mode="light" title="Profil Saya" nav-right="true" :transparentNav="true">
-      <li>
-          <router-link to="/profil/edit">Foto saya jelek sekali</router-link>
-      </li>
-    </Navigation>
+    <Navigation mode="light" title="Profil Saya" :transparentNav="true"/>
     <ScrollView>
       <keep-alive>
         <ProfileImage/>

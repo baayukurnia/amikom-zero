@@ -117,6 +117,8 @@ export default {
     margin: auto;
     line-height: 50px;
     color: var(--body-color);
+    text-transform: capitalize;
+    white-space: nowrap;
   }
 
   .icon{

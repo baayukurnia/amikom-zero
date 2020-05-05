@@ -318,6 +318,9 @@ export default new Vuex.Store({
             return false
           }
       }
+    },
+    getPresenceTimeline: (state) => (KrsId) => {
+      return state.PresenceList.filter(p => p.KrsId === KrsId)[0]
     }
   }
 })
