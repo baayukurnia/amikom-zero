@@ -49,7 +49,7 @@ Silahkan install [Amikom Zero](https://az.bayukurnia.xyz) dan informasikan ke te
 
 ## Kontribusi
 ```
-git clone https://github.com/baayukurnia/amikom-zero.git
+[https://github.com/baayukurnia/amikom-zero/fork](https://github.com/baayukurnia/amikom-zero/fork)
 ```
 
 ### Setup
