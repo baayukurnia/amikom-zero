@@ -48,9 +48,7 @@ Silahkan install [Amikom Zero](https://az.bayukurnia.xyz) dan informasikan ke te
 
 
 ## Kontribusi
-```
 [https://github.com/baayukurnia/amikom-zero/fork](https://github.com/baayukurnia/amikom-zero/fork)
-```
 
 ### Setup
 ```
