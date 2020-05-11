@@ -233,7 +233,7 @@ export default new Vuex.Store({
             commit('ACTIVITY_QR_ERROR')
           }
           resolve(resp)
-          console.log(data.status)
+          console.log(data.status, data.message)
         })
         .catch(err => {
           console.log(err)

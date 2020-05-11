@@ -3,33 +3,77 @@
     <Navigation title="Arahkan ke kode QR" :transparentNav="true"/>
     <div class="flex-container">
       <p class="error">{{ error }}</p>
-      <p class="message">{{ result }}{{ this.$store.statusQr }}</p>
-      <qrcode-stream @decode="presenceQr" @init="onInit"></qrcode-stream>
+      <qrcode-stream :camera="camera" @decode="presenceQr" @init="onInit">
+        <div v-if="presenceMessage" :class="[ 'message', messageStatus ]">
+          {{ message }}
+        </div>
+
+        <div v-if="presencePending" class="message pending">
+          <span class="message">
+            <RotateCwIcon class="rotating"/>
+          </span>
+        </div>
+      </qrcode-stream>
     </div>
     </div>
 </template>
 
 <script>
 import { QrcodeStream } from 'vue-qrcode-reader'
+import { RotateCwIcon } from 'vue-feather-icons'
 import Navigation from '@/components/global/Navigation.vue'
 
 export default {
   name: 'QrScreen',
   components: {
     Navigation,
-    QrcodeStream
+    QrcodeStream,
+    RotateCwIcon
+  },
+  computed: {
+    presencePending () {
+      return this.presenceMessage === false
+        && this.camera === 'off'
+    },
   },
   data () {
     return {
-      result: '',
-      error: ''
+      message: '',
+      camera: 'auto',
+      error: '',
+      presenceMessage: false,
+      messageStatus: null
     }
   },
     methods: {
-    presenceQr (kodeqr) {
-      this.$store.dispatch('ACTIVITY_QR_REQUEST', kodeqr)
+    async presenceQr (kodeqr) {
+      this.turnCameraOff()
+
+      this.$store.dispatch('ACTIVITY_QR_REQUEST', kodeqr).then((resp) =>{
+        if(resp.data.status){
+          this.messageStatus = 'success'
+        }
+        else if(resp.data.status == false){
+          this.messageStatus = 'failure'
+        }
+        console.log(resp.data.status)
+        this.message = resp.data.message
+        this.presenceMessage = true
+        setTimeout(() => {
+          this.turnCameraOn()
+          this.presenceMessage = false
+        }, 2000);
+      })
     },
 
+
+    turnCameraOn () {
+      this.camera = 'auto'
+    },
+
+    turnCameraOff () {
+      this.camera = 'off'
+    },
     async onInit (promise) {
       try {
         await promise
@@ -63,23 +107,50 @@ export default {
     left: 0;
     right: 0;
     height: 20vh;
-    background: var(--overlay);
+    background: rgba(0,0,0,0.8);
     z-index: 1;
   }
   &:after{
     top: auto;
     bottom: 0;
   }
-  
-.error {
-  font-weight: bold;
-  color: var(--red);
+
+.message {
+  margin: 0;
   position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 40px;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(255, 255, 255, .8);
   text-align: center;
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 10px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+
+  &.success{
+    color: green; 
+  }
+  &.failure{
+    color: red
+  }
 }
+
+.error{
+  position: absolute;
+    color: var(--red);
+}
+
+svg{
+  width: 35px;
+  height: 35px;
+  color: black;
+}
+.rotating{-webkit-animation:rotation .5s linear infinite;animation:rotation .5s linear infinite}
+@keyframes rotation{0%{transform:rotate(0deg)}to{transform:rotate(359deg)}}
 }
 </style>
  
