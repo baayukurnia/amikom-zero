@@ -27,6 +27,7 @@ export default new Vuex.Store({
     statusSchedule: null,
     statusProfile: null,
     statusPresence: null,
+    statusQr: null,
     statusPreslist: null,
     isAuthenticated: false,
     performanceMode: false,

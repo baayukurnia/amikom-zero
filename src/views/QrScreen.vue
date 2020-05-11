@@ -3,6 +3,7 @@
     <Navigation title="Arahkan ke kode QR" :transparentNav="true"/>
     <div class="flex-container">
       <p class="error">{{ error }}</p>
+      <p class="message">{{ result }}{{ this.$store.statusQr }}</p>
       <qrcode-stream @decode="presenceQr" @init="onInit"></qrcode-stream>
     </div>
     </div>
