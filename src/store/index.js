@@ -30,6 +30,7 @@ export default new Vuex.Store({
     statusPreslist: null,
     isAuthenticated: false,
     performanceMode: false,
+    errorMsg: null,
     statusBar: {
       color: null,
       scroll: null
@@ -37,17 +38,6 @@ export default new Vuex.Store({
     Schedules: null,
     Profile: defaultProfile,
     PresenceList: null,
-    PresenceDetail: []
-    // PresenceList: [
-    //   {"KrsId":2681448,"Kode":"ST013","NamaMk":"LINGKUNGAN BISNIS","NamaMkEn":"BUSINESS ENVIRONMENT","JmlSks":2,"JmlPresensiKuliah":0,"IsHadirMID":0,"IsHadirUAS":0,"DetailPresensi":[]},
-    //   {"KrsId":2681449,"Kode":"ST014","NamaMk":"KOMUNIKASI DATA","NamaMkEn":"DATA COMMUNICATION","JmlSks":4,"JmlPresensiKuliah":5,"IsHadirMID":0,"IsHadirUAS":0,"DetailPresensi":[{"Tanggal":"30 Mar 2020","Jam":"07:57:02","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"24 Mar 2020","Jam":"15:10:32","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"15 Apr 2020","Jam":"11:23:13","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"09 Mar 2020","Jam":"13:34:22","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"02 Mar 2020","Jam":"14:04:25","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"}]},
-    //   {"KrsId":2681057,"Kode":"ST015","NamaMk":"STRUKTUR DATA","NamaMkEn":"DATA STRUCTURES","JmlSks":4,"JmlPresensiKuliah":9,"IsHadirMID":0,"IsHadirUAS":0,"DetailPresensi":[{"Tanggal":"19 Mar 2020","Jam":"21:21:13","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"19 Mar 2020","Jam":"21:30:08","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"15 Apr 2020","Jam":"23:50:15","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"13 Apr 2020","Jam":"23:56:38","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"12 Mar 2020","Jam":"10:57:46","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"08 Apr 2020","Jam":"20:42:04","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"05 Mar 2020","Jam":"11:04:57","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"02 Apr 2020","Jam":"00:20:05","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"01 Apr 2020","Jam":"17:22:32","Kelas":"19-S1IF-11","JenisKuliah":"Teori"}]},
-    //   {"KrsId":2681447,"Kode":"ST016","NamaMk":"BAHASA INGGRIS II","NamaMkEn":"ENGLISH II","JmlSks":2,"JmlPresensiKuliah":3,"IsHadirMID":0,"IsHadirUAS":0,"DetailPresensi":[{"Tanggal":"24 Mar 2020","Jam":"14:36:59","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"17 Mar 2020","Jam":"14:32:20","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"03 Mar 2020","Jam":"07:06:43","Kelas":"19-S1IF-11","JenisKuliah":"Teori"}]},
-    //   {"KrsId":2681061,"Kode":"ST019","NamaMk":"SISTEM OPERASI","NamaMkEn":"OPERATING SYSTEMS","JmlSks":4,"JmlPresensiKuliah":10,"IsHadirMID":0,"IsHadirUAS":0,"DetailPresensi":[{"Tanggal":"26 Mar 2020","Jam":"10:28:34","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"20 Mar 2020","Jam":"09:44:11","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"19 Mar 2020","Jam":"09:07:37","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"13 Mar 2020","Jam":"09:12:19","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"12 Mar 2020","Jam":"09:04:59","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"10 Apr 2020","Jam":"13:39:02","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"06 Mar 2020","Jam":"09:06:03","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"05 Mar 2020","Jam":"08:58:38","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"03 Apr 2020","Jam":"08:47:51","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"02 Apr 2020","Jam":"08:31:36","Kelas":"19-S1IF-11","JenisKuliah":"Teori"}]},
-    //   {"KrsId":2681062,"Kode":"ST021","NamaMk":"PEMROGRAMAN","NamaMkEn":"PROGRAMMING","JmlSks":2,"JmlPresensiKuliah":5,"IsHadirMID":0,"IsHadirUAS":0,"DetailPresensi":[{"Tanggal":"24 Mar 2020","Jam":"14:45:25","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"17 Mar 2020","Jam":"13:33:07","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"14 Apr 2020","Jam":"13:47:25","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"10 Mar 2020","Jam":"13:32:31","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"03 Mar 2020","Jam":"13:29:21","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"}]},
-    //   {"KrsId":2681451,"Kode":"ST094","NamaMk":"ORGANISASI & ARSITEKTUR KOMPUTER","NamaMkEn":"COMPUTER ORGANIZATION & ARCHITECTUR","JmlSks":2,"JmlPresensiKuliah":3,"IsHadirMID":0,"IsHadirUAS":0,"DetailPresensi":[{"Tanggal":"15 Apr 2020","Jam":"09:15:09","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"11 Mar 2020","Jam":"09:00:10","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"02 Apr 2020","Jam":"07:39:08","Kelas":"19-S1IF-11","JenisKuliah":"Teori"}]},
-    //   {"KrsId":2681444,"Kode":"ST123","NamaMk":"HARDWARE/ SOFTWARE I","NamaMkEn":"HARDWARE/ SOFTWARE I","JmlSks":4,"JmlPresensiKuliah":12,"IsHadirMID":0,"IsHadirUAS":0,"DetailPresensi":[{"Tanggal":"31 Mar 2020","Jam":"10:26:31","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"30 Mar 2020","Jam":"08:58:29","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"24 Mar 2020","Jam":"09:12:00","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"23 Mar 2020","Jam":"09:31:53","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"17 Mar 2020","Jam":"10:07:57","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"16 Mar 2020","Jam":"09:21:54","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"14 Apr 2020","Jam":"02:56:14","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"13 Apr 2020","Jam":"09:14:59","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"09 Mar 2020","Jam":"09:01:17","Kelas":"19-S1IF-11","JenisKuliah":"Teori"},{"Tanggal":"06 Apr 2020","Jam":"09:08:22","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"03 Mar 2020","Jam":"08:56:53","Kelas":"19-S1IF-11","JenisKuliah":"Praktikum"},{"Tanggal":"02 Mar 2020","Jam":"09:04:30","Kelas":"19-S1IF-11","JenisKuliah":"Teori"}]}
-    // ]
   },
   modules: {
     token: localStorage.getItem('user-token') || '',
@@ -72,6 +62,8 @@ export default new Vuex.Store({
       state.isAuthenticated = false
       state.Profile = defaultProfile
       state.Schedules = null
+      state.PresenceList = null
+      state.token = null
     },
     ['PROFILE_REQUEST']: (state) => {
       state.statusProfile = 'loading'
@@ -100,6 +92,15 @@ export default new Vuex.Store({
     ['ACTIVITY_PRESENCE_ERROR']: (state) => {
       state.statusPresence = 'error'
     },
+    ['ACTIVITY_QR_REQUEST']: (state) => {
+      state.statusQr = 'loading'
+    },
+    ['ACTIVITY_QR_SUCCESS']: (state) => {
+      state.statusQr = 'success'
+    },
+    ['ACTIVITY_QR_ERROR']: (state) => {
+      state.statusQr = 'error'
+    },
     ['PRESENCE_LIST_REQUEST']: state => {
       state.statusPreslist = 'loading'
     },
@@ -113,8 +114,10 @@ export default new Vuex.Store({
     ['PRESENCE_DETAILS_REQUEST']: state => {
       state.statusPresenceDetails = 'loading'
     },
-    ['PRESENCE_DETAILS_SUCCESS']: (state, {index, data}) => {
+    ['PRESENCE_DETAILS_PARTIAL']: (state, {index, data}) => {
       state.PresenceList[index].PresenceDetail = data
+    },
+    ['PRESENCE_DETAILS_SUCCESS']: state => {
       state.statusPresenceDetails = 'success'
     },
 		initialiseStore(state) {
@@ -133,18 +136,19 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => { // The Promise used for router redirect in login
         commit('AUTH_REQUEST')
         axios.post('/amikom', qs.stringify(user))
-          .then(resp => {
-            const token = resp.data.access_token
-            localStorage.setItem('user-token', token) // store the token in localstorage
-            commit('AUTH_SUCCESS', token)
-            // you have your token, now log in your user :)
-            dispatch('PROFILE_REQUEST')
-            resolve(resp) 
-          })
+        .then(resp => {
+          const token = resp.data.access_token
+          localStorage.setItem('user-token', token) // store the token in localstorage
+          commit('AUTH_SUCCESS', token)
+          // you have your token, now log in your user :)
+          dispatch('PROFILE_REQUEST')
+          resolve(resp) 
+        })
         .catch(err => {
-          commit('AUTH_ERROR', err)
+          commit('AUTH_ERROR')
+          console.log(err.response)
           localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
-          reject(err)
+          reject(err.response)
         })
       })
     },
@@ -190,12 +194,10 @@ export default new Vuex.Store({
         })
       })
     },
-    ['ACTIVITY_PRESENCE_REQUEST']: ({commit, dispatch, state}) =>{
+    ['ACTIVITY_PRESENCE_REQUEST']: ({commit, dispatch}, {nim, kode}) =>{
       return new Promise((resolve, reject) =>{
         commit('ACTIVITY_PRESENCE_REQUEST')
-        const token = localStorage.getItem('user-token')
-        const nim = state.Profile.Mhs.Npm
-        axios.post('/presensi', qs.stringify({nim, token }))
+        axios.post('/presensi_kode', qs.stringify({nim, kode}))
         .then(resp => {
           const data = resp.data
           const status = data.status
@@ -205,6 +207,29 @@ export default new Vuex.Store({
           }
           else if(status == false){
             commit('ACTIVITY_PRESENCE_ERROR')
+          }
+          resolve(resp)
+          console.log(data.status)
+        })
+        .catch(err => {
+          console.log(err)
+          reject(err)
+        })
+      })
+    },
+    ['ACTIVITY_QR_REQUEST']: ({commit, state}, kodeqr) =>{
+      return new Promise((resolve, reject) =>{
+        commit('ACTIVITY_QR_REQUEST')
+        const nim = state.Profile.Mhs.Npm
+        axios.post('/presensi_qr', qs.stringify({nim, kodeqr }))
+        .then(resp => {
+          const data = resp.data
+          const status = data.status
+          if(status == true){
+            commit('ACTIVITY_QR_SUCCESS')
+          }
+          else if(status == false){
+            commit('ACTIVITY_QR_ERROR')
           }
           resolve(resp)
           console.log(data.status)
@@ -228,10 +253,13 @@ export default new Vuex.Store({
           const status = resp.data.status
           if(status == true){
             commit('PRESENCE_LIST_SUCCESS', data)
-            data.forEach((d, index) => {
+            data.forEach((d, index, array) => {
               dispatch('PRESENCE_DETAILS_REQUEST', d.KrsId).then(resp => {
                 const data = resp.data.data
-                commit('PRESENCE_DETAILS_SUCCESS', {index, data})
+                commit('PRESENCE_DETAILS_PARTIAL', {index, data})
+                if (index === array.length - 1){
+                  commit('PRESENCE_DETAILS_SUCCESS')
+                }
               })
             })
           }
@@ -309,14 +337,16 @@ export default new Vuex.Store({
       }
     },
     getPresenceStatus: (state) => (krsId, JenisKuliah, date) => {
-      if(state.statusPresenceDetails == 'success' && state.PresenceList.every((p) => p.PresenceDetail != null)){
-          const presenceName = state.PresenceList.filter(p => p.KrsId === krsId)[0] // filter Matkul dg KrsId
-          if(presenceName.PresenceDetail.filter(d => d.Tanggal === date && d.JenisKuliah == JenisKuliah).length == 1){
-            return true
-          }
-          else{
-            return false
-          }
+      if(state.statusPresenceDetails == 'success'){
+        if(state.PresenceList.every((p) => p.PresenceDetail != null)){
+            const presenceName = state.PresenceList.filter(p => p.KrsId === krsId)[0] // filter Matkul dg KrsId
+            if(presenceName.PresenceDetail.filter(d => d.Tanggal === date && d.JenisKuliah == JenisKuliah).length == 1){
+              return true
+            }
+            else{
+              return false
+            }
+        }
       }
     },
     getPresenceTimeline: (state) => (KrsId) => {

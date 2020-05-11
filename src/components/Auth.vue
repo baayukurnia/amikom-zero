@@ -93,11 +93,7 @@ export default {
                      }, 1500);
                  }
                  else{
-                     this.$store.dispatch('AUTH_REQUEST', { nim, password }).then(() => {
-                        
-                    }).catch(err => {
-                        this.errorMsg = err
-                    })
+                     this.$store.dispatch('AUTH_REQUEST', { nim, password })
                  }
              }
         },

@@ -31,7 +31,7 @@ export default {
   created: function(){
     axios.interceptors.response.use(undefined, function (err) {
         // if you ever get an unauthorized, logout the user
-            this.$store.dispatch('AUTH_LOGOUT')
+        this.$store.dispatch('AUTH_LOGOUT')
         // you can also redirect to /login if needed !
         throw err;
     });

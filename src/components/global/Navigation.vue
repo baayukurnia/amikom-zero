@@ -43,6 +43,10 @@ export default {
       transparentNav:{
         type: Boolean,
         default: false
+      },
+      scrollNav:{
+        type: Boolean,
+        default: false
       }
     },
     data(){
@@ -52,7 +56,9 @@ export default {
       }
     },
     mounted(){
-      this.init()
+      if(this.scrollNav){
+        this.init()
+      }
     },
     methods: {
       toggleDropdown(){

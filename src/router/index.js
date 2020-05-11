@@ -47,7 +47,7 @@ Vue.use(VueRouter)
       title: "Absen QR | Amikom Zero",
       depth: 1
     },
-    component: () => import('../views/DuhScreen.vue'),
+    component: () => import('../views/QrScreen.vue'),
   },
   {
     path: '/jadwal',
