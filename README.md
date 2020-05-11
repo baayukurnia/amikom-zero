@@ -47,11 +47,10 @@ Silahkan install [Amikom Zero](https://az.bayukurnia.xyz) dan informasikan ke te
 * Scan Barcode
 
 
+## Kontribusi
+[https://github.com/baayukurnia/amikom-zero/fork](https://github.com/baayukurnia/amikom-zero/fork)
 
-## Setup (bagi yang mau kontribusi code)
-```
-git clone https://github.com/baayukurnia/amikom-zero.git
-```
+### Setup
 ```
 npm install
 ```
